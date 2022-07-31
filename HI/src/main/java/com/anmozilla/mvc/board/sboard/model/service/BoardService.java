@@ -9,7 +9,7 @@ import com.anmozilla.mvc.board.sboard.model.dao.BoardDao;
 import com.anmozilla.mvc.board.sboard.model.vo.Board;
 
 public class BoardService {
-	// !!!! 민주
+	// !!!! 민주!!!!!!!!!!!!!!!!
 	
 	
 
