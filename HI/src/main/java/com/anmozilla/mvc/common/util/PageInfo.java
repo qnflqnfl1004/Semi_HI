@@ -10,6 +10,7 @@ public class PageInfo {
 	private int listLimit;	
 	
 	/**
+	 * 
 	 * @param currentPage 현재 페이지
 	 * @param pageLimit 한 페이지에 보이는 페이지의 수 
 	 * @param listCount 전체 리스트의 수

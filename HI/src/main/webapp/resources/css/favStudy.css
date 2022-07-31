@@ -1,0 +1,143 @@
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* body css */
+@media only screen and (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+
+  .studyTitle {
+    font-size: 0.5em;
+    margin: 5px;
+  }
+}
+
+#myStudyType,
+#saveStudyType {
+  border-bottom: 6px dotted #e2e2e2;
+  padding-bottom: 0rem !important;
+}
+
+h1 {
+  display: block;
+  font-size: 3em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  /* margin-bottom: 40px; */
+  font-weight: bold;
+  font-style: oblique;
+  color: #7a86b6;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  width: 100%;
+  height: 500;
+  border-radius: 15%;
+  border: none;
+  background-color: #e2e2e2;
+}
+
+#studyBox {
+  margin-bottom: 5%;
+}
+
+.studyContent {
+  border: none;
+  background-color: none;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.studyStart {
+  font-size: 1em;
+  margin: 10px;
+}
+
+.studyTitle {
+  font-size: 2em;
+  margin-top: 5%;
+}
+
+.studyFilter {
+  width: 100%;
+  height: 60%;
+  border-bottom: 1px dotted;
+  /* padding-bottom: 20px; */
+}
+
+.levelImg {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}
+
+.writerInfo {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.writerImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.writerNick {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 400;
+  vertical-align: bottom;
+  /* padding-left: 10px; */
+  padding-bottom: 0;
+  padding-top: 15;
+}
+
+.studySaveI {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* 삭제-마감 버튼 */
+.btnBox {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+.btn,
+.btnMore {
+  background-color: #7a86b6;
+  color: white;
+  width: 30%;
+  height: 50px;
+  font-weight: bold;
+  font-size: 1.6rem;
+  border-radius: 20px;
+  margin-top: 1px;
+  border: none;
+}
+
+/* #btnMore {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #7a86b6;
+      border-radius: 30%;
+      border: 3px dashed #7a86b6;
+      background-color: none;
+      width: 20%;
+      height: 50;
+      cursor: pointer;
+      writing-mode: horizontal-tb !important;
+    } */
