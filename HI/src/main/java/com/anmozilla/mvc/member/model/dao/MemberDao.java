@@ -11,8 +11,7 @@ import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 public class MemberDao {
-
-	// 회원 가입 insert
+	// 솔이님 !!!!!!!!!!!!!!!!!!!!! ♡
 	public int insertMember(Connection connection, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -39,7 +38,171 @@ public class MemberDao {
 		
 		return result;
 	}
+
+	public Member findMemberById(Connection connection, String userId) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM MEM_LIST WHERE MEM_ID=? AND MEM_STATUS='Y'";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				member = new Member();
+				
+				member.setNo(rs.getInt("MEM_NO"));
+				member.setId(rs.getString("MEM_ID"));
+				member.setNickName(rs.getString("MEM_NICKNAME"));
+		    	member.setPassword(rs.getString("MEM_PW"));
+		    	member.setName(rs.getString("MEM_NAME"));
+		    	member.setPhone(rs.getString("MEM_PHONE"));
+		    	member.setWarning(rs.getInt("MEM_WARNING"));
+		    	member.setEmail(rs.getString("MEM_EMAIL"));
+		    	member.setImg(rs.getString("MEM_IMG"));
+		    	member.setRole(rs.getString("MEM_ROLE"));
+		    	member.setStatus(rs.getString("MEM_STATUS"));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return member;
+	}
+
+	public Member findMemberByNick(Connection connection, String userNick) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM MEM_LIST WHERE MEM_NICKNAME=? AND MEM_STATUS='Y'";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, userNick);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				member = new Member();
+				
+				member.setNo(rs.getInt("MEM_NO"));
+				member.setId(rs.getString("MEM_ID"));
+				member.setNickName(rs.getString("MEM_NICKNAME"));
+		    	member.setPassword(rs.getString("MEM_PW"));
+		    	member.setName(rs.getString("MEM_NAME"));
+		    	member.setPhone(rs.getString("MEM_PHONE"));
+		    	member.setWarning(rs.getInt("MEM_WARNING"));
+		    	member.setEmail(rs.getString("MEM_EMAIL"));
+		    	member.setImg(rs.getString("MEM_IMG"));
+		    	member.setRole(rs.getString("MEM_ROLE"));
+		    	member.setStatus(rs.getString("MEM_STATUS"));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return member;
+	}
+
+	public Member findMemberByEmail(Connection connection, String userEmail) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM MEM_LIST WHERE MEM_EMAIL=? AND MEM_STATUS='Y'";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, userEmail);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				member = new Member();
+				
+				member.setNo(rs.getInt("MEM_NO"));
+				member.setId(rs.getString("MEM_ID"));
+				member.setNickName(rs.getString("MEM_NICKNAME"));
+		    	member.setPassword(rs.getString("MEM_PW"));
+		    	member.setName(rs.getString("MEM_NAME"));
+		    	member.setPhone(rs.getString("MEM_PHONE"));
+		    	member.setWarning(rs.getInt("MEM_WARNING"));
+		    	member.setEmail(rs.getString("MEM_EMAIL"));
+		    	member.setImg(rs.getString("MEM_IMG"));
+		    	member.setRole(rs.getString("MEM_ROLE"));
+		    	member.setStatus(rs.getString("MEM_STATUS"));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return member;
+	}
+
+	public int getMemberCount(Connection connection) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT COUNT(*) FROM MEM_LIST WHERE MEM_STATUS='Y'";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 현진!!!!!!!!!!!!!
+
 	// myPage 정보 업데이트
 	public static int updateMember(Connection connection, Member member) {
 		int result = 0;
@@ -91,53 +254,7 @@ public class MemberDao {
 		return result;
 	}
 
-	public Member findMemberById(Connection connection, String id) {
-		Member member = null;
-//		Connection connection = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String query = "SELECT * FROM MEM_LIST WHERE ID=? AND STATUS='Y'";
-		
-		
-			try {
-//				Class.forName("oracle.jdbc.driver.OracleDriver");
-				connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "PARK", "PARK");
-				
-				ps = connection.prepareStatement(query);
-				
-				rs = ps.executeQuery();
-		
-				if(rs.next()) {
-					member = new Member();
-					
-					member.setNo(rs.getInt("MEN_NO"));
-					member.setId(rs.getString("MEM_ID"));
-					member.setNickName(rs.getString("MEM_NICKNAME"));
-					member.setPassword(rs.getString("MEM_PW"));
-					member.setName(rs.getString("MEM_NAME"));
-					member.setPhone(rs.getString("MEM_PHONE"));
-					member.setWarning(rs.getInt("MEM_WARNING"));
-					member.setEmail(rs.getString("EMAIL"));
-					member.setImg(rs.getString("MEM_IMG"));
-					member.setRole(rs.getString("MEM_ROLE"));
-					member.setStatus(rs.getString("STATUS"));
-			}
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try { 
-				
-				rs.close();
-				ps.close();
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return member;
-	}
+	
 
 	public int updateMemberPwd(Connection connection, int no, String userPwd) {
 		int result = 0;
