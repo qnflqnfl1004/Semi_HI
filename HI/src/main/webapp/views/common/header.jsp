@@ -19,14 +19,14 @@
         <a class="navbar-brand" href="#">
             <img src="${ path }/resources/images/Hi_Logo.png" alt="" width="130" height="70">
         </a>
-        <c:if test="${  empty loginMember }">
+        <c:if test="${ empty loginMember }">
             <div class="main1 loginX">
                 <button type="button" class="btn btn-Link main2" data-bs-toggle="modal" data-bs-target="#agreemodal">회원가입</button>
                 <button type="button" class="btn btn-Link main2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">로그인</button>
             </div>
         </c:if>
 
-        <c:if test="${ not empty loginMember }">
+        <c:if test="${ empty loginMember }">
         <div class="main1 loginO">
             <button type="button" class="btn btn-Link main2">새 글 쓰기</button>
             <div class="dropdown text-end ">	
@@ -45,7 +45,7 @@
         </div>
         </c:if>
 	
-        <c:if test="${ not empty loginMember || loginMember.role == 'ROLE_ADMIN'}">
+        <c:if test="${ empty loginMember || loginMember.role == 'ROLE_ADMIN'}">
         <div class="main1 loginAdmin">
             <div class="dropdown text-end">	
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
