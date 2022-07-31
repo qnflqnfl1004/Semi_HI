@@ -1,8 +1,11 @@
 package com.anmozilla.mvc.board.sboard.model.vo;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import com.anmozilla.mvc.member.model.vo.Member;
+import com.anmozilla.mvc.board.sboard.model.vo.Test;
+import com.anmozilla.mvc.board.sboard.model.vo.Language;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +18,8 @@ public class Board {
 
 	private int sNo;
 	
-	//member 객체
 	private Member member;
-
+	
 	private Date sWriteDate;
 	
 	private String sTitle;
@@ -38,9 +40,7 @@ public class Board {
 	
 	private String sStatus;
 	
-	// 언어 객체
 	private Language language;
 	
-	// 테스트 객체
 	private Test test;
 }

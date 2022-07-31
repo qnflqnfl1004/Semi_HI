@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.sboard-title {
+            margin-top: 2.5rem;
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 126.5%;
+            letter-spacing: -.005em;
+            color: #000;
+        }
+        .sUserAndDate {
+            margin-top: 32px;
+            padding-bottom: 32px;
+            border-bottom: 3px solid #7A86B6;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .sUser {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .sUser_userImg {
+            cursor: pointer;
+            display: block;
+            height: 3rem;
+            width: 3rem;
+            margin-right: 16px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .sUser_userName {
+            color: #333;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            padding-right: 15px;
+            border-right: 2px solid #e1e1e1;
+        }
+        .view1 {
+            padding: 0 180px;
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            padding-inline-start: 40px;
+        }
+        .sboard{
+            display: grid;
+            grid-template-columns: repeat(2,3fr);
+            margin-top: 60px;
+            margin-top: 60px;
+        }
+        .sboard-1 {
+            display: flex;
+            position: relative;
+            align-items: center;
+            font-weight: 700;
+        }
+        .sboard-2 {
+            color: #717171;
+            margin-right: 40px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .sboard-3 {
+            display: flex;
+            position: relative;
+            align-items: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .sBoard_postContentWrapper {
+            margin-top: 132px;
+            font-size: 1.125rem;
+            word-break: break-all;
+            line-height: 1.7;
+            letter-spacing: -.004em;
+        }
+        .sBoard_postContent_postInfo {
+            margin: 0;
+            color: #333;
+            font-size: 26px;
+            font-weight: 700;
+            padding-bottom: 24px;
+            border-bottom: 3px solid #7A86B6;
+        }
+        .sBoard_postContent_postContent {
+            width: 100%;
+            margin: 40px auto 0;
+        }

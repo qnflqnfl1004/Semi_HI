@@ -1,0 +1,179 @@
+@charset "UTF-8";
+    
+    .sboard {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 200px;
+        margin: 0 auto;
+        color: #333;
+        position: relative;
+    }
+    .sboardH2 {
+        margin-top: 2.5rem;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 126.5%;
+        letter-spacing: -.005em;
+        color: #000;
+        border-bottom: 2px solid #7a86b68e;
+        padding-bottom: 2.3rem;
+        padding-left: 20px;
+    }
+
+    .sboardSelect {
+        display: grid;
+        grid-template-columns: repeat(2, 3fr);
+        flex-direction: column;
+        padding: 24px 12px;
+        padding-left: 50px;
+    }
+
+    .sboardDropbox {
+        position: relative;
+        width: 250px;
+    }
+
+    .sboardLabel {
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .selectBtn {
+        width: 113%;
+        padding: 13px 30px 13px 14px;
+        font-size: 14px;
+        line-height: 14px;
+        background-color: #fff;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: left;
+        font-weight: normal;
+        }
+
+    .selectBtn:hover,
+    .selectBtn:focus {
+        border: 1px solid #495C83;
+        outline: 3px solid #7a86b68e;
+    }
+
+    .dropboxList {
+        background-color: #fff;
+        display: none;
+        position: absolute;
+        width: 113%;
+        top: 50px;
+        left: 0;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        list-style: none;
+        margin-top: 30px;
+        padding-left: 0px;
+    }
+
+    .selectBtn.on+.dropboxList {
+        display: block;
+    }
+
+    .dropboxList li {
+        height: 40px;
+        padding: 4px 8px;
+        box-sizing: border-box;      
+    }
+
+    .dropboxList li button {
+        width: 100%;
+        padding: 5px 10px;
+        border: none;
+        background-color: #fff;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: left;
+        font-weight: normal;
+        font-size: 15px;
+    }
+
+    .dropboxList li button:hover,
+    .dropboxList li button:focus {
+        background-color: #7a86b68e;
+        width: 100%;
+        border-radius: 4px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    .sboardDate {
+        border: 1px solid #c4c4c4;
+        width: 270px;
+        height: 40px;
+        border-radius: 8px;
+        font-size: 14px;
+        outline-color: #495C83;
+        padding-left: 13px;
+    }
+
+    .sboardContect {
+        border: 1px solid #c4c4c4;
+        width: 278px;
+        height: 40px;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    .sboardInfo {
+        padding-left: 50px;
+    }
+
+    .sboardTitle {
+        width: 790px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #c4c4c4;
+        outline-color: #495C83;
+    }
+
+    .sboardContent {
+        border-radius: 4px;
+        border: 1px solid #c4c4c4;
+        resize: none;
+        outline-color: #495C83;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    .cancelBtn {
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        padding: 0 1.25rem;
+        height: 2rem;
+        font-size: 1rem;
+        background: #c4c4c4;
+        color: #333;
+        margin-right: 1rem;
+    }
+
+    .submitBtn {
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        padding: 0 1.25rem;
+        height: 2rem;
+        font-size: 1rem;
+        background-color: #7A86B6;
+        color: #fff;
+        font-weight: 600;
+    }
