@@ -9,6 +9,12 @@ import com.anmozilla.mvc.board.sboard.model.dao.BoardDao;
 import com.anmozilla.mvc.board.sboard.model.vo.Board;
 
 public class BoardService {
+<<<<<<< HEAD
+=======
+	// !!!! 민주!!!!!!!!!!!!!!!!
+	
+	
+>>>>>>> PARK
 
 	public Board getsBoardByNo(int no) {
 		Connection conn = getConnection();

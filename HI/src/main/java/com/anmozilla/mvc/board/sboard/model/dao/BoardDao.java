@@ -17,7 +17,11 @@ import com.anmozilla.mvc.board.sboard.model.vo.Language;
 import com.anmozilla.mvc.board.sboard.model.vo.Test;
 
 public class BoardDao {
+<<<<<<< HEAD
 
+=======
+// !!!!!!!!!!!!! 민주 !!!!!!!!!!!!!!
+>>>>>>> PARK
 	public Board getsBoardByNo(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
