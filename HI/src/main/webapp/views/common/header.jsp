@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<title>header</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" href="${ path }/resources/css/header_ver1.css">
+	<link rel="stylesheet" href="${ path }/resources/css/header_ver2.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
@@ -170,9 +170,9 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_id">
-                  	<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userId" id="userId" placeholder="아이디를 입력해주세요.">
                   </td>
-                  <td><input type="button" value="중복확인" id="idDuplicate"></td>
+                  <td><input type="button" class="btn_enter" value="중복확인" id="idDuplicate"></td>
                 </tr>
                 <tr>
                   <td class="enrollForm-error" id="error_id"><span></span></td>
@@ -182,7 +182,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_pwd">
-                  	<input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요.">
+                  	<input type="password" class="info_enter" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -193,7 +193,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_pwdCheck">
-                  	<input type="password" name="userPwdCheck" id="userPwdCheck" placeholder="비밀번호를 다시 입력해주세요.">
+                  	<input type="password" class="info_enter" name="userPwdCheck" id="userPwdCheck" placeholder="비밀번호를 다시 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -204,9 +204,9 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_nick">
-                  	<input type="text" name="userNick" id="userNick" placeholder="닉네임를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userNick" id="userNick" placeholder="닉네임를 입력해주세요.">
                   </td>
-                  <td><input type="button" value="중복확인" id="nickDuplicate"></td>
+                  <td><input type="button" class="btn_enter" value="중복확인" id="nickDuplicate"></td>
                 </tr>
                 <tr>
                   <td class="enrollForm-error" id="error_nick"><span></span></td>
@@ -216,7 +216,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_name">
-                  	<input type="text" name="userName" id="userName" placeholder="이름를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userName" id="userName" placeholder="이름를 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -227,9 +227,9 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_email">
-                  	<input type="text" name="userEmail" id="userEmail" placeholder="@ 포함하여 이메일을 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userEmail" id="userEmail" placeholder="@ 포함하여 이메일을 입력해주세요.">
                   </td>
-                  <td><input type="button" value="중복확인" id="emailDuplicate"></td>
+                  <td><input type="button" class="btn_enter" value="중복확인" id="emailDuplicate"></td>
                 </tr>
                 <tr>
                   <td class="enrollForm-error" id="error_email"><span></span></td>
@@ -239,7 +239,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_phone">
-                  	<input type="text" name="userPhone" id="userPhone" placeholder="010부터 -를 제외한 11자리 숫자를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userPhone" id="userPhone" placeholder="010부터 -를 제외한 11자리 숫자를 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
