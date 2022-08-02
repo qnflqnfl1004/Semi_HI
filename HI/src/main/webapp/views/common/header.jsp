@@ -401,16 +401,16 @@
   </div>
     
  <div class="login-container">     	
-    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-   		<div class="modal-dialog modal-dialog-scrollable ">
-	    <div class="modal-content">
+   <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   	 <div class="modal-dialog modal-dialog-scrollable ">
+	   <div class="modal-content">
 	        <div class="modal-header">
 	            <img class="logo" src="${ path }/resources/images/Hi_Logo.png" alt="" width="120" height="60">
 	            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	        </div>
 	        <div class="modal-body">
 	            
-		        <c:if test="${  empty loginMember }">
+		       <c:if test="${  empty loginMember }">
 		     	<form id="loginFrm" action="${ path }/login" method="post">
 		     	        
 		    			<input type="text" name="userId" class="text-field" placeholder="아이디"
@@ -423,25 +423,21 @@
 		            	<img src="${ path }/resources/images/googel.png" width="70" height="70"  >
 		            	<img src="${ path }/resources/images/kakao.png" width="70" height="70"  >
 		            </div>
-		                <p>연동 로그인</p>
-		
-		 		</form>            
-		    	</c:if>               
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		    	    <button type="button" class="btn btn-primary" id="btnNext" style="background-color: #495c82 ;" >Understood</button>
-		        </div>
-		        <div class="links">      
-		        	<a href="#">비밀번호를 잊어버리셨나요?</a>
-		        </div>
+		                <p>연동 로그인</p>		
+		 		 </form>            
+	    	   </c:if>               			        
+	       	 </div>		          		        			        		            
 	        <div class="modal-footer" style="justify-content: center;">
-	          	<button type="button" class="btn btn-primary btnNext" >찾으러 가기</button>
-	        </div>
-    		</div>
+	        	<div class="links">
+	        		<a href="#">아이디를 잊어버리셨나요?</a>
+		        	<a href="#">비밀번호를 잊어버리셨나요?</a>
+		    	</div>	          	
+	        </div>	        
+    	  </div>
      	</div>
-	</div>
-</div>   
-    
-    		
+	  </div>
+    </div>   
+        		
   <script src="${ path }/resources/js/confetti.js"></script>
   <script src="${ path }/resources/js/enroll.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
