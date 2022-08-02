@@ -26,7 +26,7 @@
             </div>
         </c:if>
 
-        <c:if test="${ empty loginMember }">
+        <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_USER' }">
         <div class="main1 loginO">
             <button type="button" class="btn btn-Link main2">새 글 쓰기</button>
             <div class="dropdown text-end ">	
@@ -39,13 +39,13 @@
                     <li><a class="dropdown-item" href="#">건의하기</a></li>
                     <li><a class="dropdown-item" href="#">내 문의함</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="${ path }/logout">로그아웃</a></li>
                 </ul>
             </div>
         </div>
         </c:if>
 	
-        <c:if test="${ empty loginMember || loginMember.role == 'ROLE_ADMIN'}">
+        <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_ADMIN'}">
         <div class="main1 loginAdmin">
             <div class="dropdown text-end">	
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +57,7 @@
                     <li><a class="dropdown-item" href="#">공지사항</a></li>
                     <li><a class="dropdown-item" href="#">건의사항</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="${ path }/logout">로그아웃</a></li>
                 </ul>
             </div>
         </div>
@@ -398,6 +398,68 @@
       </div>
     </div>
   </div>
+    
+    <div class="login-container">
+     	<c:if test="${ empty loginMember }">
+     	<form id="loginFrm" action="${ path }/login" method="post">
+     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <img class="logo" src="${ path }/resources/images/Hi_Logo.png" alt="" width="120" height="60">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="successContent">
+                
+    			<input type="text" name="userId" class="text-field" placeholder="아이디"
+    			value="${ empty cookie.saveId ? '' : cookie.saveId.value }" required>
+                <input type="password" name="userPwd" class="text-field" placeholder="비밀번호"
+                required>
+                <input type="submit" value="로그인" class="submit-btn" >
+    			 
+    			 
+    			 
+    			 
+    			 <c:if test="${ not empty loginMember }">
+    			 <table>
+    			 <tr>
+    			 <td colspan="2">
+    			 	${ loginMember.name } 님 안녕하세요.
+    			 </td>
+    			 </tr>
+    			 
+    			 </table>
+    			 </c:if>
+    			    <div class="modal-footer" style="justify-content: center;">
+            <img src="${ path }/resources/images/naver.png" width="70" height="70"  >
+            <img src="${ path }/resources/images/googel.png" width="70" height="70"  >
+                <img src="${ path }/resources/images/kakao.png" width="70" height="70"  >
+            </div>
+                <p>연동 로그인</p>
+
+                
+        <P><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnNext" style="background-color: #495c82 ;" >Understood</button>
+                
+            </div>
+        </div>
+        <div class="links">      
+                <a href="#">비밀번호를 잊어버리셨나요?</a>
+                </div>
+        <div class="modal-footer" style="justify-content: center;">
+          <button onclick="toggleConfetti();" type="button" class="btn btn-primary btnNext" >찾으러 가기</button>
+        </div>
+              
+                
+     
+      </div>
+    </div>
+  
+  </div>
+      </form>
+    			 </c:if>
+    			 </div>
     
   <script src="confetti.js"></script>
   <script src="${ path }/resources/js/enroll.js"></script>

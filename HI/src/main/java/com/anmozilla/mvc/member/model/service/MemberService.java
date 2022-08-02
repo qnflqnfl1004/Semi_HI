@@ -11,7 +11,20 @@ import com.anmozilla.mvc.member.model.dao.MemberDao;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 public class MemberService {
-	// 솔이님 ☆
+	// 김덕겸
+	
+public Member login(String id, String password) {
+		
+		Member member  = (Member) this.findMemberById(id);
+		
+		if(member == null || !member.getPassword().equals(password)) {
+			return null;
+		} else {
+			return member;			
+		}
+}
+	
+	//솔이님 ☆
 	
 	public Boolean isDuplicateID(String userId) {
 		return this.findMemberById(userId) != null;

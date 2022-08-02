@@ -1,55 +1,35 @@
 @charset "UTF-8";
 
- #formGroupExampleInput{
- 
-         margin-top: 12px;
-}
- #btn-color1{
- 		border: gainsboro;
-        background-color: gainsboro;
-}
- #btn-color2{
-       border: #7A86B6;
-       background-color: #7A86B6;
-}
- #study1 {
-       padding: 60px 180px;
-       
-}
-
-.logo {
+ .logo {
     display: block;
     margin-left: 40%;
     justify-content: center;
     text-align: center;
     }
 
-#btnNext {
+    #btnNext {
         
-    background-color: #495C82 ;
-    border-color: #495C82;
+    background-color: #495c82 ;
+    border-color: #495c82;
     }
 
-.main1{
-        padding-bottom: 0px;
-    
+    .main1{
+        padding-bottom: 10px;
     }
-.main2{
-	
+    .main2{
         font-weight: bold;
-    
     }
     
-.modal-header {
+    .modal-header {
         
-    background-color:  #7A86B6;
+    background-color: #7A86B6
     }
 
-.modal-body {
+    .modal-body {
     padding: 30px;
     text-align: center;
     }
- .modal {
+    .modal {
     position: absolute;
     top: 50;
     left: 50;
@@ -101,19 +81,22 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
- * {
+* {
 box-sizing: border-box;
 text-align: center;
 font-family: 'Noto Sans KR', sans-serif;
 border-radius: 5px;
-} 
+}
 
+body {
+margin: 0;
 
-
+/*background-color: #A8A4CE;*/
+}
 
 .login-form {
 width: 300px;
-background-color: #EEEFF1;
+ background-color: #EEEFF1;
 margin-right: auto;
 margin-left: auto;
 margin-top: 0px;
@@ -137,9 +120,10 @@ font-size: 14px;
 border: none;
 padding: 10px;
 width: 260px;
-background-color: #495C83;
+
 margin-bottom: 30px;
 color: white;
+background-color: #495c82;
 }
 .links {
 text-align: center;
@@ -147,5 +131,10 @@ text-align: center;
 
 .links a {
 font-size: 12px;
+color: #9B9B9B;
+}
+
+.loglink {
+    font-size: 12px;
 color: #9B9B9B;
 }
