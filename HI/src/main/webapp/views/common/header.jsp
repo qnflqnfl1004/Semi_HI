@@ -264,7 +264,7 @@
 			$.ajax ({
 				type: "POST",
 				url: "${ path }/member/idCheck",
-				dataTypd: "json",
+				dataType: "json",
 				data: {
 					userId
 				},
@@ -292,7 +292,7 @@
 			$.ajax ({
 				type: "POST",
 				url: "${ path }/member/nickCheck",
-				dataTypd: "json",
+				dataType: "json",
 				data: {
 					userNick
 				},
@@ -319,7 +319,7 @@
 			$.ajax ({
 				type: "POST",
 				url: "${ path }/member/emailCheck",
-				dataTypd: "json",
+				dataType: "json",
 				data: {
 					userEmail
 				},
@@ -401,7 +401,7 @@
   </div>
     
     
- <div id=" logins">
+ <div id="logins">
  <div class="login-container">     	
    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
    	 <div class="modal-dialog modal-dialog-scrollable ">
