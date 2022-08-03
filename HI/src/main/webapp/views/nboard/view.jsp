@@ -36,11 +36,11 @@
                 </div>
             </div>
             <div class="bt_wrap">
-                <a href="#" class="list" onclick="location.href='${ path }/nboard/list'">목록</a>
-                <%--<c:if test="${ not empty loginMember && loginMemeber.nickName  == board.writerId }"> --%>
+                <a href="${ path }/nboard/list" class="list">목록</a>
+                <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_ADMIN' }"> 
 	                <a href="#" class="delete" id="btnDelete">삭제</a>
-	                <a href="#" class="on">수정</a>
-                <%--</c:if>--> --%>
+	                <a href="${ path }/nboard/update?no=${ board.no }" class="on" >수정</a>
+            	 </c:if>
             </div>
         </div>
     </div>

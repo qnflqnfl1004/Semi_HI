@@ -18,9 +18,6 @@
                     <div class="writer">글쓴이</div>
                     <div class="date">작성일</div>
                 </div>
-               
-
-
                 <c:if test="${ empty list }">
                 	<div>
 						<div class="empty">
@@ -43,24 +40,26 @@
             </div>
             
             <div class="bt_wrap">
-	                <a href="#" class="on"  onclick="location.href='${path}/nboard/write'">글쓰기</a>
+             <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_ADMIN' }"> 
+	                <a href="${path}/nboard/write" class="on">글쓰기</a>
+	          </c:if>
 	            
                 <!--<a href="#">수정</a>-->
             </div>
             
             <div class="board_page">
-                <a href="#" class="bt first" onclick="location.href='${ path }/nboard/list?page=1'">&lt;&lt;</a>
-                <a href="#" class="bt prev" onclick="location.href='${ path }/nboard/list?page=${ pageInfo.prevPage }'">&lt;</a>
+                <a href="${ path }/nboard/list?page=1" class="bt first">&lt;&lt;</a>
+                <a href="${ path }/nboard/list?page=${ pageInfo.prevPage }" class="bt prev">&lt;</a>
             	<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
             		<c:if test="${ status.current == pageInfo.currentPage }">
-            			<a href="#" class="num on" disabled>${ status.current }</a>
+            			<a href="#" class="num on">${ status.current }</a>
             		</c:if>
             		<c:if test="${ status.current != pageInfo.currentPage }">
-            			<a href="#" class="num" onclick="location.href='${ path }/nboard/list?page=${ status.current }'">${ status.current }</a>
+            			<a href="${ path }/nboard/list?page=${ status.current }" class="num">${ status.current }</a>
             		</c:if>
             	</c:forEach>
-                <a href="#" class="bt next" onclick="location.href='${ path }/nboard/list?page=${ pageInfo.nextPage }'">&gt;</a>
-                <a href="#" class="bt last" onclick="location.href='${ path }/nboard/list?page=${ pageInfo.maxPage }'">&gt;&gt;</a>
+                <a href="${ path }/nboard/list?page=${ pageInfo.nextPage }" class="bt next">&gt;</a>
+                <a href="${ path }/nboard/list?page=${ pageInfo.maxPage }" class="bt last">&gt;&gt;</a>
             </div>
         </div>
     </div>

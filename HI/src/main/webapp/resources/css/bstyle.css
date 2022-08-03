@@ -68,6 +68,7 @@ button {
     margin-top: 15px;
     text-align: center;
     font-size: 0;
+    
 }
 
 .bt_wrap a{
@@ -95,8 +96,14 @@ button {
 
 
 .bt_wrap a.list {
-    margin-left: 0;
     float: left;
+}
+
+.bt_wrap a.delete,
+.bt_wrap a.reset,
+.bt_wrap a.cancel,
+.bt_wrap input[type="reset"] {
+    float: right;
 }
 
 .bt_wrap a.on {
@@ -106,26 +113,10 @@ button {
     float: right;
 }
 
-.bt_wrap input[type="reset"] {
-	border-radius: 10px;
-    float: right;
-
-}
 
 .bt_wrap input[type="submit"] {
 	background: #7A86B6;
     color: #fff;
-    border-radius: 10px;
-    float: right;
-}
-
-
-.bt_wrap a.delete {
-    border-radius: 10px;
-    float: right;
-}
-
-.bt_wrap a.cancel {
     float: right;
 }
 
@@ -335,8 +326,7 @@ button {
 }
 
 .board_write .title input[type="text"],
-.board_write .info input[type="text"],
-.board_write .info input[type="password"] {
+.board_write .info input[type="text"] {
     padding: 10px;
     box-sizing: border-box;
     border-color: #ddd;
@@ -346,8 +336,7 @@ button {
 }
 
 .board_write .title input[type="text"],
-.board_write .info input[type="text"],
-.board_write .info input[type="password"], input:focus{
+.board_write .info input[type="text"] input:focus{
     outline-color: #ddd;
 }
 
@@ -369,6 +358,7 @@ button {
     box-sizing: border-box;
     border: 0;
     resize: vertical;
+    font-size: 1.4rem;
 }
 
 .board_write .cont textarea:focus{

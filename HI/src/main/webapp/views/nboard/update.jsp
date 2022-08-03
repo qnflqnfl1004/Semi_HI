@@ -14,13 +14,14 @@
         <div class="board_title">
             <strong>NOTICE</strong>
         </div>
-	<form action="${ path }/nboard/write" method="POST">
+     <form action="${ path }/nboard/update" method="POST">
+     	<input type="hidden" name="no" value=${ board.no }>
         <div class="board_write_wrap">
             <div class="board_write">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
-                        <dd><input type="text" name="title" placeholder="제목 입력"></dd>
+                        <dd><input type="text" name="title" id="title" placeholder="제목 입력" value="${ board.title }"></dd>
                     </dl>
                 </div>
                 <div class="info">
@@ -34,18 +35,15 @@
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea name="content" placeholder="내용 입력"></textarea>
+                    <textarea name="content" placeholder="내용 입력">${ board.content }</textarea>
+                </div>
                 </div>
             </div>
             <div class="bt_wrap">
                 <input type="reset" style="cursor:pointer" onclick="location.replace('${pageContext.request.contextPath}/nboard/list')" value="취소">
-                <input style="cursor:pointer" type="submit" value="등록">
+                <input style="cursor:pointer" type="submit" value="저장">
             </div>
+        </form>
         </div>
-     </form>
-    </div>
 </body>
 </html>
-
-
-

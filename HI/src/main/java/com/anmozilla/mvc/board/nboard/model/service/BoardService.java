@@ -8,7 +8,7 @@ import com.anmozilla.mvc.board.nboard.model.vo.Board;
 import com.anmozilla.mvc.common.util.PageInfo;
 
 import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
-
+// 영은!!!!!!!!!!!!!!!!!!!!!!!!
 public class BoardService {
 
 	public int getBoardCount() {
@@ -66,8 +66,12 @@ public class BoardService {
 	public int save(Board board) {
 		int result = 0;
 		Connection connection = getConnection();
+			
 		
 		if(board.getNo() != 0) {
+			
+			result = new BoardDao().updateBoard(connection, board);
+			
 		} else {			
 			result = new BoardDao().insertBoard(connection, board);
 		}

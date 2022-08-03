@@ -13,7 +13,7 @@ import com.anmozilla.mvc.common.util.PageInfo;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
-
+//영은!!!!!!!!!!!!!!!!!!!!!!!!
 public class BoardDao {
 
 	public int getBoardCount(Connection connection) {
@@ -61,13 +61,14 @@ public class BoardDao {
 						+ 		"JOIN MEM_LIST M ON(B.MEM_NO = M.MEM_NO) "
 						+ 		"WHERE B.NOTICE_STATUS = 'Y' ORDER BY B.NOTICE_NO DESC"
 						+ 	 ")"
-						+ ") WHERE RNUM BETWEEN ? and ?";
+						+ ") WHERE RNUM BETWEEN ? and ? ";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
 			
 			pstmt.setInt(1, pageInfo.getStartList());
 			pstmt.setInt(2, pageInfo.getEndList());
+//			pstmt.setInt(3, pageInfo.getListCount() - (pageInfo.getCurrentPage() - 1) * 10); 역순으로 하는 방법??????
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -94,6 +95,7 @@ public class BoardDao {
 		
 		return list;
 	}
+
 
 	public Board findBoardByNo(Connection connection, int no) {
 		Board board = null;
@@ -161,18 +163,16 @@ public class BoardDao {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO NOTICE VALUES(?,?,?,DEFAULT,DEFAULT,?)";
-		
+		String query = "INSERT INTO NOTICE VALUES(SEQ_NOTICE_NO.NEXTVAL,?,?,DEFAULT,DEFAULT,?)";
+												
 		try {
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			String cDate = sdf.format(board.getCreateDate());
+			
 			
 			pstmt = connection.prepareStatement(query);
 			
-			pstmt.setInt(1, board.getNo());
-			pstmt.setString(2, board.getTitle());
-			pstmt.setString(3, board.getContent());
-			pstmt.setInt(4, board.getWriterNo());
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getWriterNo());
 			
 			result = pstmt.executeUpdate();	
 		} catch (SQLException e) {
@@ -183,5 +183,29 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	public int updateBoard(Connection connection, Board board) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE NOTICE SET NOTICE_TITLE=?,NOTICE_CONTENT=?,NOTICE_DATE=SYSDATE WHERE MEM_NO=?"; 
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getWriterNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 }

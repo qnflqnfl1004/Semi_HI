@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.anmozilla.mvc.board.nboard.model.service.BoardService;
 import com.anmozilla.mvc.board.nboard.model.vo.Board;
+import com.anmozilla.mvc.member.model.vo.Member;
 
 @WebServlet("/nboard/write")
 public class WriteServlet extends HttpServlet {
@@ -23,17 +25,17 @@ public class WriteServlet extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    	HttpSession session = request.getSession(false);
-//    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
+    	HttpSession session = request.getSession(false);
+    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
     	
-//    	if (loginMember != null) {  
+    	if (loginMember != null) {  
     		request.getRequestDispatcher("/views/nboard/write.jsp").forward(request, response);  
-//    	} else {
-//    		request.setAttribute("msg", "로그인 후 사용할 수 있습니다.");
-//    		request.setAttribute("location", "/");
-//    		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//    	}
-//    	
+    	} else {
+    		request.setAttribute("msg", "로그인 후 사용할 수 있습니다.");
+    		request.setAttribute("location", "/");
+    		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+    	}
+    	
     	
 	}
 
@@ -43,33 +45,19 @@ public class WriteServlet extends HttpServlet {
 		Board board = null;
     	
     	String title = request.getParameter("title");
-    	String writer = request.getParameter("writer");
     	String content = request.getParameter("content");
-    	String createDate = request.getParameter("createDate");
-    	Date date = null;
-    	
-    	try {
-			date = new SimpleDateFormat("yyyy-MM-dd").parse(createDate);
-			
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
     	
     	System.out.println(title);
-    	System.out.println(writer);
-    	System.out.println(date);
     	System.out.println(content);
     	
-//    	HttpSession session = request.getSession(false);
-//    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
+    	HttpSession session = request.getSession(false);
+    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
     	
-//    	if (loginMember != null) {  
+    	if (loginMember != null) {  
     		board = new Board();
 			
-//			board.setWriterNo(loginMember.getNo());
+			board.setWriterNo(loginMember.getNo());
 			board.setTitle(title);
-			board.setCreateDate(new Date());
 			board.setContent(content);
 			
     		result = new BoardService().save(board);
@@ -82,12 +70,12 @@ public class WriteServlet extends HttpServlet {
         		request.setAttribute("location", "/nboard/list");
     		}
     	
-//    	} else {
-//    		request.setAttribute("msg", "로그인 후 사용할 수 있습니다.");
-//    		request.setAttribute("location", "/");
-//    	}
-//    	
-//    		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+    	} else {
+    		request.setAttribute("msg", "로그인 후 사용할 수 있습니다.");
+    		request.setAttribute("location", "/");
+    	}
+    	
+    		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 }
