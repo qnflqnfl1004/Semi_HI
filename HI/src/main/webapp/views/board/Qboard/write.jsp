@@ -22,12 +22,12 @@
 	</div>
 	<div class="board_write_wrap">
 		<div class="board_write">
-
+		 <form action="${ path }/Qboard/write" method="POST" enctype="multipart/form-data">
 			<div class="reason">
 				<dl>
 					<dt>사유</dt>
 					<dd>
-						<select name="" id="">
+						<select name="reason" id="reason">
 							<option selected>사유를 선택해 주세요.</option>
 							<option value="">버그/오류</option>
 							<option value="">불량유저</option>
@@ -41,7 +41,7 @@
 				<dl>
 					<dt>제목</dt>
 					<dd>
-						<input type="text" placeholder="제목 입력">
+						<input type="text" name="title" id="title" placeholder="제목 입력">
 					</dd>
 				</dl>
 			</div>
@@ -50,12 +50,12 @@
 				<dl>
 					<dt>이메일</dt>
 					<dd>
-						<input type="text" placeholder="이메일 입력">
+						<input type="text" name="email" id="email" placeholder="이메일 입력">
 					</dd>
 				</dl>
 			</div>
 
-			<div class="cont">
+			<div class="cont" name="content" id="content">
 				<textarea placeholder="내용 입력"></textarea>
 			</div>
 
@@ -63,11 +63,11 @@
 				<dl>
 					<dt>첨부파일</dt>
 					<dd>
-						<input type="file">
+						<input type="file" name="upfile">
 					</dd>
 				</dl>
 			</div>
-
+		</form>
 		</div>
 
 		<div class="bt_wrap">
