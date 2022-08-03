@@ -11,7 +11,7 @@ import com.anmozilla.mvc.member.model.service.MemberService;
 import com.anmozilla.mvc.member.model.vo.Member;
 import com.google.gson.Gson;
 
-@WebServlet("/member/enroll")
+@WebServlet(name = "enroll", urlPatterns = "/member/enroll")
 public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
