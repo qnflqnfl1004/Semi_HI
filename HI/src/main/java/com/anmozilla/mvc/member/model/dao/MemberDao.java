@@ -1,13 +1,15 @@
 package com.anmozilla.mvc.member.model.dao;
 
+import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.close;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
-
+import com.anmozilla.mvc.common.util.PageInfo;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 public class MemberDao {
@@ -172,32 +174,205 @@ public class MemberDao {
 		
 		return count;
 	}
+	// 여기서 부터 두번째 병합
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		public List<Member> findAll(Connection connection, PageInfo pageInfo) {
+			List<Member> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String query = "SELECT RNUM, MEM_NO, MEM_ID, MEM_NICKNAME, MEM_EMAIL, MEM_PHONE, MEM_WARNING, MEM_STATUS "
+							+ "FROM ("
+							+    "SELECT ROWNUM AS RNUM, "
+							+           "MEM_NO, "
+							+ 			"MEM_ID, "
+							+ 			"MEM_NICKNAME, "
+							+ 			"MEM_EMAIL, "
+							+ 			"MEM_PHONE, "
+							+  			"MEM_WARNING, "
+							+     		"MEM_STATUS "
+							+ 	 "FROM ("
+							+ 	    "SELECT MEM_NO, "
+							+ 			   "MEM_ID, "
+							+  			   "MEM_NICKNAME, "
+							+ 			   "MEM_EMAIL, "
+							+ 			   "MEM_PHONE, "
+							+ 			   "MEM_WARNING, "
+							+ 	   		   "MEM_STATUS "
+							+ 		"FROM MEM_LIST "
+							+ 		"WHERE MEM_STATUS = 'Y' ORDER BY MEM_NO DESC"
+							+ 	 ")"
+							+ ") WHERE RNUM BETWEEN ? and ?";
+			
+			try {
+				pstmt = connection.prepareStatement(query);
+				
+				pstmt.setInt(1, pageInfo.getStartList());
+				pstmt.setInt(2, pageInfo.getEndList());
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Member member = new Member();
+					
+					member.setRowNum(rs.getInt("RNUM"));
+					member.setNo(rs.getInt("MEM_NO"));
+					member.setId(rs.getString("MEM_ID"));
+					member.setNickName(rs.getString("MEM_NICKNAME"));
+					member.setEmail(rs.getString("MEM_EMAIL"));
+					member.setPhone(rs.getString("MEM_PHONE"));
+					member.setWarning(rs.getInt("MEM_WARNING"));
+					member.setStatus(rs.getString("MEM_STATUS"));
+					
+					list.add(member);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+
+			
+			return list;
+		}
+
+		public int updateStatus(Connection connection, int no, String status) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = "UPDATE MEM_LIST SET MEM_STATUS=? WHERE MEM_NO=?";
+			
+			try {
+				pstmt = connection.prepareStatement(query);
+				
+				pstmt.setString(1, status);
+				pstmt.setInt(2, no);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
+
+		public int updateMemberWarning(Connection connection, Member member) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = "UPDATE MEM_LIST SET MEM_WARNING=? WHERE MEM_NO=?";
+		
+			try {
+				pstmt = connection.prepareStatement(query);
+				
+				pstmt.setInt(1, member.getWarning());
+				pstmt.setInt(2, member.getNo());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
+		
+		public List<Member> memberSearchWord(Connection connection, String searchOption, String searchWord, PageInfo pageInfo) {
+			List<Member> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String query = "SELECT  RNUM, MEM_NO, MEM_ID, MEM_NICKNAME, MEM_EMAIL, MEM_PHONE, MEM_WARNING, MEM_STATUS "
+							+ " FROM ( "
+							+ 	"SELECT ROWNUM AS RNUM, "
+							+ 			"MEM_NO, "
+							+ 			"MEM_ID, "
+							+ 			"MEM_NICKNAME, "
+							+ 			"MEM_EMAIL, "
+							+ 			"MEM_PHONE, "
+							+ 			"MEM_WARNING, "
+							+ 			"MEM_STATUS "
+							+ 	"FROM MEM_LIST "
+							+ 	"WHERE MEM_STATUS = 'Y' ORDER BY MEM_NO DESC"
+							+ 	") "
+							+ " WHERE "+ searchOption.trim();
+			
+			try {
+				if(searchWord != null && !searchWord.equals("")) {
+					query += " LIKE '%" + searchWord.trim() + "%' AND RNUM BETWEEN ? AND ?";
+					System.out.println("서치단어" + searchOption.trim() + "/" + searchWord.trim());
+				}
+				pstmt = connection.prepareStatement(query);
+				
+				pstmt.setInt(1, pageInfo.getStartList());
+				pstmt.setInt(2, pageInfo.getEndList());
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Member member = new Member();
+					
+					member.setRowNum(rs.getInt("RNUM"));
+					member.setNo(rs.getInt("MEM_NO"));
+					member.setId(rs.getString("MEM_ID"));
+					member.setNickName(rs.getString("MEM_NICKNAME"));
+					member.setEmail(rs.getString("MEM_EMAIL"));
+					member.setPhone(rs.getString("MEM_PHONE"));
+					member.setWarning(rs.getInt("MEM_WARNING"));
+					member.setStatus(rs.getString("MEM_STATUS"));
+					
+					list.add(member);
+//					System.out.println(list);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return list;
+		}
+
+		public int getMemberSearchCount(Connection connection, String searchOption, String searchWord) {
+			int count = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String query = "SELECT  COUNT(*) "
+						+ " FROM ("
+						+ 	"SELECT ROWNUM AS RNUM, "
+						+ 			"MEM_NO, "
+						+ 			"MEM_ID, "
+						+ 			"MEM_NICKNAME, "
+						+ 			"MEM_EMAIL, "
+						+ 			"MEM_PHONE, "
+						+ 			"MEM_WARNING, "
+						+ 			"MEM_STATUS "
+						+ 	"FROM MEM_LIST "
+						+ 	"WHERE MEM_STATUS = 'Y' ORDER BY MEM_NO DESC"
+						+ 	") "
+						+ " WHERE "+ searchOption.trim();
+		
+			try {
+				if(searchWord != null && !searchWord.equals("")) {
+					query += " LIKE '%" + searchWord.trim() + "%'";
+				}
+				pstmt = connection.prepareStatement(query);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return count;
+		}
 	
 	
 	

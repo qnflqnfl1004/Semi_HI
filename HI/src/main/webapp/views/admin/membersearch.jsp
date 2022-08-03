@@ -8,7 +8,8 @@
 <jsp:include page="/views/common/header.jsp" />
 
 <link rel="stylesheet" href="${ path }/resources/css/memberlist_ver2.css">
- 
+
+    
 <body>
     <div class="memListForm">
         <div class="memListBody">
@@ -16,18 +17,18 @@
                 <tr class="memListHeader">
                     <th colspan="5">
                    	 	<div class="memListPage">
-                        	<a href="${ path }/admin/memberList">회원 관리</a>
+                        	<a href="#">회원 관리</a>
                     	</div>
                     </th>
                     <th colspan="3">
-                   		<form name="memSearchForm" action="${ path }/admin/memberSearch">
+                   		<form name="memSearchForm" action="${ path }/admin/memberSearch" method="GET">
                         	<div class="memListSearch">
 	                            <select id="searchList" class="searchForm_control" name="searchOption">
-	                                <option ${( param.searchOption == "mem_warning") ? "selected" : "" } value="mem_warning">경고 횟수</option>
-	                                <option ${( param.searchOption == "mem_id") ? "selected" : "" } value="mem_id">아이디</option>
-	                                <option ${( param.searchOption == "mem_nickname") ? "selected" : "" } value="mem_nickname">닉네임</option>
-	                                <option ${( param.searchOption == "mem_email") ? "selected" : "" } value="mem_email">이메일</option>
-	                                <option ${( param.searchOption == "mem_phone") ? "selected" : "" } value="mem_phone">전화번호</option>
+	                                <option value="mem_warning" selected >경고 횟수</option>
+	                                <option value="mem_id">아이디</option>
+	                                <option value="mem_nickname">닉네임</option>
+	                                <option value="mem_email">이메일</option>
+	                                <option value="mem_phone">전화번호</option>
 	                            </select>
 	                            <input type="text" placeholder="멤버 검색하기" class="searchForm_control" id="search" name="searchWord" value="${ param.searchWord }">
 	                            <button id="btnSearch" type="submit">
@@ -41,21 +42,21 @@
                     <th class="memList listRNum">번호</th>
                     <th class="memList listNo">회원 번호</th>
                     <th class="memList listId">아이디</th>
-                    <th class="memList listName">닉네임</th>
+                    <th class="memList listNickName">닉네임</th>
                     <th class="memList listEmail">이메일</th>
                     <th class="memList listPhone">전화번호</th>
                     <th class="memList warning">경고</th>
                     <th class="memList listDel">탈퇴</th>
                 </tr>    
-                <c:if test="${ empty list }">
+                <c:if test="${ empty Searchlist }">
                  <tr class="memListContent">
                      <td colspan="7" style="text-align:center;"> 
                      	조회된 멤버가 없습니다.
                      </td>
                  </tr>
                 </c:if>
-                <c:if test="${ not empty list || not empty searchList }">
-                	<c:forEach var="member" items="${ list }">
+                <c:if test="${ not empty Searchlist }">
+                	<c:forEach var="member" items="${ Searchlist }">
                   <tr class="memListContent">
                       <td class="memList listRNum">${ member.rowNum }</td>
                       <td class="memList listNo">${ member.no }</td>
@@ -74,20 +75,20 @@
                 </c:if>         
             </table>
             <div id="pageBar"> 
-                <button onclick="location.href='${ path }/admin/memberList?page=1'">&lt;&lt;</button>
-                <button onclick="location.href='${ path }/admin/memberList?page=${ pageInfo.prevPage }'">&lt;</button>
+                <button onclick="location.href='${ path }/admin/memberSearch?page=1'">&lt;&lt;</button>
+                <button onclick="location.href='${ path }/admin/memberSearch?page=${ pageInfo.prevPage }'">&lt;</button>
      
                 <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status"> 
                     <c:if test="${ status.current == pageInfo.currentPage }">
                        <button disabled>${ status.current }</button>
                     </c:if>
                     <c:if test="${ status.current != pageInfo.currentPage }">
-                        <button onclick="location.href='${ path }/admin/memberList?page=${ status.current }'">${ status.current }</button>
+                        <button onclick="location.href='${ path }/admin/memberSearch?page=${ status.current }'">${ status.current }</button>
                    </c:if>
                 </c:forEach>
     
-                <button onclick="location.href='${ path }/admin/memberList?page=${ pageInfo.nextPage }'">&gt;</button>
-                <button onclick="location.href='${ path }/admin/memberList?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
+                <button onclick="location.href='${ path }/admin/memberSearch?page=${ pageInfo.nextPage }'">&gt;</button>
+                <button onclick="location.href='${ path }/admin/memberSearch?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
             </div>
         </div>
     </div>

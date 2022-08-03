@@ -6,15 +6,17 @@ import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.getConnection;
 import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.anmozilla.mvc.common.util.PageInfo;
 import com.anmozilla.mvc.member.model.dao.MemberDao;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 public class MemberService {
 	// 김덕겸
 	
-public Member login(String id, String password) {
-		
+	public Member login(String id, String password) {
+			
 		Member member  = (Member) this.findMemberById(id);
 		
 		if(member == null || !member.getPassword().equals(password)) {
@@ -22,7 +24,7 @@ public Member login(String id, String password) {
 		} else {
 			return member;			
 		}
-}
+	}
 	
 	//솔이님 ☆
 	
@@ -76,27 +78,76 @@ public Member login(String id, String password) {
 		return count;
 	}
 	
+	// 여기서 부터 두 번째 합병 이후
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		public List<Member> getMemberList(PageInfo pageInfo) {
+			List<Member> list = null;
+			Connection connection = getConnection();
+			
+			list = new MemberDao().findAll(connection, pageInfo);
+			
+			close(connection);
+			
+			return list;
+		}
+
+		public int memberdelete(int no) {
+			int result = 0;
+			Connection connection= getConnection();
+			
+			result = new MemberDao().updateStatus(connection, no, "N");
+			
+			if(result > 0) {
+				commit(connection);
+			} else {
+				rollback(connection);
+			}
+			
+			close(connection);
+			
+			return result;
+		}
+
+		public int updateMemberWarning(Member member) {
+			int result = 0;
+			Connection connection = getConnection();
+			
+			if(member.getNo() != 0) {
+				result = new MemberDao().updateMemberWarning(connection, member);
+			}
+			
+			if (result > 0) {
+				commit(connection);
+			} else { 
+				rollback(connection);
+			}
+			
+			close(connection);
+			
+			return result;
+		}
+
+		public List<Member> searchMemberList(String sOption, String sWord, PageInfo pageInfo) {
+			List<Member> list = null;
+			Connection connection = getConnection();
+			
+			list = new MemberDao().memberSearchWord(connection, sOption, sWord, pageInfo);
+			System.out.println("서비스리스트" + list);
+			close(connection);
+			
+			return list;
+		}
+
+		public int getMemberSearchCount(String searchOption, String searchWord) {
+			int count = 0;
+			Connection connection = getConnection();
+			
+			count = new MemberDao().getMemberSearchCount(connection, searchOption, searchWord);
+			System.out.println("서치카운트" + count);
+			close(connection);
+			
+			return count;
+		}
 	
 	
 	// 현진

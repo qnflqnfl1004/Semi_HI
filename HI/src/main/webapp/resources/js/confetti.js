@@ -40,7 +40,7 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 					return window.setTimeout(callback, 16.6666667);
 				};
 		})();
-		var canvas = document.getElementById("confetti-canvas");
+		var canvas = document.getElementById("canvasconfetti");
 		if (canvas === null) {
 			canvas = document.createElement("canvas");
 			canvas.setAttribute("id", "confetti-canvas");

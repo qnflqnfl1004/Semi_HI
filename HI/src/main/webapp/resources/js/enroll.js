@@ -19,11 +19,12 @@
   }
   
   let account = {
-		id: "",
-		nick: "",
-		name: "",
-		email: "",
-		phone: ""
+		id: null,
+		pw: null,
+		nick: null,
+		name: null,
+		email: null,
+		phone: null
 	}
   const errMsg = {
 		id: "6자 이상 영문 소문자와 숫자만 입력해주세요.",
@@ -35,7 +36,7 @@
 		nick: "특수문자를 제외하여 입력해주세요.",
 		name: "필수 입력 사항입니다.",
 		email: "@를 포함한 올바른 이메일을 입력해주세요.",
-		phone: "‘-’ 제외 11자리를 입력해주세요." 
+		phone: "‘-’ 제외 010부터 11자리를 입력해주세요." 
 		} 
   
 	const idInputEl = document.querySelector('#info_id input')
@@ -151,7 +152,7 @@
 	  });
 	  
 	const submitBtn = document.querySelector('#btnClear')
-	const resultFailEl = document.querySelector('#result-fail')
+	const resultFailEl = document.querySelector('#error_check span')
 	submitBtn.addEventListener('click', function() {
 	  let isAllFilled = true
 	  const word = {  
@@ -164,17 +165,17 @@
 	  }
 	  for(element in account) {
 	    if(account[element] === null) {
-	      resultFailEl.textContent = word[element] + " 다시 한번 확인해주세요"
+	      resultFailEl.textContent = word[element] + " 다시 한번 확인해주세요";
+			alert(resultFailEl.textContent)
 	      isAllFilled = false
 	      break
 	    }
 	  }
 	  if (isAllFilled === true) {
 	    resultFailEl.textContent = ""
-	    setTimeout(function() {
-	      alert("서버 전송 데이터 : " + JSON.stringify(account))
-	    }, 300)
-	  }
+	  } else {
+		location.href="${ path }/";
+	}
 	})  
 
 /*  jquery 적용안됨
