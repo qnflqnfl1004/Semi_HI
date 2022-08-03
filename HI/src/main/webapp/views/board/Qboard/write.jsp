@@ -50,7 +50,7 @@
 				<dl>
 					<dt>이메일</dt>
 					<dd>
-						<input type="text" name="email" id="email" placeholder="이메일 입력">
+						<input type="text" name="email" id="email" value="${loginMember.email} readonly">
 					</dd>
 				</dl>
 			</div>
@@ -71,8 +71,9 @@
 		</div>
 
 		<div class="bt_wrap">
-			<a href="#" class="on">전송</a> <a href="#">취소</a>
-		</div>
+                <input type="reset" style="cursor:pointer" onclick="location.replace('${pageContext.request.contextPath}/Qboard/list')" value="취소">
+                <input style="cursor:pointer" type="submit" value="등록">
+        </div>
 	</div>
 </div>
 
