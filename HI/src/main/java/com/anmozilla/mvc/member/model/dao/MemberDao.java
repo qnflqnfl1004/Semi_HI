@@ -379,21 +379,24 @@ public class MemberDao {
 	// 현진!!!!!!!!!!!!!
 
 	// myPage 정보 업데이트
-	public static int updateMember(Connection connection, Member member) {
+	public int updateMember(Connection connection, Member member) {
 		int result = 0;
 		PreparedStatement ps = null;
-		String query = "INSERT INTO MEM_LIST VALUES(SEQ_UNO.NEXTVAL,?,?,?,?,?,DEFAULT,?,?,DEFAULT,DEFAULT)";
+		String query = "UPDATE "
+					 + "MEM_LIST "
+					 + "SET "
+					 + "MEM_NICKNAME=?, "
+					 + "MEM_EMAIL=?, "
+					 + "MEM_PHONE=? "
+					 + "WHERE MEM_NO=? ";
 		
 		try {
 			ps = connection.prepareStatement(query);
 			
-			ps.setString(1, member.getId());
-			ps.setString(2, member.getNickName());
-			ps.setString(3, member.getPassword());
-			ps.setString(4, member.getName());
-			ps.setString(5, member.getPhone());
-			ps.setString(6, member.getEmail());
-			ps.setString(7, member.getImg());
+			ps.setString(1, member.getNickName());
+			ps.setString(2, member.getEmail());
+			ps.setString(3, member.getPhone());
+			ps.setInt(4, member.getNo());
 			
 			result = ps.executeUpdate();
 			
@@ -404,14 +407,15 @@ public class MemberDao {
 		}
 		
 		return result;
-		
 	}
 
+	
+	
 	// 회원 탈퇴
 	public int updateMemberStatus(Connection connection, int no, String status) {
 		int result = 0;
 		PreparedStatement ps = null;
-		String query = "UPDATE MEMBER SET STATUS=? WHERE NO=?";
+		String query = "UPDATE MEM_LIST SET MEM_STATUS=? WHERE MEM_NO=?";
 		
 		try {
 			ps = connection.prepareStatement(query);
@@ -431,15 +435,15 @@ public class MemberDao {
 
 	
 
-	public int updateMemberPwd(Connection connection, int no, String userPwd) {
+	public int updateMemberPwd(Connection connection, int no, String newPwd) {
 		int result = 0;
 		PreparedStatement ps = null;
-		String query = "UPDATE MEM_LIST SET PASSWORD=? WHERE NO=?";
+		String query = "UPDATE MEM_LIST SET MEM_PW=? WHERE MEM_NO=?";
 		
 		try {
 			ps = connection.prepareStatement(query);
 			
-			ps.setString(1, userPwd);
+			ps.setString(1, newPwd);
 			ps.setInt(2, no);
 			
 			result = ps.executeUpdate();
@@ -449,6 +453,7 @@ public class MemberDao {
 			close(ps);
 		}
 		
+		System.out.println("result : " + result);
 		return result;
 	}
 

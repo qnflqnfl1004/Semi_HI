@@ -5,7 +5,7 @@
 /* body css */
 @media only screen and (min-width: 768px) {
   .bd-placeholder-img-lg {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   .studyTitle {
@@ -14,15 +14,14 @@
   }
 }
 
-a {
-  text-align: none;
-  text-decoration-color: white;
-}
-
 #myStudyType,
 #saveStudyType {
-  border-bottom: 6px dotted #e2e2e2;
-  padding-bottom: 0rem !important;
+  /* border: 6px dotted #f0ebe3; */
+  /* padding-bottom: 0rem !important; */
+}
+
+.row {
+  border-bottom: 4px dotted #e2e2e2;
 }
 
 h1 {
@@ -35,7 +34,7 @@ h1 {
   /* margin-bottom: 40px; */
   font-weight: bold;
   font-style: oblique;
-  color: #7a86b6;
+  color: #495c83;
 }
 
 .bd-placeholder-img {
@@ -45,10 +44,10 @@ h1 {
   -moz-user-select: none;
   user-select: none;
   width: 100%;
-  height: 500 !important;
+  height: 380px !important;
   border-radius: 15%;
   border: none;
-  background-color: #e2e2e2;
+  background-color: #d3cedf;
 }
 
 #studyBox {
@@ -103,7 +102,7 @@ h1 {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  border: 4px dashed #7a86b6;
+  /* border: 2px dashed wheat; */
   /* background-color: #7a86b6; */
 }
 
@@ -142,14 +141,14 @@ h1 {
 }
 
 /* #btnMore {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #7a86b6;
-  border-radius: 30%;
-  border: 3px dashed #7a86b6;
-  background-color: none;
-  width: 20%;
-  height: 50;
-  cursor: pointer;
-  writing-mode: horizontal-tb !important;
-} */
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #7a86b6;
+    border-radius: 30%;
+    border: 3px dashed #7a86b6;
+    background-color: none;
+    width: 20%;
+    height: 50;
+    cursor: pointer;
+    writing-mode: horizontal-tb !important;
+  } */

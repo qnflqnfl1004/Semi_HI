@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.anmozilla.mvc.member.model.service.MemberService;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 
@@ -19,30 +20,24 @@ public class UpdateUserServlet extends HttpServlet {
 
     public UpdateUserServlet() {
     }
-
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/").forward(request, response);    
-
-	}
     
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	int result = 0;
-    	HttpSession session = request.getSession(false);
-//    	// 기억하자 파라미터로 부르는건 name ! loginmember는 login 할 때 세션에 저장해서 유지 가능! 다른 서블릿이나 jsp 부를 수 있음
-    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
     	Member member = null;
+    	HttpSession session = request.getSession(false);
+    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
     	
     	if (loginMember != null) {
     		member = new Member();
     		
     		member.setNo(loginMember.getNo());
-    		member.setNickName(request.getParameter("userNick"));
-    		member.setEmail(request.getParameter("userEmail"));
-    		member.setPhone(request.getParameter("userPhone"));
-//    		
+    		member.setNickName(request.getParameter("newNick"));
+    		member.setEmail(request.getParameter("newEmail"));
+    		member.setPhone(request.getParameter("newPhone"));
+    		
     		result = new MemberService().save(member);
+    		System.out.println(member);
     		
     		if (result > 0) {
     			session.setAttribute("loginMember", new MemberService().findMemberById(loginMember.getId()));
@@ -53,12 +48,12 @@ public class UpdateUserServlet extends HttpServlet {
     			request.setAttribute("msg", "회원 정보 수정 실패");
     			request.setAttribute("location", "/member/myPage");
     		}
+    		
     	} else {
     		request.setAttribute("msg", "로그인 후 수정해주세요");
 			request.setAttribute("location", "/");
 
     	}
-    		request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
+    		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
-
 }

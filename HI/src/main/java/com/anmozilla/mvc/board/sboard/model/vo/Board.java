@@ -18,7 +18,7 @@ public class Board {
 
 	private int sNo;
 	
-	private Member member;
+	private Member member;	
 	
 	private Date sWriteDate;
 	
