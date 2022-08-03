@@ -17,7 +17,7 @@
 </head>
 <body>
 	<nav class="navbar">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="${ path }/">
             <img src="${ path }/resources/images/Hi_Logo.png" alt="" width="130" height="70">
         </a>
         <c:if test="${ empty loginMember }">
@@ -29,15 +29,15 @@
 
         <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_USER' }">
         <div class="main1 loginO">
-            <button type="button" class="btn btn-Link main2">새 글 쓰기</button>
+            <button type="button" class="btn btn-Link main2" onclick="location.href = '${ path }/sboard/write';">새 글 쓰기</button>
             <div class="dropdown text-end ">	
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="${ path }/resources/images/Hi_Menu.png" alt="Hi" width="50" height="45" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">My Study</a></li>
-                    <li><a class="dropdown-item" href="#">회원정보 수정</a></li>
-                    <li><a class="dropdown-item" href="${path}/Qboard/write">건의하기</a></li>
+                    <li><a class="dropdown-item" href="${ path }/member/studyBox">My Study</a></li>
+                    <li><a class="dropdown-item" href="${ path }/member/myPage">회원정보 수정</a></li>
+                    <li><a class="dropdown-item" href="${ path }/Qboard/write">건의하기</a></li>
                     <li><a class="dropdown-item" href="#">내 문의함</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="${ path }/logout">로그아웃</a></li>
@@ -54,9 +54,9 @@
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="${ path }/admin/memberList">회원관리</a></li>
-                    <li><a class="dropdown-item" href="#">게시물관리</a></li>
-                    <li><a class="dropdown-item" href="#">공지사항</a></li>
-                    <li><a class="dropdown-item" href="">건의사항</a></li>
+                    <li><a class="dropdown-item" href="${ path }/admin/sboard">게시물관리</a></li>
+                    <li><a class="dropdown-item" href="${ path }/nboard/list">공지사항</a></li>
+                    <li><a class="dropdown-item" href="${ path }/Qboard/list">건의사항</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="${ path }/logout">로그아웃</a></li>
                 </ul>
