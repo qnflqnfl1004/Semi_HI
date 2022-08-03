@@ -36,7 +36,7 @@
 					</dd>
 				</dl>
 			</div>
-
+			
 			<div class="title">
 				<dl>
 					<dt>제목</dt>
@@ -50,7 +50,7 @@
 				<dl>
 					<dt>이메일</dt>
 					<dd>
-						<input type="text" name="email" id="email" value="${loginMember.email} readonly">
+						<input type="text" name="email" id="email" value="${loginMember.email} ">
 					</dd>
 				</dl>
 			</div>

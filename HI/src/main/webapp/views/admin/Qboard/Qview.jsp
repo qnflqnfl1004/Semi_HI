@@ -54,7 +54,14 @@
 			<div class="addfile">
 				<dl>
 					<dt>첨부파일</dt>
-					<dd>첨부된 파일이 들어갑니다.</dd>
+					<dd>
+						<c:if test="${ not empty board.originalFileName }">
+						<img src="${ path }/resources/images/file.png" width="20px" height="20px" >
+						<a href="javascript:" id="fileDown">
+						<span> ${ board.originalFileName } </span>
+						</a>
+						</c:if>
+					</dd>
 				</dl>
 			</div>
 

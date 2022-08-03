@@ -74,7 +74,7 @@ public class QWriteServlet extends HttpServlet {
 			
 			result = new QboardService().save(qboard);
 			
-			if(result >0) {
+			if(result > 0) {
 				request.setAttribute("msg", "게시글 등록 성공");
 				request.setAttribute("location", "/");
 			} else {

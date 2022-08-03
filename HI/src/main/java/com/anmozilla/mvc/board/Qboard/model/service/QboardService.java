@@ -12,11 +12,9 @@ public class QboardService {
 		int result = 0;
 		Connection connection = getConnection();
 		
-		if(board.getNo() != 0) {
-			result = new QboardDao().updateBoard(connection, board);			
-		} else {
-			result = new QboardDao().insertBoard(connection, board);			
-		}
+		
+		result = new QboardDao().insertBoard(connection, board);			
+		
 		
 		if(result > 0) {
 			commit(connection);

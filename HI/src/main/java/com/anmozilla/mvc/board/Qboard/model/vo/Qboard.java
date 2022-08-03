@@ -1,5 +1,7 @@
 package com.anmozilla.mvc.board.Qboard.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Qboard {
-	private int no;
+private int no;
+	
+	private int rowNum;
 	
 	private String reason;
 	
@@ -16,13 +20,18 @@ public class Qboard {
 	
 	private String title;
 	
-	private String email;
-	
 	private String content;
 	
 	private String originalFileName;
 	
 	private String renamedFileName;
 	
+	private String status;
+	
+	private String as;
+	
+	private Date createDate;
+	
+	private String email;
 	
 }
