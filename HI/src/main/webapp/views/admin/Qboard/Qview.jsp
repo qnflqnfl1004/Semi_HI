@@ -18,6 +18,7 @@
 	<div class="board_write_wrap">
 		<div class="board_write">
 
+
 			<div class="writetitle">
 				<dl>
 					<dt>제목</dt>

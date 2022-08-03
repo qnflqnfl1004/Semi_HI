@@ -110,7 +110,7 @@ public class BoardDao {
 						+ "Q.ORIGINAL_FILENAME, "
 						+ "Q.RENAMED_FILENAME, " 
 						+ "Q.QA_CONTENT, " 
-						+ "Q.CREATE_DATE, "  
+						+ "Q.CREATE_DATE "  
 						+ "FROM QA Q "
 						+ "JOIN MEM_LIST M ON(Q.MEM_NO = M.MEM_NO) "
 						+ "WHERE Q.QA_STATUS = 'Y' AND Q.QA_NO=?";
