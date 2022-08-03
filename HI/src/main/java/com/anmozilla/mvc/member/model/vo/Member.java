@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class Member {
 	private int no;
 	
+	private int rowNum;
+	
 	private String id;
 	
 	private String nickName;
