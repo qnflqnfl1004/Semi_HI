@@ -10,10 +10,6 @@
 	<a class="navbar-brand" href="#"> <img
 		src="C:\Users\kh\Desktop\semi\logo.png" alt="" width="130" height="70">
 	</a>
-	<div class="main1">
-		<button class="main2">회원가입</button>
-		<button class="main3">로그인</button>
-	</div>
 </nav>
 <div class="board_wrap">
 	<div class="board_title">
@@ -25,33 +21,33 @@
 			<div class="writetitle">
 				<dl>
 					<dt>제목</dt>
-					<dd>입력된 제목이 들어갑니다.</dd>
+					<dd>${ board.title }</dd>
 				</dl>
 			</div>
 
 			<div class="reason">
 				<dl>
 					<dt>사유</dt>
-					<dd>사유가 들어갑니다.</dd>
+					<dd> ${ board.reason } </dd>
 				</dl>
 			</div>
 
 			<div class="writeperson">
 				<dl>
 					<dt>작성자</dt>
-					<dd>작성자가 들어갑니다.</dd>
+					<dd>${ board.writerId }</dd>
 				</dl>
 			</div>
 
 			<div class="writedate">
 				<dl>
 					<dt>작성일</dt>
-					<dd>2022-00-00</dd>
+					<dd>${ board.createDate }</dd>
 				</dl>
 			</div>
 
 			<div class="cont">
-				<textarea>건의사항 내용</textarea>
+				<textarea>${ board.content }</textarea>
 			</div>
 
 			<div class="addfile">
