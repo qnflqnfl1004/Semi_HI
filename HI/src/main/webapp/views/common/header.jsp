@@ -410,7 +410,7 @@
 	            <img class="logo" src="${ path }/resources/images/Hi_Logo.png" alt="" width="120" height="60">
 	            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	        </div>
-	        <div class="modal-body">
+	        <div class="modal-body" id="modal_body">
 	            
 		       <c:if test="${  empty loginMember }">
 		     	<form id="loginFrm" action="${ path }/login" method="post">
@@ -421,11 +421,11 @@
 		                <input type="submit" value="로그인" class="submit-btn" >
 		    		
 					<div class="modal-footer" style="justify-content: center;">
-		            	<img src="${ path }/resources/images/naver.png" width="70" height="70"  >
-		            	<img src="${ path }/resources/images/googel.png" width="70" height="70"  >
-		            	<img src="${ path }/resources/images/kakao.png" width="70" height="70"  >
+		            	<img class="loginImg" src="${ path }/resources/images/naver.png" width="70" height="70"  >
+		            	<img class="loginImg" src="${ path }/resources/images/googel.png" width="70" height="70"  >
+		            	<img class="loginImg" src="${ path }/resources/images/kakao.png" width="70" height="70"  >
 		            </div>
-		                <p>연동 로그인</p>		
+		                <p id="joinLogin">연동 로그인</p>		
 		 		 </form>            
 	    	   </c:if>               			        
 	       	 </div>		          		        			        		            
