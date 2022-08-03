@@ -1,6 +1,9 @@
-package com.anmozilla.mvc.board.sboard.controller;
+package com.anmozilla.mvc;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,21 +13,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.anmozilla.mvc.board.sboard.model.service.BoardService;
 import com.anmozilla.mvc.board.sboard.model.vo.Board;
 
-@WebServlet("/sboard/view")
-public class ViewServlet extends HttpServlet {
+
+@WebServlet("/home")
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
-    public ViewServlet() {
+
+    public HomeServlet() {
     }
 
-    @Override
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	int no = Integer.parseInt(request.getParameter("no"));    		
+    	List<Board> list = new ArrayList<Board>();
+
+    	list = new BoardService().getMyStudyAll();
+		
+    	for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
     	
-    	System.out.println("no: "+ no);
-    	Board board = new BoardService().getsBoardByNo(no);
-    	System.out.println(board);
-    	request.setAttribute("board", board);
-    	request.getRequestDispatcher("/views/board/sboard/view.jsp").forward(request, response);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+
 	}
+
 }

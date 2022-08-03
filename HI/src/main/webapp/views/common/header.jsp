@@ -11,12 +11,13 @@
 	<meta charset="UTF-8">
 	<title>header</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" href="${ path }/resources/css/header_ver1.css">
+	<link rel="stylesheet" href="${ path }/resources/css/header_ver2.css">
+	<link rel="stylesheet" href="${ path }/resources/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<nav class="navbar">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="${path}/views/common/main2.jsp">
             <img src="${ path }/resources/images/Hi_Logo.png" alt="" width="130" height="70">
         </a>
         <c:if test="${ empty loginMember }">
@@ -26,7 +27,7 @@
             </div>
         </c:if>
 
-        <c:if test="${ empty loginMember }">
+        <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_USER' }">
         <div class="main1 loginO">
             <button type="button" class="btn btn-Link main2">새 글 쓰기</button>
             <div class="dropdown text-end ">	
@@ -34,18 +35,18 @@
                     <img src="${ path }/resources/images/Hi_Menu.png" alt="Hi" width="50" height="45" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">My Study</a></li>
-                    <li><a class="dropdown-item" href="#">회원정보 수정</a></li>
+                    <li><a class="dropdown-item" href="${ path }/member/studyBox">My Study</a></li>
+                    <li><a class="dropdown-item" href="${ path }/member/myPage">회원정보 수정</a></li>
                     <li><a class="dropdown-item" href="#">건의하기</a></li>
                     <li><a class="dropdown-item" href="#">내 문의함</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="${ path }/logout">로그아웃</a></li>
                 </ul>
             </div>
         </div>
         </c:if>
 	
-        <c:if test="${ empty loginMember || loginMember.role == 'ROLE_ADMIN'}">
+        <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_ADMIN'}">
         <div class="main1 loginAdmin">
             <div class="dropdown text-end">	
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +58,7 @@
                     <li><a class="dropdown-item" href="#">공지사항</a></li>
                     <li><a class="dropdown-item" href="#">건의사항</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="${ path }/logout">로그아웃</a></li>
                 </ul>
             </div>
         </div>
@@ -170,9 +171,9 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_id">
-                  	<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userId" id="userId" placeholder="아이디를 입력해주세요.">
                   </td>
-                  <td><input type="button" value="중복확인" id="idDuplicate"></td>
+                  <td><input type="button" class="btn_enter" value="중복확인" id="idDuplicate"></td>
                 </tr>
                 <tr>
                   <td class="enrollForm-error" id="error_id"><span></span></td>
@@ -182,7 +183,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_pwd">
-                  	<input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요.">
+                  	<input type="password" class="info_enter" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -193,7 +194,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_pwdCheck">
-                  	<input type="password" name="userPwdCheck" id="userPwdCheck" placeholder="비밀번호를 다시 입력해주세요.">
+                  	<input type="password" class="info_enter" name="userPwdCheck" id="userPwdCheck" placeholder="비밀번호를 다시 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -204,9 +205,9 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_nick">
-                  	<input type="text" name="userNick" id="userNick" placeholder="닉네임를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userNick" id="userNick" placeholder="닉네임를 입력해주세요.">
                   </td>
-                  <td><input type="button" value="중복확인" id="nickDuplicate"></td>
+                  <td><input type="button" class="btn_enter" value="중복확인" id="nickDuplicate"></td>
                 </tr>
                 <tr>
                   <td class="enrollForm-error" id="error_nick"><span></span></td>
@@ -216,7 +217,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_name">
-                  	<input type="text" name="userName" id="userName" placeholder="이름를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userName" id="userName" placeholder="이름를 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -227,9 +228,9 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_email">
-                  	<input type="text" name="userEmail" id="userEmail" placeholder="@ 포함하여 이메일을 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userEmail" id="userEmail" placeholder="@ 포함하여 이메일을 입력해주세요.">
                   </td>
-                  <td><input type="button" value="중복확인" id="emailDuplicate"></td>
+                  <td><input type="button" class="btn_enter" value="중복확인" id="emailDuplicate"></td>
                 </tr>
                 <tr>
                   <td class="enrollForm-error" id="error_email"><span></span></td>
@@ -239,7 +240,7 @@
                 </tr>
                 <tr>
                   <td class="enrollForm-text" id="info_phone">
-                  	<input type="text" name="userPhone" id="userPhone" placeholder="010부터 -를 제외한 11자리 숫자를 입력해주세요.">
+                  	<input type="text" class="info_enter" name="userPhone" id="userPhone" placeholder="010부터 -를 제외한 11자리 숫자를 입력해주세요.">
                   </td>
                 </tr>
                 <tr>
@@ -399,7 +400,45 @@
     </div>
   </div>
     
-  <script src="confetti.js"></script>
+ <div class="login-container">     	
+   <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   	 <div class="modal-dialog modal-dialog-scrollable ">
+	   <div class="modal-content">
+	        <div class="modal-header">
+	            <img class="logo" src="${ path }/resources/images/Hi_Logo.png" alt="" width="120" height="60">
+	            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	        </div>
+	        <div class="modal-body">
+	            
+		       <c:if test="${  empty loginMember }">
+		     	<form id="loginFrm" action="${ path }/login" method="post">
+		     	        
+		    			<input type="text" name="userId" class="text-field" placeholder="아이디"
+		    			value="${  empty cookie.saveId ? '' : cookie.saveId.value }" required>
+		                <input type="password" name="userPwd" class="text-field" placeholder="비밀번호" required>
+		                <input type="submit" value="로그인" class="submit-btn" >
+		    		
+					<div class="modal-footer" style="justify-content: center;">
+		            	<img src="${ path }/resources/images/naver.png" width="70" height="70"  >
+		            	<img src="${ path }/resources/images/googel.png" width="70" height="70"  >
+		            	<img src="${ path }/resources/images/kakao.png" width="70" height="70"  >
+		            </div>
+		                <p>연동 로그인</p>		
+		 		 </form>            
+	    	   </c:if>               			        
+	       	 </div>		          		        			        		            
+	        <div class="modal-footer" style="justify-content: center;">
+	        	<div class="links">
+	        		<a href="#">아이디를 잊어버리셨나요?</a>
+		        	<a href="#">비밀번호를 잊어버리셨나요?</a>
+		    	</div>	          	
+	        </div>	        
+    	  </div>
+     	</div>
+	  </div>
+    </div>   
+        		
+  <script src="${ path }/resources/js/confetti.js"></script>
   <script src="${ path }/resources/js/enroll.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

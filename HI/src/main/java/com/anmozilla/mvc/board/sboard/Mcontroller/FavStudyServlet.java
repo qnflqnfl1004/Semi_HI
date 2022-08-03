@@ -1,4 +1,4 @@
-package com.anmozilla.mvc.member.controller;
+package com.anmozilla.mvc.board.sboard.Mcontroller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

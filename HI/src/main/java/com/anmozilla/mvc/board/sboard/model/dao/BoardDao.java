@@ -86,7 +86,7 @@ public class BoardDao {
 				board.setSMember(rs.getString("S_MEMBER"));
 				board.setSContact(rs.getString("S_CONTACT"));
 				board.setSLevel(rs.getString("S_LEVEL"));
-				board.setSStatus(rs.getString("S_STATUS"));
+//				board.setSStatus(rs.getString("S_STATUS"));
 				member.setNickName(rs.getString("s_Writer_Nickname"));
 				board.setMember(member);
 				
@@ -305,7 +305,51 @@ public class BoardDao {
 	
 	
 	
-	
+	public int updateStudy(Connection conn, Board board) {
+	      int result = 0;
+	      PreparedStatement pstmt = null;
+	      String query = "UPDATE STUDY SET\r\n"
+	               + "   S_WRITE_DATE = SYSDATE,\r\n"
+	               + "   S_TITLE = ?,\r\n"
+	               + "   S_CONTENT = ?,\r\n"
+	               + "   S_DATE = to_date(?, 'yyyy-mm-dd'),\r\n"
+	               + "   S_DUE_DATE = to_date(?, 'yyyy-mm-dd'),\r\n"
+	               + "   S_MEMBER = ?,\r\n"
+	               + "   S_PERIOD = ?,\r\n"
+	               + "   S_CONTACT = ?,\r\n"
+	               + "   S_LEVEL = ?,\r\n"
+	               + "   L_NO = ?,\r\n"
+	               + "   TEST_NO = ? \r\n"
+	               + "WHERE\r\n"
+	               + "   S_NO = ?";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, board.getSTitle());
+	         pstmt.setString(2, board.getSContent());
+	         
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	         String sDate = sdf.format(board.getSDate());
+	         String sDueDate = sdf.format(board.getSDueDate());
+	         pstmt.setString(3, sDate);
+	         pstmt.setString(4, sDueDate);
+	         
+	         pstmt.setString(5, board.getSMember());
+	         pstmt.setString(6, board.getSPeriod());
+	         pstmt.setString(7, board.getSContact());
+	         pstmt.setString(8, board.getSLevel());
+	         pstmt.setInt(9, board.getLanguage().getLNo());
+	         pstmt.setInt(10, board.getTest().getTestNo());
+	         pstmt.setInt(11, board.getSNo());
+	         
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      return result;
+	   }
 	
 	
 	
@@ -319,189 +363,78 @@ public class BoardDao {
 	
 	
 	// !!!!!!!!!!!!!!!!!!!! 현진
-//	public int getMyStudyBox(Connection connection, Member member) {
-//		int count = 0;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		String query = "SELECT ROWNUM, A.MEM_NO, A.MEM_ID, A.S_TITLE, A.S_CONTENT FROM (SELECT S.S_NO, M.MEM_ID, S.S_TITLE, S_CONTENT, M.MEM_NO"
-//					+ "FROM STUDY S"
-//					+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO)"
-//					+ "ORDER BY S.S_NO DESC"
-//					+ ") A"
-//					+ "WHERE ROWNUM <= 3 AND A.MEM_ID=?;"; 
-//		
-//			try {
-//				ps = connection.prepareStatement(query);
-//				
-//				ps.setString(1, member.getId());
-//				
-//				rs = ps.executeQuery();
-//				
-//				if(rs.next()) {
-//					// 카운트에 rs 정수값 넣기
-//				}
-//				
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			} finally {
-//				close(rs);
-//				close(ps);
-//			}
-//		
-//		return count;
-//	}
-
-
-	// view 느낌으로?????
-//	public Board findMyStudyByNo(Connection connection, int userNo) {
-////		List<Board> myStudy = null;
-//		Board myStudy = null;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		String query = "SELECT ROWNUM, A.MEM_NO, A.MEM_ID, A.S_TITLE, A.S_CONTENT FROM (SELECT S.S_NO, M.MEM_ID, S.S_TITLE, S_CONTENT, M.MEM_NO"
-//				+ "FROM STUDY S"
-//				+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO)"
-//				+ "ORDER BY S.S_NO DESC"
-//				+ ") A";
-////				+ "WHERE ROWNUM <= 3 AND A.MEM_NO=?;"; 
-//		
-//		try {
-//			ps = connection.prepareStatement(query);
-//			
-//			ps.setInt(1, userNo);
-//			
-//			rs = ps.executeQuery();
-//			
-//			while(rs.next()) {
-//				myStudy = new Board();
-//				myStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
-//				
-//				Member member = new Member();
-//				member.setNo(rs.getInt("S_WRITE_NO")); // 작성자 번호
-//				
-//				myStudy.setSWriteDate(rs.getDate("S_WRITE_DATE"));// 작성일자
-//				myStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
-////				myStudy.setSContent(rs.getString("S_CONTENT")); // 스터디 소개
-//				myStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
-//				myStudy.setSDueDate(rs.getDate("S_DUE_DATE"));// 모집 마감일
-////				myStudy.setSMember(rs.getString("S_MEMBER"));// 모집 인원
-//				myStudy.setSPeriod(rs.getString("S_PERIOD")); // 진행 기간
-////				myStudy.setSContact(rs.getString("S_CONTACT")); // 연락 방법
-//				myStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
-////				board.setSStatus(rs.getString("S_STATUS")); // 상태값(Y/N)
-//				member.setNickName(rs.getString("s_Writer_Nickname"));
-//				// 언어 아이디
-//				// 시험 종류 아이디
-//				
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(ps);
-//		}
-//	
-//		return myStudy;
-//	}
-	
-	
-//	// LIST 느낌으로
-//	public List<Board> findMyStudyAll(Connection connection, int userNo) {
-//		List<Board> myStudyList = new ArrayList<>();
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		String query = "SELECT ROWNUM, A.MEM_NO, A.MEM_ID, A.S_TITLE, A.S_CONTENT FROM (SELECT S.S_NO, M.MEM_ID, S.S_TITLE, S_CONTENT, M.MEM_NO"
-//				+ "FROM STUDY S"
-//				+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO)"
-//				+ "ORDER BY S.S_NO DESC"
-//				+ ") A"
-//				+ "WHERE ROWNUM <= 3 AND A.MEM_NO=?;"; 
-//		
-//		try {
-//			ps = connection.prepareStatement(query);
-//			
-//			ps.setInt(1, userNo);
-//			
-//			rs = ps.executeQuery();
-//			
-//			while(rs.next()) {
-//				Board myStudy = new Board();
-//				myStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
-//				
-//				Member member = new Member();
-//				member.setNo(rs.getInt("S_WRITE_NO")); // 작성자 번호
-//				
-//				myStudy.setSWriteDate(rs.getDate("S_WRITE_DATE"));// 작성일자
-//				myStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
-////				myStudy.setSContent(rs.getString("S_CONTENT")); // 스터디 소개
-//				myStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
-//				myStudy.setSDueDate(rs.getDate("S_DUE_DATE"));// 모집 마감일
-////				myStudy.setSMember(rs.getString("S_MEMBER"));// 모집 인원
-//				myStudy.setSPeriod(rs.getString("S_PERIOD")); // 진행 기간
-////				myStudy.setSContact(rs.getString("S_CONTACT")); // 연락 방법
-//				myStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
-////				board.setSStatus(rs.getString("S_STATUS")); // 상태값(Y/N)
-//				member.setNickName(rs.getString("s_Writer_Nickname"));
-//				// 언어 아이디
-//				// 시험 종류 아이디
-//				
-//				myStudyList.add(myStudy);
-//				
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(ps);
-//		}
-//		
-//		return myStudyList;
-//	}
-	
-	
-	
-	// List 만들어서 목록 >> loginmember 없이 해보기
-	public List<Board> findMyStudyAll(Connection connection) {
+	// studyBox - myStudy 리스트
+	public List<Board> findMyStudyByNo(Connection connection, int userNo) {
 		List<Board> myStudyList = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String query = "SELECT ROWNUM, A.MEM_NO, A.MEM_ID, A.S_TITLE, A.S_CONTENT FROM (SELECT S.S_NO, M.MEM_ID, S.S_TITLE, S_CONTENT, M.MEM_NO"
-						+ "FROM STUDY S"
-						+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO)"
-						+ "ORDER BY S.S_NO DESC"
-						+ ") A";
-//						+ "WHERE ROWNUM <= 3 AND A.MEM_NO=?;"; 
+		String query = "SELECT ROWNUM, "
+						+ "A.MEM_NO, "
+						+ "A.MEM_ID, "
+						+ "A.MEM_NICKNAME, "
+						+ "A.S_WRITER_NO, "
+						+ "A.S_NO, "
+						+ "A.S_TITLE, "
+						+ "A.S_LEVEL, "
+						+ "A.S_DATE, "
+						+ "A.L_NO, "
+						+ "A.TEST_TYPE, "
+						+ "A.S_STATUS, "
+						+ "A.TEST_NO "
+						+ "FROM ( "
+						+ "SELECT S.S_NO, " 
+						+ "M.MEM_ID, " 
+						+ "S.S_TITLE, " 
+						+ "S.S_CONTENT, "
+						+ "M.MEM_NO, "
+						+ "S.S_WRITER_NO, "
+						+ "M.MEM_NICKNAME, "
+						+ "S.S_LEVEL, "
+						+ "S.S_DATE, "
+						+ "S.TEST_NO, "
+						+ "T.L_NO, "
+						+ "T.TEST_TYPE, "
+						+ "S.S_STATUS "
+						+ "FROM STUDY S "
+						+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO) "
+						+ "INNER JOIN TEST T ON(S.TEST_NO = T.TEST_NO) "
+						+ "ORDER BY S.S_NO DESC "
+						+ ") A "
+						+ "WHERE ROWNUM <= 3 AND A.S_STATUS = 'Y' AND A.MEM_NO=? "; 
 		
 		try {
 			ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, userNo);
 			
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				Board myStudy = new Board();
-				myStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
-				
 				Member member = new Member();
-				member.setNo(rs.getInt("S_WRITE_NO")); // 작성자 번호
+				Test test = new Test();
+				Language language = new Language();
+
+				member.setId(rs.getString("MEM_ID")); // 회원 아이디
+				member.setNickName(rs.getString("MEM_NICKNAME")); // 닉네임
+				member.setNo(rs.getInt("S_WRITER_NO")); // 작성자 번호
 				
-				myStudy.setSWriteDate(rs.getDate("S_WRITE_DATE"));// 작성일자
+				myStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
 				myStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
-//				myStudy.setSContent(rs.getString("S_CONTENT")); // 스터디 소개
-				myStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
-				myStudy.setSDueDate(rs.getDate("S_DUE_DATE"));// 모집 마감일
-//				myStudy.setSMember(rs.getString("S_MEMBER"));// 모집 인원
-				myStudy.setSPeriod(rs.getString("S_PERIOD")); // 진행 기간
-//				myStudy.setSContact(rs.getString("S_CONTACT")); // 연락 방법
 				myStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
-//				board.setSStatus(rs.getString("S_STATUS")); // 상태값(Y/N)
-				member.setNickName(rs.getString("s_Writer_Nickname"));
-				// 언어 아이디
-				// 시험 종류 아이디
+				myStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
 				
+				language.setLNo(rs.getInt("L_NO")); // 언어 번호
+				
+				test.setTestType(rs.getString("TEST_TYPE")); // 시험 종류 이름
+				myStudy.setSStatus(rs.getString("S_STATUS"));
+				test.setTestNo(rs.getInt("TEST_NO")); // 테스트 번호
+				
+				myStudy.setMember(member);
+				myStudy.setTest(test);
+				myStudy.setLanguage(language);
+
 				myStudyList.add(myStudy);
-				
 			}
 			
 		} catch (SQLException e) {
@@ -513,60 +446,171 @@ public class BoardDao {
 		
 		return myStudyList;
 	}
-	
-	
-//	public Board findMyStudyByNo(Connection connection, int userNo) {
-////		List<Board> myStudy = null;
-//		Board myStudy = null;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		String query = "SELECT ROWNUM, A.MEM_NO, A.MEM_ID, A.S_TITLE, A.S_CONTENT FROM (SELECT S.S_NO, M.MEM_ID, S.S_TITLE, S_CONTENT, M.MEM_NO"
-//				+ "FROM STUDY S"
-//				+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO)"
-//				+ "ORDER BY S.S_NO DESC"
-//				+ ") A"
-//				+ "WHERE ROWNUM <= 3 AND A.MEM_NO=?;"; 
-//		
-//		try {
-//			ps = connection.prepareStatement(query);
-//			
-//			ps.setInt(1, userNo);
-//			
-//			rs = ps.executeQuery();
-//			
-//			while(rs.next()) {
-//				myStudy = new Board();
-//				myStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
-//				
-//				Member member = new Member();
-//				member.setNo(userNo); // 작성자 번호
-//				
-//				myStudy.setSWriteDate(rs.getDate("S_WRITE_DATE"));// 작성일자
-//				myStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
-////				myStudy.setSContent(rs.getString("S_CONTENT")); // 스터디 소개
-//				myStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
-//				myStudy.setSDueDate(rs.getDate("S_DUE_DATE"));// 모집 마감일
-////				myStudy.setSMember(rs.getString("S_MEMBER"));// 모집 인원
-//				myStudy.setSPeriod(rs.getString("S_PERIOD")); // 진행 기간
-////				myStudy.setSContact(rs.getString("S_CONTACT")); // 연락 방법
-//				myStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
-////				board.setSStatus(rs.getString("S_STATUS")); // 상태값(Y/N)
-//				member.setNickName(rs.getString("s_Writer_Nickname"));
-//				// 언어 아이디
-//				// 시험 종류 아이디
-//				
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(ps);
-//		}
-//		
-//		return myStudy;
-//	}
-	
 
 
+	// myStudy 전체 리스트
+	public List<Board> findMyStudyAll(Connection connection, int userNo) {
+		List<Board> myStudyList = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT ROWNUM, "
+					+ "A.MEM_NO, "
+					+ "A.MEM_ID, "
+					+ "A.MEM_NICKNAME, "
+					+ "A.S_WRITER_NO, "
+					+ "A.S_NO, "
+					+ "A.S_TITLE, "
+					+ "A.S_LEVEL, "
+					+ "A.S_DATE, "
+					+ "A.L_NO, "
+					+ "A.TEST_TYPE, "
+					+ "A.S_STATUS, "
+					+ "A.TEST_NO "
+					+ "FROM ( "
+					+ "SELECT S.S_NO, " 
+					+ "M.MEM_ID, " 
+					+ "S.S_TITLE, " 
+					+ "S.S_CONTENT, "
+					+ "M.MEM_NO, "
+					+ "S.S_WRITER_NO, "
+					+ "M.MEM_NICKNAME, "
+					+ "S.S_LEVEL, "
+					+ "S.S_DATE, "
+					+ "S.TEST_NO, "
+					+ "T.L_NO, "
+					+ "T.TEST_TYPE, "
+					+ "S.S_STATUS "
+					+ "FROM STUDY S "
+					+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO) "
+					+ "INNER JOIN TEST T ON(S.TEST_NO = T.TEST_NO) "
+					+ "ORDER BY S.S_NO DESC "
+					+ ") A "
+					+ "WHERE A.S_STATUS = 'Y' AND A.MEM_NO=? "; 
+		
+		try {
+			ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, userNo);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Board myStudy = new Board();
+				Member member = new Member();
+				Test test = new Test();
+				Language language = new Language();
+
+				member.setId(rs.getString("MEM_ID")); // 회원 아이디
+				member.setNickName(rs.getString("MEM_NICKNAME")); // 닉네임
+				member.setNo(rs.getInt("S_WRITER_NO")); // 작성자 번호
+				
+				myStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
+				myStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
+				myStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
+				myStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
+				
+				language.setLNo(rs.getInt("L_NO")); // 언어 번호
+				
+				test.setTestType(rs.getString("TEST_TYPE")); // 시험 종류 이름
+				myStudy.setSStatus(rs.getString("S_STATUS"));
+				test.setTestNo(rs.getInt("TEST_NO")); // 테스트 번호
+				
+				myStudy.setMember(member);
+				myStudy.setTest(test);
+				myStudy.setLanguage(language);
+
+				myStudyList.add(myStudy);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return myStudyList;
+	}
+
+	
+	// 메인 - 스터디 전체 리스트
+	public List<Board> findStudyAll(Connection connection) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT ROWNUM, "
+						+ "A.MEM_NO, "
+						+ "A.MEM_ID, "
+						+ "A.MEM_NICKNAME, "
+						+ "A.S_WRITER_NO, "
+						+ "A.S_NO, "
+						+ "A.S_TITLE, "
+						+ "A.S_LEVEL, "
+						+ "A.S_DATE, "
+						+ "A.L_NO, "
+						+ "A.TEST_TYPE, "
+						+ "A.S_STATUS, "
+						+ "A.TEST_NO "
+						+ "FROM ( "
+						+ "SELECT S.S_NO, " 
+						+ "M.MEM_ID, " 
+						+ "S.S_TITLE, " 
+						+ "S.S_CONTENT, "
+						+ "M.MEM_NO, "
+						+ "S.S_WRITER_NO, "
+						+ "M.MEM_NICKNAME, "
+						+ "S.S_LEVEL, "
+						+ "S.S_DATE, "
+						+ "S.TEST_NO, "
+						+ "T.L_NO, "
+						+ "T.TEST_TYPE, "
+						+ "S.S_STATUS "
+						+ "FROM STUDY S "
+						+ "INNER JOIN MEM_LIST M ON(S.S_WRITER_NO = M.MEM_NO) "
+						+ "INNER JOIN TEST T ON(S.TEST_NO = T.TEST_NO) "
+						+ "ORDER BY S.S_NO DESC "
+						+ ") A "
+						+ "WHERE A.S_STATUS = 'Y' "; 
+		
+		try {
+			ps = connection.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Board board = new Board();
+				Member member = new Member();
+				Test test = new Test();
+				Language language = new Language();
+
+				member.setId(rs.getString("MEM_ID")); // 회원 아이디
+				member.setNickName(rs.getString("MEM_NICKNAME")); // 닉네임
+				member.setNo(rs.getInt("S_WRITER_NO")); // 작성자 번호
+				
+				board.setSNo(rs.getInt("S_NO")); // 게시글 번호
+				board.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
+				board.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
+				board.setSDate(rs.getDate("S_DATE")); // 시작 예정일
+				
+				language.setLNo(rs.getInt("L_NO")); // 언어 번호
+				
+				test.setTestType(rs.getString("TEST_TYPE")); // 시험 종류 이름
+				board.setSStatus(rs.getString("S_STATUS"));
+				test.setTestNo(rs.getInt("TEST_NO")); // 테스트 번호
+				
+				board.setMember(member);
+				board.setTest(test);
+				board.setLanguage(language);
+
+				list.add(board);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return list;
+	}
 }

@@ -35,7 +35,9 @@ public class DeleteServlet extends HttpServlet {
 			msg = "로그인 후 사용할 수 있습니다.";
 
 		}
-//		request.getSession().setAttribute("msg", msg);
+			System.out.println(msg);
+		request.getSession().setAttribute("msg", msg);
+		System.out.println(no);
 			response.sendRedirect(request.getContextPath() + "/");
 		}
 }

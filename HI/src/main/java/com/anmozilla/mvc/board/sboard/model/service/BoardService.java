@@ -84,58 +84,53 @@ public class BoardService {
 	
 	
 	
-	// 현진 !!!!!!!!!!!!!!!
-//	public List<Board> getMyStudyByNo(int userNo) {
-//		List<Board> myStudyList = null;
-//		Connection connection = getConnection();
-//		
-//		myStudyList = new BoardDao().findMyStudyAll(connection, userNo);
-//		
-//		close(connection);
-//		
-//		return myStudyList;
-//	}
-	
-	// List 만들어서 목록 >> loginMember 없이 해보기
-	public List<Board> getMyStudyByNo() {
+	// 현진 !!!!!!!!!!!!!!!	
+	// studyBox - myStudy 리스트
+	public List<Board> getMyStudyByNo(int userNo) {
 		List<Board> myStudyList = null;
 		Connection connection = getConnection();
 		
-		myStudyList = new BoardDao().findMyStudyAll(connection);
+		myStudyList = new BoardDao().findMyStudyByNo(connection, userNo);
 		
 		close(connection);
 		
 		return myStudyList;
 	}
 	
+	// myStudy 전체 리스트
+	public List<Board> getMyStudyAll(int userNo) {
+		List<Board> myStudyList = null;
+		Connection connection = getConnection();
+		
+		myStudyList = new BoardDao().findMyStudyAll(connection, userNo);
+		
+		close(connection);
+		
+		return myStudyList;
+	}
 	
-	
-	
-	
-	
-	
-	
-//	public Board getMyStudyByNo() {
-//		Board myStudy = null;
-//		Connection connection = getConnection();
-//		
-//		myStudy = new BoardDao().findMyStudyByNo(connection);
-//		
-//		close(connection);
-//		
-//		return myStudy;
-//	}
+	// 메인 - 스터디 전체 리스트
+	public List<Board> getMyStudyAll() {
+		List<Board> list = null;
+		Connection connection = getConnection();
+		
+		list = new BoardDao().findStudyAll(connection);
+		
+		close(connection);
+		
+		return list;
+	}
 
-//	public List<Board> getMyStudyList(PageInfo pageInfo) {
-//		Board myStudy = null;
-//		Connection connection = getConnection();
-//		
-//		myStudy = new BoardDao().findMyStudyByNo(connection, pageInfo);
-//	
-//		return myStudy;
-//	}
-
-
-
-
+	public int updateStudy(Board board) {
+	      Connection conn = getConnection();
+	      int result = new BoardDao().updateStudy(conn, board);
+	      
+	      if(result > 0) {
+	         commit(conn);
+	      }else {
+	         rollback(conn);
+	      }
+	      close(conn);
+	      return result;
+	   }
 }
