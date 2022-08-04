@@ -43,7 +43,9 @@ public class UpdateServlet extends HttpServlet {
     	board.setTitle(request.getParameter("title"));
     	board.setContent(request.getParameter("content"));
     	
-    	new BoardService().save(board);
+    	System.out.println(board);
+    	
+    	result = new BoardService().save(board);
     	
     	if( result > 0) {
     		request.setAttribute("msg", "게시글 수정 성공");
