@@ -1,12 +1,8 @@
 @charset "UTF-8";
     
     .sboard {
-        display: flex;
-        flex-direction: column;
-        padding: 0px 200px;
-        margin: 0 auto;
-        color: #333;
-        position: relative;
+            width: 1000px;
+            margin: 86px auto;
     }
     .sboardH2 {
         margin-top: 2.5rem;
@@ -17,7 +13,8 @@
         color: #000;
         border-bottom: 2px solid #7a86b68e;
         padding-bottom: 2.3rem;
-        padding-left: 20px;
+        text-align: left;
+        padding-left: 40px;
     }
 
     .sboardSelect {
@@ -25,7 +22,7 @@
         grid-template-columns: repeat(2, 3fr);
         flex-direction: column;
         padding: 24px 12px;
-        padding-left: 50px;
+        padding-left: 100px;
     }
 
     .sboardDropbox {
@@ -34,11 +31,12 @@
     }
 
     .sboardLabel {
-        display: inline-block;
+        /* display: inline-block; */
         margin-top: 5px;
         margin-bottom: 8px;
         color: #333;
         font-weight: 500;
+        text-align: left;
     }
 
     .selectBtn {
@@ -57,6 +55,28 @@
 
     .selectBtn:hover,
     .selectBtn:focus {
+        border: 1px solid #495C83;
+        outline: 3px solid #7a86b68e;
+    }
+
+    .sContactInput {
+        width: 113%;
+        padding: 13px 30px 13px 14px;
+        font-size: 14px;
+        line-height: 14px;
+        background-color: #fff;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    .sContactInput:hover,
+    .sContactInput:focus {
         border: 1px solid #495C83;
         outline: 3px solid #7a86b68e;
     }
@@ -110,20 +130,27 @@
 
     .sboardDate {
         border: 1px solid #c4c4c4;
-        width: 270px;
-        height: 40px;
+        width: 283px;
+        height: 43px;
         border-radius: 8px;
         font-size: 14px;
-        outline-color: #495C83;
         padding-left: 13px;
+        cursor: pointer;
     }
 
-    .sboardContect {
+    .sboardDate:hover,
+    .sboardDate:focus {
+        border: 1px solid #495C83;
+        outline: 3px solid #7a86b68e;
+    }
+
+    .sboardContact {
         border: 1px solid #c4c4c4;
         width: 278px;
         height: 40px;
         border-radius: 8px;
         margin-top: 5px;
+        
     }
 
     .sboardInfo {
@@ -131,18 +158,23 @@
     }
 
     .sboardTitle {
-        width: 790px;
+        width: 945px;
         height: 40px;
         border-radius: 5px;
         border: 1px solid #c4c4c4;
-        outline-color: #495C83;
+        cursor: pointer;
     }
 
     .sboardContent {
         border-radius: 4px;
         border: 1px solid #c4c4c4;
         resize: none;
-        outline-color: #495C83;
+        cursor: pointer;
+    }
+
+    .sboardTitle:focus,
+    .sboardContent:focus {
+        outline : 1px solid #7A86B6;
     }
 
     .btns {
