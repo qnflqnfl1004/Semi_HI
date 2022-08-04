@@ -187,14 +187,14 @@ public class BoardDao {
 	public int updateBoard(Connection connection, Board board) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE NOTICE SET NOTICE_TITLE=?,NOTICE_CONTENT=?,NOTICE_DATE=SYSDATE WHERE MEM_NO=?"; 
+		String query = "UPDATE NOTICE SET NOTICE_TITLE=?,NOTICE_CONTENT=?,NOTICE_DATE=SYSDATE WHERE NOTICE_NO=?"; 
 		
 		try {
 			pstmt = connection.prepareStatement(query);
 			
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setInt(3, board.getWriterNo());
+			pstmt.setInt(3, board.getNo());
 			
 			result = pstmt.executeUpdate();
 			

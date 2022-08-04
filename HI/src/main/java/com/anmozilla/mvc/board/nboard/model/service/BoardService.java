@@ -67,7 +67,6 @@ public class BoardService {
 		int result = 0;
 		Connection connection = getConnection();
 			
-		
 		if(board.getNo() != 0) {
 			
 			result = new BoardDao().updateBoard(connection, board);
