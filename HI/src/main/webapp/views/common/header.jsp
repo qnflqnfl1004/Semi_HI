@@ -602,36 +602,25 @@
 					console.log("빈칸확인 : " + $("#enrollBtn").attr("data-bs-toggle"));
 				
 				if($("#idCheckResult").val() !== "0" && $("#nickCheckResult").val() !== "0" && $("#emailCheckResult").val() !== "0") { // 중복검사 완료
-						/*
+					
 						let userId = $("#userId").val();
 						let userPwd = $("#userPwd").val();
 						let userNick = $("#userNick").val();
 						let userName = $("#userName").val();
 						let userEmail = $("#userEmail").val();
 						let userPhone = $("#userPhone").val();
-						let userProfil = $("#userProfil").val();
-						*/
-						var form = jQuery("enrollFrom")[0];
-						var formData = new FormData(form);
-						formData.append("file", jQuery("#imgAdd")[0].files[0]);
 						
 						$.ajax({
 							type: "POST",
-							processData: false,
-							contentType: false,
-							enctype: "multipart/form-data",
 							url: "${ path }/member/enroll",
+							dataType: "json",
 							data: {
-								/*
 								userId,
 								userPwd,
 								userNick,
 								userName,
 								userEmail,
 								userPhone,
-								userProfil
-								*/
-								formData
 							},
 							success: (obj) => {
 								console.log(obj);
@@ -639,7 +628,8 @@
 							error: (error) => {
 								console.log(error);
 							}
-						})
+						});
+					
 						
 						$("#error_check").html(" ");
 				} else {
