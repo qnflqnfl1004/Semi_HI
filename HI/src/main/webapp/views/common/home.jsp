@@ -109,7 +109,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <div class="studyStart">${ board.SDate }</div>
+                      <div class="studyStart">시작 예정일 <br> | ${ board.SDate } | </div>
                       <div class="studyTitle">${ board.STitle }</div>
 
                       <div class="studyFilter">
@@ -162,17 +162,19 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                             </c:when>
                           </c:choose>
                         </div>
+                        
                       </div>
+                    </a>
                       <div class="writerInfo">
                         <img
-                          src="${ path }/resources/images/Hi_Profil.png"
-                          class="writerImg"
+                        src="${ path }/resources/images/Hi_Profil.png"
+                        class="writerImg"
                         />
                         <div class="writerNick">${ board.member.nickName }</div>
+                        <button style="border: none; background-color: transparent;"><i class="fa-regular fa-heart fa-3x" id="favIcon"></i></button>
                       </div>
                     </div>
                   </div>
-                </a>
               </div>
             </c:forEach>
           </c:if>
@@ -182,3 +184,27 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     </div>
   </main>
 </main>
+<script src="https://kit.fontawesome.com/f8167db045.js"
+crossorigin="anonymous"></script>
+<script>
+$(document).on("click", function () {
+  $.ajax({
+    url:"${ path }/member/favStudy",
+    type: "POST",
+    data: {
+
+    },
+    success:(data) {
+      if() {
+        $("#favIcon").attr("class", "fa-solid fa-heart fa-3x");
+      }
+    },
+    error:(error) {
+      console.log(error);
+    }
+    
+  });
+})
+
+
+</script>

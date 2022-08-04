@@ -14,12 +14,6 @@
   }
 }
 
-#myStudyType,
-#saveStudyType {
-  /* border: 6px dotted #f0ebe3; */
-  /* padding-bottom: 0rem !important; */
-}
-
 .row {
   border-bottom: 4px dotted #e2e2e2;
 }
@@ -64,19 +58,20 @@ h1 {
 }
 
 .studyStart {
-  font-size: 1.3em;
+  font-size: 1em;
   margin: 10px;
+  font-weight: bolder;
 }
 
 .studyTitle {
-  font-size: 1.2em;
+  font-size: 1.4em;
   margin-top: 5%;
   font-weight: bold !important;
 }
 
 .studyFilter {
   width: 100%;
-  height: 50%;
+  height: 40%;
   /* border-bottom: 1px dotted; */
   /* padding-bottom: 20px; */
 }
