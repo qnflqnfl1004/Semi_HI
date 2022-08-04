@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.anmozilla.mvc.member.model.vo.Member;
 import com.anmozilla.mvc.board.sboard.model.service.BoardService;
 import com.anmozilla.mvc.board.sboard.model.vo.Board;
+import com.anmozilla.mvc.common.util.PageInfo;
 
 
 @WebServlet("/admin/sboard")
@@ -28,8 +29,20 @@ public class ListServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
     	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
     	String msg = "";
+    	int page = 0;
+    	int listCount = 0;
+    	PageInfo pageInfo = null;
     	List<Board> list = new ArrayList<Board>();
-		if(loginMember != null && loginMember.getId().equals("admin")) {
+		
+    	if(loginMember != null && loginMember.getId().equals("admin")) {
+			try {
+	    		page = Integer.parseInt(request.getParameter("page"));
+	    	} catch (NumberFormatException e) {
+				page = 1;
+			}
+	    	
+	    	listCount = new BoardService().getBoardCount();
+	    	pageInfo = new PageInfo(page, 5, listCount, 10);    
 			list = new BoardService().selectAllBoard();
 			
 		} else {
@@ -41,5 +54,6 @@ public class ListServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/sboard.jsp").forward(request, response);
 	}
+
 
 }

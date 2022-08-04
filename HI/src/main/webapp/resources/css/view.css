@@ -1,13 +1,24 @@
 @charset "UTF-8";
-
-.sboard-title {
+        .studyView {
+            width: 1000px;
+            margin: 60px auto;
+        }
+        .arrowLeft {
+            padding-left: 20px;
+            color: #717171;
+        }
+        .sboard-title {
             margin-top: 2.5rem;
-            font-weight: 800;
-            font-size: 3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+            font-size: 2.5rem;
             line-height: 126.5%;
             letter-spacing: -.005em;
             color: #000;
+            padding-left: 20px;
+            text-align: left !important;
         }
+        
         .sUserAndDate {
             margin-top: 32px;
             padding-bottom: 32px;
@@ -15,12 +26,15 @@
             display: flex;
             gap: 15px;
             align-items: center;
+            padding-left: 20px;
         }
+        
         .sUser {
             display: flex;
             align-items: center;
             position: relative;
         }
+        
         .sUser_userImg {
             cursor: pointer;
             display: block;
@@ -30,6 +44,7 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        
         .sUser_userName {
             color: #333;
             cursor: pointer;
@@ -38,21 +53,48 @@
             padding-right: 15px;
             border-right: 2px solid #e1e1e1;
         }
+
+        .heartIcon {
+            display: inline-block;
+            justify-content: flex-end;
+            padding-left: 240px;
+        }
+
+
+        .btnUpdate,
+        .btnDelete {
+            cursor: pointer;
+            outline: none;
+            border: none;
+            border-radius: 4px;
+            height: 2rem;
+            font-size: 18px;
+            background-color: #fff;
+            font-weight: 700;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+        
         .view1 {
             padding: 0 180px;
         }
+        
         ul {
             list-style: none;
             margin: 0;
             padding: 0;
             padding-inline-start: 40px;
         }
+        
         .sboard{
             display: grid;
             grid-template-columns: repeat(2,3fr);
             margin-top: 60px;
             margin-top: 60px;
+            text-align: center;
         }
+        
         .sboard-1 {
             display: flex;
             position: relative;
@@ -65,6 +107,7 @@
             font-weight: 700;
             font-size: 20px;
         }
+        
         .sboard-3 {
             display: flex;
             position: relative;
@@ -72,6 +115,34 @@
             font-weight: 700;
             font-size: 20px;
         }
+
+        .scontactLink {
+            width: 80px;
+            height: 30px;
+            font-weight: 700;
+            font-size: 20px;
+            text-decoration: none;
+            /* border: 1px solid #fff; */
+            /* border: none; */
+            border-radius: 5px;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #fff;
+            align-items: center;
+            color: #333;
+        }
+
+        .scontactLink:hover,
+        .scontactLink:focus {
+            /* border: 1px solid #495C83; */
+            outline: 3px solid #7a86b68e;
+            color: #333;
+        }    
+        
+        .iconLink {
+            display: inline-block;
+        }
+
         .sBoard_postContentWrapper {
             margin-top: 132px;
             font-size: 1.125rem;
@@ -79,15 +150,21 @@
             line-height: 1.7;
             letter-spacing: -.004em;
         }
+        
         .sBoard_postContent_postInfo {
             margin: 0;
             color: #333;
-            font-size: 26px;
+            font-size: 30px;
             font-weight: 700;
             padding-bottom: 24px;
             border-bottom: 3px solid #7A86B6;
+            padding-left: 20px;
+            text-align: left !important;
         }
+        
         .sBoard_postContent_postContent {
             width: 100%;
             margin: 40px auto 0;
+            padding-left: 40px;
+            text-align: left !important;
         }

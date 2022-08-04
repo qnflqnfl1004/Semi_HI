@@ -44,7 +44,7 @@
                     <button type="button" class="selectBtn">
                         스터디로 진행할 시험 선택
                     </button>
-                    <ul class="dropboxList" name="testNo">
+                    <ul class="dropboxList" name="testNo" id="testName">
                         <li>
                             <button type="button" value="1">토익</button>
                         </li>
@@ -64,52 +64,52 @@
                     <label class="sboardLabel">모집 인원</label>
                     <button type="button" class="selectBtn">
                             인원 미정 ~ 5명 이상
-                        </button>
-                        <ul class="dropboxList" name="sMember"   style="z-index: 3;">
-                            <li>
-                                <button type="button" value="-1">인원 미정</button>
-                            </li>
-                            <li>
-                                <button type="button" value="1">1명</button>
-                            </li>
-                            <li>
-                                <button type="button" value="2">2명</button>
-                            </li>
-                            <li>
-                                <button type="button" value="3">3명</button>
-                            </li>
-                            <li>
-                                <button type="button" value="4">4명</button>
-                            </li>
-                            <li>
-                                <button type="button" value="5">5명 이상</button>
-                            </li>
-                            <input type="hidden" name="sMember" value="">
-                        </ul>
-                    </div>
+                    </button>
+                    <ul class="dropboxList" name="sMember"   style="z-index: 3;">
+                       <li>
+                           <button type="button" value="-1">인원 미정</button>
+                        </li>
+                        <li>
+                            <button type="button" value="1">1명</button>
+                        </li>
+                        <li>
+                            <button type="button" value="2">2명</button>
+                        </li>
+                        <li>
+                            <button type="button" value="3">3명</button>
+                        </li>
+                        <li>
+                            <button type="button" value="4">4명</button>
+                        </li>
+                        <li>
+                            <button type="button" value="5">5명 이상</button>
+                        </li>
+                        <input type="hidden" name="sMember" value="">
+                      </ul>
+                 </div>
+                 <div>
+                    <label class="sboardLabel">모집 마감일</label>
                     <div>
-                        <label class="sboardLabel">모집 마감일</label>
-                        <div>
-                            <input type="date" class="sboardDate" name="sDueDate">
-                        </div>
+                        <input type="date" class="sboardDate" name="sDueDate">
                     </div>
-                    <div class="sboardDropbox">
-                        <label class="sboardLabel">진행 기간</label>
-                        <button type="button" class="selectBtn">
-                            기간 미정 ~ 6개월 이상
-                        </button>
-                        <ul class="dropboxList" name="sPeriod"   style="z-index: 2;">
-                            <li>
-                                <button type="button" value="-1">기간 미정</button>
-                            </li>
-                            <li>
-                                <button type="button" value="1">1개월</button>
-                            </li>
-                            <li>
-                                <button type="button" value="2">2개월</button>
-                            </li>
-                            <li>
-                                <button type="button" value="3">3개월</button>
+                 </div>
+                 <div class="sboardDropbox">
+                     <label class="sboardLabel">진행 기간</label>
+                     <button type="button" class="selectBtn">
+                          기간 미정 ~ 6개월 이상
+                     </button>
+                     <ul class="dropboxList" name="sPeriod"   style="z-index: 2;">
+                        <li>
+                            <button type="button" value="-1">기간 미정</button>
+                        </li>
+                        <li>
+                            <button type="button" value="1">1개월</button>
+                        </li>
+                        <li>
+                            <button type="button" value="2">2개월</button>
+                        </li>
+                        <li>
+                            <button type="button" value="3">3개월</button>
                         </li>
                         <li>
                             <button type="button" value="4">4개월</button>
@@ -141,8 +141,9 @@
                         <li>
                             <button type="button" value="email">이메일</button>
                         </li>
-                        <input type="hidden" class="sboardContect"  name="sContact" value="">
+                        <input type="hidden" class="sboardContact" value="">
                     </ul>
+                    <input type="text" class="sContactInput" name="sContact" placeholder="링크 주소를 입력해주세요">
                 </div>
                 <div class="sboardDropbox">
                     <label class="sboardLabel">모집 레벨</label>
@@ -164,21 +165,21 @@
                 </div>
             </article>
             <h2 class="sboardH2"> 🚀 스터디에 대해 소개해 주세요 </h2>
-                <article class="sboardInfo">
-                    <label class="sboardLabel">제목</label>
-                    <div>
-                        <input type="text" class="sboardTitle" placeholder="제목을 입력해 주세요" name="sTitle">
-                    </div>
-                    <label class="sboardLabel">내용</label>
-                    <div>
-                        <textarea class="sboardContent" cols="116" rows="10" placeholder="내용을 입력해 주세요" name="sContent"></textarea>
-                    </div>
-                </article>
-                <div class="btns">
-                    <input type="reset" value="취소" class="cancelBtn"></input>
-                    <input type="submit" value="저장" class="submitBtn"></input>
+            <article class="sboardInfo">
+                <label class="sboardLabel">제목</label>
+                <div>
+                    <input type="text" class="sboardTitle" style="padding-left: 10px;" placeholder="제목을 입력해 주세요" name="sTitle">
                 </div>
+                <label class="sboardLabel">내용</label>
+                <div>
+                    <textarea class="sboardContent" style="padding-left: 10px;" cols="124" rows="10" placeholder="내용을 입력해 주세요" name="sContent"></textarea>
+                </div>
+            </article>
+            <div class="btns">
+                <input type="reset" value="취소" class="cancelBtn"></input>
+                <input type="submit" value="저장" class="submitBtn"></input>
             </div>
+        </div>
     </form>
         
     <script>
@@ -193,6 +194,22 @@
                 event.stopPropagation();
             });
         }
+
+        $(function() {
+            testSelectMaker("select[name=langNo]");
+        });
+
+        var testSelectMaker = function(target) {
+            if (target == null || $(target).length == 0) {
+                console.warn("not select");
+                return;
+            }
+
+            
+        }
+
+
+
         
         for (let i = 0; i < lists.length; i++) {
             
@@ -205,7 +222,8 @@
                     // console.log(val);
 
                     let arr = Array.from(tag);
-                    arr.at(-1).value = val; //마지막배열요소(input)값 제어
+                  	//마지막배열요소(input)값 제어
+                    arr.at(-1).value = val; 
                     // console.log(arr.at(-1).value);
 
                     //선택된 옵션의 value저장
@@ -214,6 +232,8 @@
                 }
             });
         }
+
+
     </script>
 </body>
 </html>

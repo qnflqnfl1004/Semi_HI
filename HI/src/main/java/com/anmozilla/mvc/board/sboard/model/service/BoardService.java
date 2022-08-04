@@ -57,8 +57,30 @@ public class BoardService {
 		}
 	
 	
-	
-	
+		public int updateStudy(Board board) {
+			Connection conn = getConnection();
+			int result = new BoardDao().updateStudy(conn, board);
+			
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			return result;
+		}
+		
+		public int getBoardCount() {
+			int count = 0;
+			Connection connection = getConnection();
+			
+			count = new BoardDao().getBoardCount(connection);
+			
+			close(connection);
+			
+			return count;
+			
+		}
 	
 	
 	
