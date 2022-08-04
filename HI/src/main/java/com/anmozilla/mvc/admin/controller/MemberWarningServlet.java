@@ -36,12 +36,14 @@ public class MemberWarningServlet extends HttpServlet {
        	result = new MemberService().updateMemberWarning(member);
        	
     	if(result > 0) {
-       		request.setAttribute("msg", "경고 주기 성공");
+       		request.setAttribute("msg", "나쁜 회원 경고 1회 추가");
 			request.setAttribute("location", "/admin/memberList");
        	} else {
-       		request.setAttribute("msg", "경고 주기 실패");
+       		request.setAttribute("msg", "나쁜 회원 경고 추가 안 됨");
 			request.setAttribute("location", "/admin/memberList");
        	}
+    	
+    	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	
 	}
 
