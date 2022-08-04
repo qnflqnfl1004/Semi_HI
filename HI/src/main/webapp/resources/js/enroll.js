@@ -13,7 +13,7 @@
       readURL(this);
   });
   
-  function imgdel() {
+  function imgDel() {
 	  $('#imgOri').removeAttr('src');
 	  $('#imgOri').attr('src', '${ path }/resources/images/Hi_Profil.png');
   }
@@ -33,7 +33,6 @@
 		   success: "비밀번호가 일치합니다",
 		   fail: "비밀번호가 일치하지 않습니다"
 		},
-		nick: "특수문자를 제외하여 입력해주세요.",
 		name: "필수 입력 사항입니다.",
 		email: "@를 포함한 올바른 이메일을 입력해주세요.",
 		phone: "‘-’ 제외 010부터 11자리를 입력해주세요." 
@@ -94,20 +93,6 @@
 	    pwReErrorMsgEl.textContent = errMsg.pwRe.fail
 	  }
 	}
-	
-    const nickInputEl = document.querySelector('#info_nick input')
-	const nickErrorMsgEl = document.querySelector('#error_nick span')
-	nickInputEl.addEventListener('change', () => {
-		const nickRegExp =  /^[가-힣a-zA-Z0-9]{0,20}$/
-	    if(nickRegExp.test(nickInputEl.value)) { 
-	      	nickErrorMsgEl.textContent = ""
-	        account.nick = nickInputEl.value
-	    } else { 
-	      	nickErrorMsgEl.textContent = errMsg.nick
-	      	account.nick = null
-	    }
-	    console.log(account)
-	  });
 	  
 	const nameInputEl = document.querySelector('#info_name input')
 	const nameErrorMsgEl = document.querySelector('#error_name span')
@@ -150,6 +135,34 @@
 	    }
 	    console.log(account)
 	  });
+	  
+/* jquery로 구현함
+	const submitBtn = document.querySelector('#btnClear')
+	const resultFailEl = document.querySelector('#error_check span')
+	submitBtn.addEventListener('click', function() {
+	  let isAllFilled = true
+	  const word = {  
+	    id: "아이디를",
+	    pw: "비밀번호를",
+	    nick: "닉네임을",
+		name: "이름을",
+	    email: "이메일을",
+	    phone: "전화번호를"
+	  }
+	  for(element in account) {
+	    if(account[element] === null) {
+	      resultFailEl.textContent = word[element] + " 다시 한번 확인해주세요";
+			alert(resultFailEl.textContent)
+	      isAllFilled = false
+	      break
+	    }
+	  }
+	  if (isAllFilled === true) {
+	    resultFailEl.textContent = ""
+	  } else {
+		location.href="${ path }/";
+	}
+	}) */	  
 
 /*  jquery 적용안됨
 
