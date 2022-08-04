@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Qboard {
-private int no;
+	private int no;
 	
 	private int rowNum;
 	
