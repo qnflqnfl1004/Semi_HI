@@ -20,7 +20,7 @@
                     	</div>
                     </th>
                     <th colspan="3">
-                   		<form name="memSearchForm" action="${ path }/admin/memberSearch">
+                   		<form name="memSearchForm" action="${ path }/admin/memberList">
                         	<div class="memListSearch">
 	                            <select id="searchList" class="searchForm_control" name="searchOption">
 	                                <option ${( param.searchOption == "mem_warning") ? "selected" : "" } value="mem_warning">경고 횟수</option>
@@ -54,7 +54,7 @@
                      </td>
                  </tr>
                 </c:if>
-                <c:if test="${ not empty list || not empty searchList }">
+                <c:if test="${ not empty list }">
                 	<c:forEach var="member" items="${ list }">
                   <tr class="memListContent">
                       <td class="memList listRNum">${ member.rowNum }</td>
