@@ -12,8 +12,9 @@ public class QboardDao {
 	public int insertBoard(Connection connection, Qboard board) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO QA VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,?,?,DEFAULT,?,DEFAULT,DEFAULT)";
-
+		String query = "INSERT INTO QA VALUES(SEQ_QA_NO.NEXTVAL,?,?,?,?,?,DEFAULT,?,DEFAULT,DEFAULT)";
+		
+		
 		try {
 			pstmt = connection.prepareStatement(query);
 

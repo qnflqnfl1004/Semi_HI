@@ -166,6 +166,7 @@
 }
 
 .enrollTable input::placeholder {
+<<<<<<< HEAD
   font-size: 9px;
 }
 
@@ -202,3 +203,14 @@
   padding: 10px !important;
   font-size: large !important;
 }
+=======
+	font-size: 9px;
+	opacity: 0.5;
+}
+
+.submitForm-no {
+	display: block;
+	font-size: 14px;
+	text-align: center;
+}
+>>>>>>> main

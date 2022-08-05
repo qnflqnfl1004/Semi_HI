@@ -29,9 +29,9 @@
 					<dd>
 						<select name="reason" id="reason">
 							<option selected>사유를 선택해 주세요.</option>
-							<option value="">버그/오류</option>
-							<option value="">불량유저</option>
-							<option value="">기타</option>
+							<option value="버그/오류">버그/오류</option>
+							<option value="불량유저">불량유저</option>
+							<option value="기타">기타</option>
 						</select>
 					</dd>
 				</dl>
@@ -55,8 +55,8 @@
 				</dl>
 			</div>
 
-			<div class="cont" name="content" id="content">
-				<textarea placeholder="내용 입력"></textarea>
+			<div class="cont" id="content">
+				<textarea name="content" placeholder="내용 입력"></textarea>
 			</div>
 
 			<div class="addfile">
@@ -67,6 +67,7 @@
 					</dd>
 				</dl>
 			</div>
+			<button type="submit">등록</button>
 		</form>
 		</div>
 
