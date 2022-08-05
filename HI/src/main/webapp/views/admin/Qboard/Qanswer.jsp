@@ -10,39 +10,66 @@
 	<a class="navbar-brand" href="#"> <img
 		src="C:\Users\kh\Desktop\semi\logo.png" alt="" width="130" height="70">
 	</a>
-	<div class="main1">
-		<button class="main2">회원가입</button>
-		<button class="main3">로그인</button>
-	</div>
 </nav>
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의사항</strong>
 	</div>
+	<form action="${path}/admin/Qanswer"} method="POST" enctype="multipart/form-data">
+	
 	<div class="board_view_wrap">
 		<div class="board_view">
-			<div class="title">@@@이용자님 답변입니다.</div>
-			<div class="info">
+		<input type="hidden" name="no" value=${ board.no }>	
+		<input type="hidden" name="originalFileName" value=${ board.originalFileName }>
+      	<input type="hidden" name="renamedFileName" value=${ board.renamedFileName }>	
+			<div class="writetitle">
 				<dl>
-					<dt>번호</dt>
-					<dd>1</dd>
-				</dl>
-				<dl>
-					<dt>작성자</dt>
-					<dd>관리자</dd>
-				</dl>
-				<dl>
-					<dt>작성일</dt>
-					<dd>2021.1.16</dd>
-				</dl>
-				<dl>
-					<dt>조회</dt>
-					<dd>33</dd>
+					<dt>제목</dt>
+					<dd>${ board.title }</dd>
 				</dl>
 			</div>
-			<div class="cont">문의내용</div>
-			<div class="contanswer">답변내용</div>
+
+			<div class="reason">
+				<dl>
+					<dt>사유</dt>
+					<dd> ${ board.reason } </dd>
+				</dl>
+			</div>
+
+			<div class="writeperson">
+				<dl>
+					<dt>작성자</dt>
+					<dd>${ board.writerId }</dd>
+				</dl>
+			</div>
+
+			<div class="writedate">
+				<dl>
+					<dt>작성일</dt>
+					<dd>${ board.createDate }</dd>
+				</dl>
+			</div>
+
+			<div class="cont">
+				<textarea name="cont">${ board.content }</textarea>
+			</div>
+
+			<div class="addfile">
+				<dl>
+					<dt>첨부파일</dt>
+					<dd>
+						<c:if test="${ not empty board.originalFileName }">
+						<img src="${ path }/resources/images/file.png" width="20px" height="20px" >
+						<a href="javascript:" id="fileDown">
+						<span> ${ board.originalFileName } </span>
+						</a>
+						</c:if>
+					</dd>
+				</dl>
+			</div>
 		</div>
+		<button type="submit"> 제출하기 </button>
+		</form>
 		<div class="bt_wrap">
 			<a href="list.html" class="on">목록</a> <a href="edit.html">제출하기</a>
 		</div>

@@ -146,4 +146,28 @@ public class BoardDao {
 		return board;
 	}
 
+	public int updateBoard(Connection connection, Board board) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE QA SET QA_CONTENT = ?, QA_AS = ? WHERE QA_NO = ?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, board.getContent());
+			pstmt.setString(2, "Y");
+			pstmt.setInt(3, board.getNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 }
