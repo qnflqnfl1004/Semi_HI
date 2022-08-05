@@ -17,8 +17,7 @@
 	</div>
 	<div class="board_write_wrap">
 		<div class="board_write">
-
-
+			
 			<div class="writetitle">
 				<dl>
 					<dt>제목</dt>
@@ -67,8 +66,8 @@
 
 		</div>
 
-		<div class="bt_wrap">
-			<a href="#" class="on">목록</a> <a href="#">답변하기</a>
-		</div>
+		<button type="button" 
+				onclick="location.href='${path}/admin/Qanswer?no=${ board.no }'">답변하기</button>
+		
 	</div>
 </div>

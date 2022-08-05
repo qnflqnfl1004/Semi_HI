@@ -19,11 +19,11 @@ public class QviewServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));
-		
 		Board board = null;
-		
+		int no = Integer.parseInt(request.getParameter("no"));
 		board = new QBoardService().getBoardByNo(no);
+		
+		
 		
 		request.setAttribute("board", board);
 		request.getRequestDispatcher("/views/admin/Qboard/Qview.jsp").forward(request, response);

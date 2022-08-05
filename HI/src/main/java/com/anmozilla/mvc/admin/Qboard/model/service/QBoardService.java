@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.anmozilla.mvc.admin.Qboard.model.dao.BoardDao;
 import com.anmozilla.mvc.admin.Qboard.model.vo.Board;
+import com.anmozilla.mvc.board.Qboard.model.dao.QboardDao;
+import com.anmozilla.mvc.board.Qboard.model.vo.Qboard;
 import com.anmozilla.mvc.common.util.PageInfo;
 
 import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
@@ -43,6 +45,25 @@ public class QBoardService {
 		
 		return board;
 	
+	}
+	
+	public int save(Board board) {
+		int result = 0;
+		Connection connection = getConnection();
+		
+		if(board.getNo() != 0) {
+			result = new BoardDao().updateBoard(connection, board);			
+		}
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		close(connection);
+		
+		
+		
+		return result;
 	}
 
 }
