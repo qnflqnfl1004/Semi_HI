@@ -36,7 +36,12 @@
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="${ path }/member/studyBox">My Study</a></li>
-                    <li><a class="dropdown-item" href="${ path }/member/myPage">회원정보 수정</a></li>
+                    <!-- <li><a class="dropdown-item" href="${ path }/member/myPage">My Page</a></li> -->
+                    <li>
+                      <button type="button" class="dropdown-item btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        My Page
+                      </button>
+                    </li>
                     <li><a class="dropdown-item" href="${ path }/Qboard/write">건의하기</a></li>
                     <li><a class="dropdown-item" href="#">내 문의함</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -257,6 +262,61 @@
     </div>
   </div>
   
+
+
+  <!-- MyPage - 비밀번호 확인 모달 -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pwdCheckTitle">비밀번호 재확인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <td>
+                <input type="password" class="inputPwdCheck" name="pwdDoubleCheck" id="pwdDoubleCheck" placeholder="비밀번호를 입력해주세요.">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="myPagePwdCheckFinish">MyPage</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<!-- MyPage 비밀번호 확인 SCRIPT -->
+<script>
+  $("#myPagePwdCheckFinish").on("click", () => {
+    let pwdDoubleCheck = $("#pwdDoubleCheck").val().trim();
+
+    $.ajax({
+      type: "POST",
+      url: "${ path }/member/myPagePwdCheck",
+      dataType : "JSON",
+      data: {
+        pwdDoubleCheck
+      },
+      success: (obj) => {
+        console.log(obj);
+        if(obj != null) {
+          location.href = "${ path }/member/myPage"
+        } else {
+          alert("비밀번호를 확인해 주세요.")
+        }
+      },
+      error:(error) => {
+        console.log(error);
+      }
+    })
+  });
+
+</script>
+
   <script type="text/javascript">
 	  $("#idDuplicate").on("click", () => {
 			let userId = $("#userId").val().trim();

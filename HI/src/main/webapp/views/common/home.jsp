@@ -74,25 +74,18 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <main>
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5" id="myStudyType">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1>Hi(An-Mozilla) <br />스터디</h1>
-        </div>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5" id="myStudyType">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1>Hi(An-Mozilla) <br />스터디</h1>
       </div>
-    </section>
+    </div>
+  </section>
 
     <div class="album py-5" style="margin-bottom: 0">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <c:if test="${ empty list }">
-            <span
-              >지금 바로 <b>당신의 스터디</b>를 시작해주세요 !!!!!!!!!!</span
-            >
-          </c:if>
-
-          <!-- .col 스터디 카드 하나! -->
+<!------------- .col 스터디 카드 하나!------------->
           <c:if test="${ ! empty list }">
             <c:forEach var="board" items="${ list }">
               <div class="col" id="studyBox">
@@ -171,15 +164,18 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         class="writerImg"
                         />
                         <div class="writerNick">${ board.member.nickName }</div>
-                        <button style="border: none; background-color: transparent;"><i class="fa-regular fa-heart fa-3x" id="favIcon"></i></button>
+                        <c:if test="${ ! empty loginMember }">
+                        <span>${ board.SNo }</span>
+                        <i class="fa-regular fa-heart fa-3x" id="favIcon" bno="${ board.SNo }"></i>
+                      </c:if>
                       </div>
                     </div>
                   </div>
               </div>
             </c:forEach>
           </c:if>
-        </div>
-        <!-- .col 스터디 카드 하나! -->
+    </div>
+<!------------- .col 스터디 카드 하나!------------->
       </div>
     </div>
   </main>
@@ -187,24 +183,61 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://kit.fontawesome.com/f8167db045.js"
 crossorigin="anonymous"></script>
 <script>
-$(document).on("click", function () {
-  $.ajax({
-    url:"${ path }/member/favStudy",
-    type: "POST",
-    data: {
+// $(document).on("click", function () {
+//   let jjimNo = $(".jjimNo").val()
+//   $.ajax({
+//     url:"${ path }/member/jjim",
+//     type: "GET",
+//     data: {
+//       jjimNo
+//     },
+//     success:(data) => {
+//       console.log(data);
+//       if(data !== 0) {
+//         console.log()
+//         $("#favIcon").attr("class", "fa-solid fa-heart fa-3x");
+//       } else {
+//         alert("로그인 후 찜 ♥");
+//       }
+//     },
+//     error:(error) => {
+//       console.log(error);
+//     }
+//   });
+// })
 
-    },
-    success:(data) {
-      if() {
-        $("#favIcon").attr("class", "fa-solid fa-heart fa-3x");
-      }
-    },
-    error:(error) {
-      console.log(error);
-    }
+$(document).ready(() => {
+  $(".fa-heart").on("click", (event) => {
+    let studyNo = $(event.target).attr("bno");
     
+    $.ajax({
+      url:"${ path }/like.do",
+      type: "POST",
+      dataType: "JSON",
+      data: {
+        studyNo
+      },
+      success:(data) => {
+        console.log(data);
+        if(data !== 0) {
+          console.log()
+          $(event.target).attr("class", "fa-solid fa-heart fa-3x");
+        } else {
+          alert("로그인 후 찜 ♥");
+        }
+      },
+      error:(error) => {
+        console.log(error);
+      }
+    });
   });
-})
+
+
+
+
+});
+
+
 
 
 </script>

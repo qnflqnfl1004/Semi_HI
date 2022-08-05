@@ -201,6 +201,7 @@
 					if(newPwd === newPwdCheck) {
 						console.log(obj);
 						alert("일치");
+						userPwdFinish.style.display = "none"
 					} else {
 						alert("불일치");
 					}

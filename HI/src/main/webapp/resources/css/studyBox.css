@@ -65,8 +65,9 @@ h1 {
 }
 
 .studyStart {
-  font-size: 1.3em;
+  font-size: 1em;
   margin: 10px;
+  font-weight: bolder;
 }
 
 .studyTitle {

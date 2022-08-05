@@ -14,6 +14,7 @@ import java.util.List;
 import com.anmozilla.mvc.member.model.vo.Member;
 import com.anmozilla.mvc.board.sboard.model.vo.Board;
 import com.anmozilla.mvc.board.sboard.model.vo.Language;
+import com.anmozilla.mvc.board.sboard.model.vo.Like;
 import com.anmozilla.mvc.board.sboard.model.vo.Test;
 
 public class BoardDao {
@@ -355,6 +356,7 @@ public class BoardDao {
 	}
 	
 	
+
 	
 	
 	
@@ -371,51 +373,6 @@ public class BoardDao {
 	
 	
 	
-	public int updateStudy(Connection conn, Board board) {
-	      int result = 0;
-	      PreparedStatement pstmt = null;
-	      String query = "UPDATE STUDY SET\r\n"
-	               + "   S_WRITE_DATE = SYSDATE,\r\n"
-	               + "   S_TITLE = ?,\r\n"
-	               + "   S_CONTENT = ?,\r\n"
-	               + "   S_DATE = to_date(?, 'yyyy-mm-dd'),\r\n"
-	               + "   S_DUE_DATE = to_date(?, 'yyyy-mm-dd'),\r\n"
-	               + "   S_MEMBER = ?,\r\n"
-	               + "   S_PERIOD = ?,\r\n"
-	               + "   S_CONTACT = ?,\r\n"
-	               + "   S_LEVEL = ?,\r\n"
-	               + "   L_NO = ?,\r\n"
-	               + "   TEST_NO = ? \r\n"
-	               + "WHERE\r\n"
-	               + "   S_NO = ?";
-	      
-	      try {
-	         pstmt = conn.prepareStatement(query);
-	         pstmt.setString(1, board.getSTitle());
-	         pstmt.setString(2, board.getSContent());
-	         
-	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	         String sDate = sdf.format(board.getSDate());
-	         String sDueDate = sdf.format(board.getSDueDate());
-	         pstmt.setString(3, sDate);
-	         pstmt.setString(4, sDueDate);
-	         
-	         pstmt.setString(5, board.getSMember());
-	         pstmt.setString(6, board.getSPeriod());
-	         pstmt.setString(7, board.getSContact());
-	         pstmt.setString(8, board.getSLevel());
-	         pstmt.setInt(9, board.getLanguage().getLNo());
-	         pstmt.setInt(10, board.getTest().getTestNo());
-	         pstmt.setInt(11, board.getSNo());
-	         
-	         result = pstmt.executeUpdate();
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      }finally {
-	         close(pstmt);
-	      }
-	      return result;
-	   }
 	
 	
 	
@@ -426,9 +383,7 @@ public class BoardDao {
 	
 	
 	
-	
-	
-	// !!!!!!!!!!!!!!!!!!!! 현진
+// ------------------------------------------------------------ 현진 ------------------------------------------------------------ 
 	// studyBox - myStudy 리스트
 	public List<Board> findMyStudyByNo(Connection connection, int userNo) {
 		List<Board> myStudyList = new ArrayList<>();
@@ -679,4 +634,92 @@ public class BoardDao {
 		
 		return list;
 	}
+
+	
+	// 하트 누르면 찜 스터디에 추가
+	public int insertLikeStudy(Connection connection, int userNo, int likeNo) {
+		int result = 0;
+		PreparedStatement ps = null;
+		String query = "INSERT "
+						+ "INTO "
+						+ "LIKET_STUDY (LIKE_NO, MEM_NO, S_NO) "
+						+ "VALUES "
+						+ "(SEQ_J_NO.NEXTVAL, ?, ?)";
+	
+		try {
+			ps = connection.prepareStatement(query);
+			ps.setInt(1, userNo);
+			ps.setInt(2, likeNo);
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
+	
+	// 하트 누르면 찜 스터디에 삭제
+	public int deleteJjimStudy(Connection connection, String userId, int jjimNo) {
+		int result = 0;
+		PreparedStatement ps = null;
+		String query = "DELETE "
+					+ "FROM "
+					+ "LIKE_STUDY "
+					+ "WHERE MEM_NO = ? AND S_NO = ?";
+	
+		try {
+			ps = connection.prepareStatement(query);
+			ps.setString(1, userId);
+			ps.setInt(2, jjimNo);
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
+	
+	// 메인 화면에서 찜 스터디 
+	public Like findLikeByNo(Connection connection, int studyNo, int userNo) {
+		Like like = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT LIKE_NO, MEM_NO, S_NO FROM LIKE_STUDY WHERE MEM_NO = ? AND S_NO = ?";
+		
+		try {
+			ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, userNo);
+			ps.setInt(2, studyNo);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				like = new Like();
+				
+				like.setLikeNo(rs.getInt("LIKE_NO"));
+				like.setStudyNo(rs.getInt("STUDY_NO"));
+				like.setUserNo(rs.getInt("MEM_NO"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return like;
+	}
+
 }

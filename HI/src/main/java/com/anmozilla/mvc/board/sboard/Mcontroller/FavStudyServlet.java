@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/favStudy")
+@WebServlet("/member/likeStudyView")
 public class FavStudyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -16,7 +16,7 @@ public class FavStudyServlet extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/views/member/favStudy.jsp").forward(request, response);    
+    	request.getRequestDispatcher("/views/member/likeStudy.jsp").forward(request, response);    
 
 	}
 

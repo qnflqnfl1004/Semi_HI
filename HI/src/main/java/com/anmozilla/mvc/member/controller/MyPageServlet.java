@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 
-@WebServlet("/member/myPage")
+@WebServlet(name = "myPage", urlPatterns = "/member/myPag")
 public class MyPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

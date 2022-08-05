@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.anmozilla.mvc.board.nboard.model.model.dao.BoardDao;
 import com.anmozilla.mvc.board.nboard.model.vo.Board;
+import com.anmozilla.mvc.board.sboard.model.vo.Like;
 import com.anmozilla.mvc.common.util.PageInfo;
 
 import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
@@ -85,5 +86,7 @@ public class BoardService {
 		
 		return result;
 	}
+
+	
 
 }

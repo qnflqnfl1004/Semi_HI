@@ -38,7 +38,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           aria-label="Placeholder: Thumbnail"
                           preserveAspectRatio="xMidYMid slice"
                           focusable="false">
-                          <div class="studyStart">시작 예정일 | ${ myStudy.SDate }</div>
+                          <div class="studyStart">시작 예정일 <br> | ${ myStudy.SDate } | </div>
                           <div class="studyTitle">${ myStudy.STitle }</div>
 
                         <div class="studyFilter">
@@ -77,13 +77,15 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     </form>
 
                     <div class="btnBox">
-                      <form action="${ path }/sboard/update?no=${ myStudy.SNo }" method="POST">
-                        <input type="hidden" name="sNo" value="${ myStudy.SNo }">
-                        <button type="submit"class="btn" id="">수정</button>
-                      </form>
-                      
+                      <button
+                        type="button" 
+                        class="btn"
+                        onclick="location.href='${ path }/sboard/update?no=${ myStudy.SNo }'"
+                      >
+                        수정
+                      </button>
                       <form action="${ path }/sboard/delete?no=${ myStudy.SNo }" method="POST">
-                        <!-- <span>${ myStudy.SNo }</span> -->
+                        <span>${ myStudy.SNo }</span>
                         <input type="hidden" name="no" value="${ myStudy.SNo }">
                         <button type="submit"class="btn" id="btnDelete">삭제</button>
                       </form>
@@ -223,7 +225,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             </div>
           </div>
           <div class="btnBox">
-            <button type="button" class="btn" id="btnMore"><a href="${ path }/member/favStudy">더보기</a></button>
+            <button type="button" class="btn" id="btnMore"><a href="${ path }/member/jjimStudy">더보기</a></button>
           </div>
         </div>
       </div>

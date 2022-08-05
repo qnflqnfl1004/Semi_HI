@@ -409,8 +409,7 @@ public class MemberDao {
 		return result;
 	}
 
-	
-	
+
 	// 회원 탈퇴
 	public int updateMemberStatus(Connection connection, int no, String status) {
 		int result = 0;
@@ -433,8 +432,8 @@ public class MemberDao {
 		return result;
 	}
 
-	
 
+	// 비밀번호 수정
 	public int updateMemberPwd(Connection connection, int no, String newPwd) {
 		int result = 0;
 		PreparedStatement ps = null;
@@ -447,6 +446,40 @@ public class MemberDao {
 			ps.setInt(2, no);
 			
 			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		System.out.println("result : " + result);
+		return result;
+	}
+
+	// myPage 비밀번호 확인 
+	public Member pwdDoubleCheckByNo(Connection connection, int userNo) {
+		Member result = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT  "
+						+ "RNUM, "
+						+ "MEM_NO, "
+						+ "MEM_ID, "
+						+ "MEM_PW, "
+						+ "MEM_NICKNAME, "
+						+ "MEM_EMAIL, "
+						+ "MEM_PHONE, "
+						+ "MEM_WARNING, "
+						+ "MEM_STATUS "
+						+ "FROM MEM_LIST"
+						+ "WHERE MEM_NO = ?";
+		
+		try {
+			ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, userNo);
+			
+			rs = ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

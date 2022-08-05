@@ -40,7 +40,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             aria-label="Placeholder: Thumbnail"
             preserveAspectRatio="xMidYMid slice"
             focusable="false">
-            <div class="studyStart">${ myStudy.SDate }</div>
+            <div class="studyStart">시작 예정일 <br> | ${ myStudy.SDate } | </div>
             <div class="studyTitle">${ myStudy.STitle }</div>
 
           <div class="studyFilter">
