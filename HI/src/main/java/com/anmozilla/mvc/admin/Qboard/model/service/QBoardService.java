@@ -8,6 +8,7 @@ import com.anmozilla.mvc.admin.Qboard.model.vo.Board;
 import com.anmozilla.mvc.board.Qboard.model.dao.QboardDao;
 import com.anmozilla.mvc.board.Qboard.model.vo.Qboard;
 import com.anmozilla.mvc.common.util.PageInfo;
+import com.anmozilla.mvc.member.model.vo.Member;
 
 import static com.anmozilla.mvc.common.jdbc.JDBCTemplate.*;
 public class QBoardService {
@@ -64,6 +65,18 @@ public class QBoardService {
 		
 		
 		return result;
+	}
+	
+	public List<Board> getBoardList1(PageInfo pageInfo, Member loginMember) {
+		List<Board> list = null;
+		Connection connection = getConnection(); 
+		
+		list = new BoardDao().findme(connection, pageInfo, loginMember);
+		
+		close(connection);
+		
+		return list;
+		
 	}
 
 }
