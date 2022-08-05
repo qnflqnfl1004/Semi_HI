@@ -6,6 +6,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:include page="/views/common/header.jsp" />
 <jsp:include page="/views/common/home.jsp" />
+<jsp:include page="/views/common/footer.jsp" />
 
 <!-- <link rel="stylesheet" href="${ path }/resources/css/view.css" /> -->
 <link rel="stylesheet" href="${ path }/resources/css/home.css" />
+<link rel="stylesheet" href="${ path }/resources/css/footer.css" />
