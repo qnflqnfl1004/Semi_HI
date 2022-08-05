@@ -15,7 +15,7 @@ import com.anmozilla.mvc.admin.Qboard.model.vo.Board;
 import com.anmozilla.mvc.common.util.PageInfo;
 import com.anmozilla.mvc.member.model.vo.Member;
 
-@WebServlet("/admin/list")
+@WebServlet("/user/list")
 public class Qlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

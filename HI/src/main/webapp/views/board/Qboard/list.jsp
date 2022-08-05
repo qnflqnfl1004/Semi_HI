@@ -36,22 +36,23 @@ div#pageBar {
 					<div>
 						<div class="num" >${ board.rowNum }</div>
 						<div class="title">
-							<a href="${path}/admin/Qview?no=${ board.no }"> ${ board.title } </a>
+							<a href="${path}/user/Qview?no=${ board.no }"> ${ board.title } </a>
 						</div>
 						<div class="answer">${ board.as }</div>
 						<div class="writer">${ board.writerId}</div>
 						<div class="date">${ board.createDate }</div>
+						<div calss="as">${ board.as }</div>
 					</div>
 				</c:forEach>
 			</c:if>
 			
 			<div id="pageBar">
 	<!-- 맨 처음으로 -->
-	<button onclick="location.href='${ path }/admin/Qlist?page=1'">&lt;&lt;</button>
+	<button onclick="location.href='${ path }/user/list?page=1'">&lt;&lt;</button>
 
 	<!-- 이전 페이지로 -->
 	<button
-		onclick="location.href='${ path }/admin/Qlist?page=${ pageInfo.prevPage }'">&lt;</button>
+		onclick="location.href='${ path }/user/list?page=${ pageInfo.prevPage }'">&lt;</button>
 
 	<!--  10개 페이지 목록 -->
 	<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }"
@@ -61,18 +62,18 @@ div#pageBar {
 		</c:if>
 		<c:if test="${ status.current != pageInfo.currentPage }">
 			<button
-				onclick="location.href='${path}/admin/Qlist?page=${ status.current }'">${ status.current }</button>
+				onclick="location.href='${path}/user/list?page=${ status.current }'">${ status.current }</button>
 		</c:if>
 	</c:forEach>
 
 
 	<!-- 다음 페이지로 -->
 	<button
-		onclick="location.href='${path}/admin/Qlist?page=${ pageInfo.nextPage }'">&gt;</button>
+		onclick="location.href='${path}/user/list?page=${ pageInfo.nextPage }'">&gt;</button>
 
 	<!-- 맨 끝으로 -->
 	<button
-		onclick="location.href='${path}/admin/Qlist?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
+		onclick="location.href='${path}/user/list?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
 </div>
 			
 			
