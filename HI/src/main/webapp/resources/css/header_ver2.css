@@ -167,4 +167,11 @@
 
 .enrollTable input::placeholder {
 	font-size: 9px;
+	opacity: 0.5;
+}
+
+.submitForm-no {
+	display: block;
+	font-size: 14px;
+	text-align: center;
 }
