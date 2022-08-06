@@ -59,7 +59,7 @@
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="${ path }/admin/memberList">회원관리</a></li>
-                    <li><a class="dropdown-item" href="${ path }/admin/sboard">게시물관리</a></li>
+                    <li><a class="dropdown-item" href="${ path }/admin/sboardList">게시물관리</a></li>
                     <li><a class="dropdown-item" href="${ path }/nboard/list">공지사항</a></li>
                     <li><a class="dropdown-item" href="${ path }/admin/Qlist">건의사항</a></li>
                     <li><hr class="dropdown-divider"></li>
