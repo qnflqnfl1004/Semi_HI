@@ -10,6 +10,11 @@ html {
     font-size: 10px;
 }
 
+html, body {
+	    height: 100%;
+}
+
+
 ul, li {
     list-style: none;
 }
@@ -50,6 +55,9 @@ button {
 .board_wrap {
     width: 1500px;
     margin: 150px auto;
+    min-height: 50%;
+    position: relative;
+    padding-bottom: 60px;
 }
 
 
@@ -81,6 +89,32 @@ button {
     border-radius: 10px;
     font-size: 1.4rem;
 }
+
+#viewbutton a {
+    display: inline-block;
+    min-width: 100px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #fff;
+    background: #dadbe0;
+    border-radius: 10px;
+    font-size: 1.4rem;
+}
+
+
+#viewbutton a.on {
+	background: #7A86B6;
+    color: #fff;
+    border-radius: 10px;
+    float: right;
+    min-width: 100px;
+}
+
+#viewbutton a.on:hover {
+	background: #A8A4CE;
+    transition: 0.3s ease-out;
+}
+
 
 .bt_wrap input[type="reset"],
 .bt_wrap input[type="submit"] {
@@ -114,11 +148,21 @@ button {
     min-width: 100px;
 }
 
+.bt_wrap a.on:hover {
+	background: #A8A4CE;
+    transition: 0.3s ease-out;
+}
+
 
 .bt_wrap input[type="submit"] {
 	background: #7A86B6;
     color: #fff;
     float: right;
+}
+
+.bt_wrap input[type="submit"]:hover {
+	background: #A8A4CE;
+    transition: 0.3s ease-out;
 }
 
 
@@ -215,6 +259,11 @@ button {
     border-color: #ddd;
     background: #7A86B6;
     color: #fff;
+}
+
+.board_page a.num.on:hover {
+	background: #A8A4CE;
+    transition: 0.3s ease-out;
 }
 
 .board_page a:first-child {

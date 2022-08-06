@@ -12,13 +12,7 @@
 <title>main</title>
 </head>
 <body>
-    <div id="loading">
-        <img SRC="/images/level.png">    
-    </div>
+
 </body>
-	<script type="text/javascript">
-		$(function(){
-		    $("#loading").css("visibility","hidden");
-		});
-	</script>
+
 </html>
