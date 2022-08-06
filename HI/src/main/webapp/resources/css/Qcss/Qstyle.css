@@ -65,7 +65,7 @@ button {
 
 
 .bt_wrap {
-    margin-top: 30px;
+    margin-top: 15px;
     text-align: center;
     font-size: 0;
 }
@@ -81,16 +81,44 @@ button {
     font-size: 1.4rem;
 }
 
+.bt_wrap input[type="reset"],
+.bt_wrap input[type="submit"] {
+    display: inline-block;
+    min-width: 100px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #fff;
+    background: #dadbe0;
+    border-radius: 10px;
+    font-size: 1.4rem;
+}
+
+.bt_wrap a.list {
+    float: left;
+}
+
+.bt_wrap a.delete,
+.bt_wrap a.reset,
+.bt_wrap a.cancel,
+.bt_wrap input[type="reset"] {
+    float: right;
+}
+
 .bt_wrap a:first-child {
     margin-left: 0;
 }
-/*
+
 .bt_wrap a.on {
     background: #7A86B6;
     color: #fff;
     border-radius: 10px;
 } 
-*/
+
+.bt_wrap input[type="submit"] {
+	background: #7A86B6;
+    color: #fff;
+    float: right;
+}
 
 .board_list {
     width: 100%;
@@ -148,7 +176,7 @@ button {
 
 
 .board_page {
-    margin-top: 30px;
+    margin-top: 60px;
     text-align: center;
     font-size: 0;
 }
@@ -176,13 +204,13 @@ button {
     font-size: 1.4rem;
 }
 
-/*
+
 .board_page a.num.on {
     border-color: #ddd;
     background: #7A86B6;
     color: #fff;
 }
-*/
+
 .board_page a:first-child {
     border-left: 1px solid #ddd;
 }

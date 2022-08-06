@@ -3,13 +3,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
-<%-- <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css"> --%>
 <style>
-div#pageBar {
-	margin-top: 10px;
-	text-align: center;
-}
+	.btns {
+		margin-top: 10px;
+		text-align: center;
+	}
+	
+	.title a {
+		color : black;
+		text-decoration: none;
+	}
+	.pagenum,
+	.pagearrow {
+		background-color: #7A86B6;
+    	color: #fff;
+	}
+	
+	.pagenum {
+	}
+
+	.pagearrow {
+	width: 32px;
+    height: 32px;
+    font-size: 1.4rem;
+	}
+
+	
 </style>
+
+<link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
+
+<jsp:include page="/views/common/header.jsp" />
 
 <div class="board_wrap">
 	<div class="board_title">
@@ -34,53 +58,41 @@ div#pageBar {
 			<c:if test="${ not empty list }">
 				<c:forEach var="board" items="${ list }">
 					<div>
-						<div class="num" >${ board.rowNum }</div>
+						<div class="num">${ board.rowNum }</div>
 						<div class="title">
-							<a href="${path}/admin/Qview?no=${ board.no }"> ${ board.title } </a>
+							<a href="${path}/admin/Qview?no=${ board.no }"> ${ board.title }
+							</a>
 						</div>
 						<div class="answer">${ board.as }</div>
 						<div class="writer">${ board.writerId}</div>
-						<div class="date">${ board.createDate }</div>
+						<div class="as">${ board.createDate }</div>
 					</div>
 				</c:forEach>
 			</c:if>
+
 			
-			<div id="pageBar">
-	<!-- 맨 처음으로 -->
-	<button onclick="location.href='${ path }/admin/Qlist?page=1'">&lt;&lt;</button>
 
-	<!-- 이전 페이지로 -->
-	<button
-		onclick="location.href='${ path }/admin/Qlist?page=${ pageInfo.prevPage }'">&lt;</button>
-
-	<!--  10개 페이지 목록 -->
-	<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }"
-		varStatus="status">
-		<c:if test="${ status.current == pageInfo.currentPage }">
-			<button disabled>${ status.current }</button>
-		</c:if>
-		<c:if test="${ status.current != pageInfo.currentPage }">
-			<button
-				onclick="location.href='${path}/admin/Qlist?page=${ status.current }'">${ status.current }</button>
-		</c:if>
-	</c:forEach>
-
-
-	<!-- 다음 페이지로 -->
-	<button
-		onclick="location.href='${path}/admin/Qlist?page=${ pageInfo.nextPage }'">&gt;</button>
-
-	<!-- 맨 끝으로 -->
-	<button
-		onclick="location.href='${path}/admin/Qlist?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
-</div>
-			
-			
-			
-			<div class="bt_wrap">
-				<a href="write.html" class="on">등록</a>
-				<!--<a href="#">수정</a>-->
-			</div>
 		</div>
+		
+			<div class="btns">
+			<button class="pagearrow" onclick="location.href='${ path }/admin/Qlist?page=1'">&lt;&lt;</button>
+			<button class="pagearrow"
+				onclick="location.href='${ path }/admin/Qlist?page=${ pageInfo.prevPage }'">&lt;</button>
+			<c:forEach begin="${ pageInfo.startPage }"
+				end="${ pageInfo.endPage }" varStatus="status">
+				<c:if test="${ status.current == pageInfo.currentPage }">
+					<button disabled>${ status.current }</button>
+				</c:if>
+				<c:if test="${ status.current != pageInfo.currentPage }">
+					<button class="pagenum"
+						onclick="location.href='${path}/admin/Qlist?page=${ status.current }'">${ status.current }</button>
+				</c:if>
+			</c:forEach>
+			<button class="pagearrow"
+				onclick="location.href='${path}/admin/Qlist?page=${ pageInfo.nextPage }'">&gt;</button>
+			<button class="pagearrow"
+				onclick="location.href='${path}/admin/Qlist?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
+			</div>
+		
 	</div>
 </div>

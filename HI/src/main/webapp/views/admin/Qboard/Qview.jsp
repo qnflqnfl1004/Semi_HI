@@ -4,6 +4,45 @@
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
+<style>
+.bt_wrap {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0;
+    
+}
+
+.bt_wrap button {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #fff;
+    background: #dadbe0;
+    border-radius: 10px;
+    font-size: 1.4rem;
+}
+
+
+.bt_wrap button {
+	background: #7A86B6;
+    color: #fff;
+    border-radius: 10px;
+    float: right;
+    min-width: 100px;
+}
+
+button {
+ font-size: medium;
+    font-weight: 900;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #7A86B6;
+    color: #fff;
+}
+
+</style>
 
 <nav class="navbar navbar-light bg-light">
 
@@ -47,7 +86,7 @@
 			</div>
 
 			<div class="cont">
-				<textarea>${ board.content }</textarea>
+				<textarea readonly>${ board.content }</textarea>
 			</div>
 
 			<div class="addfile">
@@ -65,9 +104,10 @@
 			</div>
 
 		</div>
-
+		<div class="bt_wrap">
 		<button type="button" 
 				onclick="location.href='${path}/admin/Qanswer?no=${ board.no }'">답변하기</button>
+		</div>
 		
 	</div>
 </div>

@@ -10,7 +10,7 @@ div#pageBar {
 	text-align: center;
 }
 </style>
-
+<jsp:include page="/views/common/header.jsp" />
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의하기</strong>
@@ -75,12 +75,6 @@ div#pageBar {
 	<button
 		onclick="location.href='${path}/user/list?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
 </div>
-			
-			
-			
-			<div class="bt_wrap">
-				<a href="write.html" class="on">등록</a>
-				<!--<a href="#">수정</a>-->
 			</div>
 		</div>
 	</div>
