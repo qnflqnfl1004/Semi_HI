@@ -43,4 +43,6 @@ public class Board {
 	private Language language;
 	
 	private Test test;
+	
+	private Like like;
 }

@@ -118,7 +118,6 @@ public class BoardService {
 		return myStudyList;
 	}
 	
-	
 	// myStudy 전체 리스트
 	public List<Board> getMyStudyAll(int userNo) {
 		List<Board> myStudyList = null;
@@ -131,26 +130,48 @@ public class BoardService {
 		return myStudyList;
 	}
 
+	// studyBox - likeStudy 리스트
+	public List<Board> getLikeStudyByNo(int userNo) {
+		List<Board> likeStudyList = null;
+		Connection connection = getConnection();
+		
+		likeStudyList = new BoardDao().findLikeStudyByNo(connection, userNo);
+		
+		close(connection);
+		
+		return likeStudyList;
+	}
+	
+	// likeStudy 전체 리스트
+	public List<Board> getLikeStudyAll(int userNo) {
+		List<Board> likeStudyList = null;
+		Connection connection = getConnection();
+		
+		likeStudyList = new BoardDao().findLikeStudyAllByNo(connection, userNo);
+		
+		close(connection);
+		
+		return likeStudyList;
+	}
 	
 	// 메인 - 스터디 전체 리스트
-	public List<Board> getMyStudyAll() {
+	public List<Board> getStudyAll(int userNo) {
 		List<Board> list = null;
 		Connection connection = getConnection();
 		
-		list = new BoardDao().findStudyAll(connection);
+		list = new BoardDao().findStudyAll(connection, userNo);
 		
 		close(connection);
 		
 		return list;
 	}
 
-	
 	// 하트 누르면 찜 스터디에 추가
-	public int insertLikeStudy(int userNo, int likeNo) {
+	public int insertLikeStudy(int userNo, int studyNo) {
 		int result = 0;
 		Connection connection = getConnection();
 
-		result = new BoardDao().insertLikeStudy(connection, userNo, likeNo);
+		result = new BoardDao().insertLikeStudy(connection, userNo, studyNo);
 		
 		if(result > 0) {
 			commit(connection);
@@ -160,14 +181,13 @@ public class BoardService {
 
 		return result;
 	}
-	
 	
 	// 하트 누르면 찜 스터디에 삭제
-	public int deleteJjimStudy(String userId, int jjimNo) {
+	public int deleteLikeStudy(int userNo, int studyNo) {
 		int result = 0;
 		Connection connection = getConnection();
 
-		result = new BoardDao().deleteJjimStudy(connection, userId, jjimNo);
+		result = new BoardDao().deleteLikeStudy(connection, userNo, studyNo);
 		
 		if(result > 0) {
 			commit(connection);
@@ -177,9 +197,8 @@ public class BoardService {
 
 		return result;
 	}
-
 	
-	// 메인 화면에서 찜 스터디 
+	// 찜 스터디 
 	public Like findLikeByNo(int studyNo, int userNo) {
 		Like like = null;
 		Connection connection = getConnection();
@@ -190,4 +209,5 @@ public class BoardService {
 		
 		return like;
 	}
+
 }
