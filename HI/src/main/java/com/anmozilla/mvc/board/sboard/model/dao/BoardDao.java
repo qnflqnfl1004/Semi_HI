@@ -235,10 +235,9 @@ public class BoardDao {
 				+ "ON s.S_WRITER_NO = m.MEM_NO JOIN LANGUAGE l \r\n"
 				+ "ON s.L_NO = l.L_NO JOIN TEST t \r\n"
 				+ "ON s.TEST_NO = t.TEST_NO \r\n"
-				+ "WHERE \r\n"
-				+ "s.S_STATUS = 'Y' \r\n"
+				+ getQuery
 				+ "ORDER BY \r\n"
-				+ "s.S_WRITE_DATE ASC";
+				+ "s.S_NO DESC";
 		Board board = null;
 		
 		try {
@@ -260,7 +259,7 @@ public class BoardDao {
 				board.setSMember(rs.getString("S_MEMBER"));
 				board.setSContact(rs.getString("S_CONTACT"));
 				board.setSLevel(rs.getString("S_LEVEL"));
-				board.setSStatus(rs.getString("S_STATUS"));
+//				board.setSStatus(rs.getString("S_STATUS"));
 				member.setNickName(rs.getString("s_Writer_Nickname"));
 				board.setMember(member);
 				
@@ -284,6 +283,12 @@ public class BoardDao {
 		
 		return list;
 	}
+	
+	
+	
+	
+	
+	
 	
 	public int updateStudy(Connection conn, Board board) {
 		int result = 0;
