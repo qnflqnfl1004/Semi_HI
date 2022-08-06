@@ -178,7 +178,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             </c:forEach>
           </c:if>
     </div>
-    <jsp:include page="/views/common/footer.jsp" />
+    
 <!------------- .col 스터디 카드 하나!------------->
       </div>
     </div>
