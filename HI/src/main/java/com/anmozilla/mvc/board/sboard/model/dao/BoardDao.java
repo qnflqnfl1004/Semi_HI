@@ -371,57 +371,6 @@ public class BoardDao {
 	
 	
 	
-	public int updateStudy(Connection conn, Board board) {
-	      int result = 0;
-	      PreparedStatement pstmt = null;
-	      String query = "UPDATE STUDY SET\r\n"
-	               + "   S_WRITE_DATE = SYSDATE,\r\n"
-	               + "   S_TITLE = ?,\r\n"
-	               + "   S_CONTENT = ?,\r\n"
-	               + "   S_DATE = to_date(?, 'yyyy-mm-dd'),\r\n"
-	               + "   S_DUE_DATE = to_date(?, 'yyyy-mm-dd'),\r\n"
-	               + "   S_MEMBER = ?,\r\n"
-	               + "   S_PERIOD = ?,\r\n"
-	               + "   S_CONTACT = ?,\r\n"
-	               + "   S_LEVEL = ?,\r\n"
-	               + "   L_NO = ?,\r\n"
-	               + "   TEST_NO = ? \r\n"
-	               + "WHERE\r\n"
-	               + "   S_NO = ?";
-	      
-	      try {
-	         pstmt = conn.prepareStatement(query);
-	         pstmt.setString(1, board.getSTitle());
-	         pstmt.setString(2, board.getSContent());
-	         
-	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	         String sDate = sdf.format(board.getSDate());
-	         String sDueDate = sdf.format(board.getSDueDate());
-	         pstmt.setString(3, sDate);
-	         pstmt.setString(4, sDueDate);
-	         
-	         pstmt.setString(5, board.getSMember());
-	         pstmt.setString(6, board.getSPeriod());
-	         pstmt.setString(7, board.getSContact());
-	         pstmt.setString(8, board.getSLevel());
-	         pstmt.setInt(9, board.getLanguage().getLNo());
-	         pstmt.setInt(10, board.getTest().getTestNo());
-	         pstmt.setInt(11, board.getSNo());
-	         
-	         result = pstmt.executeUpdate();
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      }finally {
-	         close(pstmt);
-	      }
-	      return result;
-	   }
-	
-	
-	
-	
-	
-	
 	
 	
 	
