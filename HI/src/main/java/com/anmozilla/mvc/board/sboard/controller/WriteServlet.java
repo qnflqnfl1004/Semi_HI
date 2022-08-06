@@ -85,12 +85,12 @@ public class WriteServlet extends HttpServlet {
 		} else {
 			msg = "로그인 후 사용할 수 있습니다.";
 			request.setAttribute("msg", msg);
-			request.getRequestDispatcher("/").forward(request, response);
+			request.getRequestDispatcher("/home").forward(request, response);
 
 		}
 //		request.getSession().setAttribute("msg", msg);
 		System.out.println(msg);
-			response.sendRedirect(request.getContextPath() + "/");
+			response.sendRedirect(request.getContextPath() + "/home");
 		}
 	
 

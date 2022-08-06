@@ -166,7 +166,9 @@
                 </div>
             </article>
             <div class="btns">
-                <input type="reset" value="취소" class="cancelBtn"></input>
+                 <button type="button" class="cancelBtn" onclick="location.href='${ path }/sboard/view?no=${ board.SNo }'">
+				취소
+				</button>
                 <input type="submit" value="수정" class="submitBtn"></input>
             </div>
         </div>
