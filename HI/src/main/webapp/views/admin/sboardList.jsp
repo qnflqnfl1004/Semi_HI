@@ -156,7 +156,6 @@
     </div>
 
     
-</body>
 <script>
     let searchLang = document.getElementById('searchLang');
     let searchTest = document.getElementById('searchTest');
@@ -194,4 +193,6 @@ function changeTestSelect(){
 
 
 </script>
+</body>
+<jsp:include page="/views/common/footer.jsp" /> 
 </html>
