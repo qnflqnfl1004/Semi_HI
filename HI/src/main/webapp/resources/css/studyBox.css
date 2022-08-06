@@ -20,7 +20,7 @@ a {
 }
 
 #myStudyType,
-#saveStudyType {
+#likeStudyType {
   border-bottom: 6px dotted #e2e2e2;
   padding-bottom: 0rem !important;
 }
@@ -71,9 +71,9 @@ h1 {
 }
 
 .studyTitle {
-  font-size: 1.2em;
+  font-size: 1.4em;
   margin-top: 5%;
-  font-weight: bold !important;
+  font-weight: 700 !important;
 }
 
 .studyFilter {
@@ -85,7 +85,7 @@ h1 {
 
 .testImg {
   width: 25%;
-  height: 30%;
+  height: 70px;
 }
 
 .levelImg {
@@ -105,15 +105,13 @@ h1 {
   height: 70px;
   border-radius: 50%;
   border: 4px dashed #7a86b6;
-  /* background-color: #7a86b6; */
 }
 
 .writerNick {
-  font-size: 1.5em;
+  font-size: 1.35em;
   text-align: center;
   font-weight: 700;
   vertical-align: bottom;
-  /* padding-left: 10px; */
   padding-top: 15px;
   padding-bottom: 0;
 }

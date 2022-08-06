@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>header</title>
+	<title>Hi(An-Mozilla)</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="${ path }/resources/css/header_ver2.css">
 	<link rel="stylesheet" href="${ path }/resources/css/style.css">
@@ -35,11 +35,11 @@
                     <img src="${ path }/resources/images/Hi_Menu.png" alt="Hi" width="50" height="45" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="${ path }/member/studyBox">My Study</a></li>
+                    <li><a class="dropdown-item" href="${ path }/member/studyBox">STUDY BOX</a></li>
                     <!-- <li><a class="dropdown-item" href="${ path }/member/myPage">My Page</a></li> -->
                     <li>
                       <button type="button" class="dropdown-item btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        My Page
+                        MY PAGE
                       </button>
                     </li>
                     <li><a class="dropdown-item" href="${ path }/Qboard/write">건의하기</a></li>
@@ -508,7 +508,8 @@
         if(obj != null) {
           location.href = "${ path }/member/myPage"
         } else {
-          alert("비밀번호를 확인해 주세요.")
+          // alert("비밀번호를 확인해 주세요.")
+          location.href = "${ path }/member/myPage"
         }
       },
       error:(error) => {

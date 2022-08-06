@@ -22,29 +22,29 @@ public class LikeStudyServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	int userNo = 0;
-    	int result = 0;
-    	
-    	HttpSession session = request.getSession(false);
-    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
-    	
-    	 
-    	if (loginMember != null ) {
-    		int likeNo = Integer.parseInt(request.getParameter("likeNo"));
-    		userNo = loginMember.getNo();
-    		result = new BoardService().insertLikeStudy(userNo, likeNo);
-    	
-	    	request.setAttribute("result", result);
-	    	System.out.println("userNo : " + userNo);
-	    	System.out.println("likeNo : " + likeNo);
-	    	
-//	    	request.getRequestDispatcher("/home").forward(request, response);
-    	
-    	} else {
-			request.setAttribute("msg", "로그인 후 찜 해주세요.");
-			request.setAttribute("location", "/home");
-			
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-    	}
+//    	int userNo = 0;
+//    	int result = 0;
+//    	
+//    	HttpSession session = request.getSession(false);
+//    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
+//    	
+//    	 
+//    	if (loginMember != null ) {
+//    		int likeNo = Integer.parseInt(request.getParameter("likeNo"));
+//    		userNo = loginMember.getNo();
+//    		result = new BoardService().insertLikeStudy(userNo, likeNo);
+//    	
+//	    	request.setAttribute("result", result);
+//	    	System.out.println("userNo : " + userNo);
+//	    	System.out.println("likeNo : " + likeNo);
+//	    	
+////	    	request.getRequestDispatcher("/home").forward(request, response);
+//    	
+//    	} else {
+//			request.setAttribute("msg", "로그인 후 찜 해주세요.");
+//			request.setAttribute("location", "/home");
+//			
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//    	}
 	}
 }

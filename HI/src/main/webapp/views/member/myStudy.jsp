@@ -23,7 +23,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             <form action="${ path }/member/myStudyBox" method="GET">
               <c:if test="${ empty myStudyList }">
                 <span>지금 바로 <b>당신의 스터디</b>를 시작해주세요 !!!!!!!!!!</span>
-</c:if> 
+              </c:if> 
             
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 <!-- .col 스터디 카드 하나! -->
@@ -118,4 +118,5 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     });
     </script>
   </body>
+  <jsp:include page="/views/common/footer.jsp" />
 </html>

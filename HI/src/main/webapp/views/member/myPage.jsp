@@ -70,10 +70,10 @@
 		<div class="btnBox">
 			<input type="submit" class="btn" id="userInfoChangeFinish" value="수정 완료"></input>
 		</form> 
-		<input type="button" class="btn" id="userDeleteFinish" value="회원 탈퇴"></input>
 		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePwd" >
 			비밀번호 변경		  
 		</button>
+		<input type="button" class="btn" id="userDeleteFinish" value="회원 탈퇴"></input>
 		</div>
 		
 <!-- 비밀번호 변경 모달 -->
@@ -126,7 +126,7 @@
 	</div>
 	</div>
 </div>
-
+<jsp:include page="/views/common/footer.jsp" />
 <script>
 	$(document).ready(() => {
 		// 닉네임 중복 확인
@@ -189,6 +189,7 @@
 		$("#userPwdFinish").on("click", () => {
 			let newPwd = $("#newPwd").val().trim();
 			let newPwdCheck = $("#newPwdCheck").val().trim();
+
 			$.ajax({
 				type:"POST",
 				url: "${ path }/member/updatePwd",
@@ -198,12 +199,11 @@
 					newPwdCheck
 				},
 				success: (obj) => {
-					if(newPwd === newPwdCheck) {
-						console.log(obj);
-						alert("일치");
-						userPwdFinish.style.display = "none"
+					console.log(obj);
+					if(obj === "success") {
+						alert("변경 완료");
 					} else {
-						alert("불일치");
+						alert("변경 실패");
 					}
 				},
 				error: (error) => {
@@ -248,7 +248,7 @@
 				newpwErrorMsgEl.textContent = "a"
 			} else {
 				isPwValid = false
-				newpwErrorMsgEl.textContent = errMsg.pw
+				// newpwErrorMsgEl.textContent = errMsg.pw
 			}
 
 			checkPwValid()

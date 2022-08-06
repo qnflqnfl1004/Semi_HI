@@ -30,24 +30,12 @@ private static final long serialVersionUID = 1L;
     	Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
     	
     	response.setContentType("appllication/json;charset=UTF-8");
-    	new Gson().toJson(newPwd, response.getWriter());
-    	new Gson().toJson(newPwdCheck, response.getWriter());
 
-    	System.out.println("newPwd : " + newPwd);
-    	System.out.println("newPwdCheck : " + newPwdCheck);
-    	
-    	if (loginMember != null) {
-    		if(newPwd.equals(newPwdCheck)) {
-    			result = new MemberService().updatePassword(loginMember.getNo(), newPwd);
-    			System.out.println("result : " + result);
-
-    		} else {
-//    			request.setAttribute("location", "/");
-    		}
-    	} else {
-    		request.setAttribute("msg", "로그인 후 수정해 주세요");
-    		request.setAttribute("script", "self.close()");
-    	}
-    	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+    	if (loginMember != null && newPwd.equals(newPwdCheck)) {
+			result = new MemberService().updatePassword(loginMember.getNo(), newPwd);
+			new Gson().toJson("success", response.getWriter());
+		} else {
+			new Gson().toJson("fail", response.getWriter());
+		}
     }
 }

@@ -468,7 +468,6 @@ public class BoardDao {
 		return myStudyList;
 	}
 
-
 	// myStudy 전체 리스트
 	public List<Board> findMyStudyAll(Connection connection, int userNo) {
 		List<Board> myStudyList = new ArrayList<>();
@@ -553,9 +552,180 @@ public class BoardDao {
 		return myStudyList;
 	}
 
+	// studyBox - likeStudy 리스트
+	public List<Board> findLikeStudyByNo(Connection connection, int userNo) {
+		List<Board> likeStudyList = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT "
+						+ "ROWNUM, "
+						+ "A.LIKE_NO, "
+						+ "A.MEM_NO, "
+						+ "A.S_NO, "
+						+ "A.S_WRITER_NO, "
+						+ "A.S_TITLE, "
+						+ "A.MEM_NICKNAME, "
+						+ "A.S_DATE, "
+						+ "A.S_LEVEL, "
+						+ "A.TEST_NO, "
+						+ "A.TEST_TYPE, "
+						+ "A.L_NO, "
+						+ "A.S_STATUS "
+						+ "FROM (SELECT "
+						+ "LS.LIKE_NO, "
+						+ "LS.MEM_NO, "
+						+ "LS.S_NO, "
+						+ "S.S_WRITER_NO, "
+						+ "M.MEM_NICKNAME, "
+						+ "S.S_STATUS, "
+						+ "S.S_TITLE, "
+						+ "S.S_DATE, "
+						+ "S.S_LEVEL, "
+						+ "T.TEST_NO, "
+						+ "L.L_NO, "
+						+ "T.TEST_TYPE "
+						+ "FROM LIKE_STUDY LS "
+						+ "INNER JOIN STUDY S ON(S.S_NO = LS.S_NO) "
+						+ "INNER JOIN TEST T ON(T.TEST_NO = S.TEST_NO) "
+						+ "INNER JOIN MEM_LIST M ON(M.MEM_NO = S.S_WRITER_NO) "
+						+ "INNER JOIN LANGUAGE L ON(L.L_NO = T.L_NO) "
+						+ "ORDER BY LS.LIKE_NO DESC )A "
+						+ "WHERE ROWNUM <= 3 AND S_STATUS ='Y' AND A.MEM_NO = ? "; 
+		
+		try {
+			ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, userNo);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Board likeStudy = new Board();
+				Member member = new Member();
+				Test test = new Test();
+				Language language = new Language();
+				Like like = new Like();
+
+				like.setLikeNo(rs.getInt("LIKE_NO")); // 찜 게시물 번호
+				
+				member.setNo(rs.getInt("MEM_NO")); // 회원 번호
+				likeStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
+				member.setNo(rs.getInt("S_WRITER_NO")); // 작성자 번호
+				likeStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
+				member.setNickName(rs.getString("MEM_NICKNAME")); // 닉네임
+				likeStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
+				likeStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
+				test.setTestNo(rs.getInt("TEST_NO")); // 테스트 번호
+				test.setTestType(rs.getString("TEST_TYPE")); // 시험 종류 이름
+				language.setLNo(rs.getInt("L_NO")); // 언어 번호
+				likeStudy.setSStatus(rs.getString("S_STATUS"));
+				likeStudy.setLike(this.findLikeByNo(connection, likeStudy.getSNo(), userNo));
+
+				likeStudy.setMember(member);
+				likeStudy.setTest(test);
+				likeStudy.setLanguage(language);
+
+				likeStudyList.add(likeStudy);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return likeStudyList;
+	}
+	
+	// likeStudy 전체 리스트
+	public List<Board> findLikeStudyAllByNo(Connection connection, int userNo) {
+		List<Board> likeStudyList = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT "
+						+ "ROWNUM, "
+						+ "A.LIKE_NO, "
+						+ "A.MEM_NO, "
+						+ "A.S_NO, "
+						+ "A.S_WRITER_NO, "
+						+ "A.S_TITLE, "
+						+ "A.MEM_NICKNAME, "
+						+ "A.S_DATE, "
+						+ "A.S_LEVEL, "
+						+ "A.TEST_NO, "
+						+ "A.TEST_TYPE, "
+						+ "A.L_NO, "
+						+ "A.S_STATUS "
+						+ "FROM (SELECT "
+						+ "LS.LIKE_NO, "
+						+ "LS.MEM_NO, "
+						+ "LS.S_NO, "
+						+ "S.S_WRITER_NO, "
+						+ "M.MEM_NICKNAME, "
+						+ "S.S_STATUS, "
+						+ "S.S_TITLE, "
+						+ "S.S_DATE, "
+						+ "S.S_LEVEL, "
+						+ "T.TEST_NO, "
+						+ "L.L_NO, "
+						+ "T.TEST_TYPE "
+						+ "FROM LIKE_STUDY LS "
+						+ "INNER JOIN STUDY S ON(S.S_NO = LS.S_NO) "
+						+ "INNER JOIN TEST T ON(T.TEST_NO = S.TEST_NO) "
+						+ "INNER JOIN MEM_LIST M ON(M.MEM_NO = S.S_WRITER_NO) "
+						+ "INNER JOIN LANGUAGE L ON(L.L_NO = T.L_NO) "
+						+ "ORDER BY LS.LIKE_NO DESC )A "
+						+ "WHERE S_STATUS ='Y' AND A.MEM_NO = ? "; 
+		
+		try {
+			ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, userNo);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Board likeStudy = new Board();
+				Member member = new Member();
+				Test test = new Test();
+				Language language = new Language();
+				Like like = new Like();
+	
+				like.setLikeNo(rs.getInt("LIKE_NO")); // 찜 게시물 번호
+				
+				member.setNo(rs.getInt("MEM_NO")); // 회원 번호
+				likeStudy.setSNo(rs.getInt("S_NO")); // 게시글 번호
+				member.setNo(rs.getInt("S_WRITER_NO")); // 작성자 번호
+				likeStudy.setSTitle(rs.getString("S_TITLE")); // 스터디 제목
+				member.setNickName(rs.getString("MEM_NICKNAME")); // 닉네임
+				likeStudy.setSDate(rs.getDate("S_DATE")); // 시작 예정일
+				likeStudy.setSLevel(rs.getString("S_LEVEL")); // 모집 레벨
+				test.setTestNo(rs.getInt("TEST_NO")); // 테스트 번호
+				test.setTestType(rs.getString("TEST_TYPE")); // 시험 종류 이름
+				language.setLNo(rs.getInt("L_NO")); // 언어 번호
+				likeStudy.setSStatus(rs.getString("S_STATUS"));
+				likeStudy.setLike(this.findLikeByNo(connection, likeStudy.getSNo(), userNo));
+
+				likeStudy.setMember(member);
+				likeStudy.setTest(test);
+				likeStudy.setLanguage(language);
+	
+				likeStudyList.add(likeStudy);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return likeStudyList;
+	}
 	
 	// 메인 - 스터디 전체 리스트
-	public List<Board> findStudyAll(Connection connection) {
+	public List<Board> findStudyAll(Connection connection, int userNo) {
 		List<Board> list = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -621,7 +791,8 @@ public class BoardDao {
 				board.setMember(member);
 				board.setTest(test);
 				board.setLanguage(language);
-
+				board.setLike(this.findLikeByNo(connection, board.getSNo(), userNo));
+				
 				list.add(board);
 			}
 			
@@ -634,60 +805,6 @@ public class BoardDao {
 		
 		return list;
 	}
-
-	
-	// 하트 누르면 찜 스터디에 추가
-	public int insertLikeStudy(Connection connection, int userNo, int likeNo) {
-		int result = 0;
-		PreparedStatement ps = null;
-		String query = "INSERT "
-						+ "INTO "
-						+ "LIKET_STUDY (LIKE_NO, MEM_NO, S_NO) "
-						+ "VALUES "
-						+ "(SEQ_J_NO.NEXTVAL, ?, ?)";
-	
-		try {
-			ps = connection.prepareStatement(query);
-			ps.setInt(1, userNo);
-			ps.setInt(2, likeNo);
-			
-			result = ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(ps);
-		}
-		
-		return result;
-	}
-	
-	
-	// 하트 누르면 찜 스터디에 삭제
-	public int deleteJjimStudy(Connection connection, String userId, int jjimNo) {
-		int result = 0;
-		PreparedStatement ps = null;
-		String query = "DELETE "
-					+ "FROM "
-					+ "LIKE_STUDY "
-					+ "WHERE MEM_NO = ? AND S_NO = ?";
-	
-		try {
-			ps = connection.prepareStatement(query);
-			ps.setString(1, userId);
-			ps.setInt(2, jjimNo);
-			
-			result = ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(ps);
-		}
-		
-		return result;
-	}
-	
 	
 	// 메인 화면에서 찜 스터디 
 	public Like findLikeByNo(Connection connection, int studyNo, int userNo) {
@@ -708,7 +825,7 @@ public class BoardDao {
 				like = new Like();
 				
 				like.setLikeNo(rs.getInt("LIKE_NO"));
-				like.setStudyNo(rs.getInt("STUDY_NO"));
+				like.setStudyNo(rs.getInt("S_NO"));
 				like.setUserNo(rs.getInt("MEM_NO"));
 				
 			}
@@ -722,4 +839,58 @@ public class BoardDao {
 		return like;
 	}
 
+	// 하트 누르면 찜 스터디에 추가
+	public int insertLikeStudy(Connection connection, int userNo, int studyNo) {
+		int result = 0;
+		PreparedStatement ps = null;
+		String query = "INSERT "
+						+ "INTO "
+						+ "LIKE_STUDY (LIKE_NO, MEM_NO, S_NO) "
+						+ "VALUES "
+						+ "(SEQ_J_NO.NEXTVAL, ?, ?)";
+	
+		try {
+			ps = connection.prepareStatement(query);
+			ps.setInt(1, userNo);
+			ps.setInt(2, studyNo);
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
+	// 하트 누르면 찜 스터디에 삭제
+	public int deleteLikeStudy(Connection connection, int userNo, int studyNo) {
+		int result = 0;
+		PreparedStatement ps = null;
+		String query = "DELETE "
+					+ "FROM "
+					+ "LIKE_STUDY "
+					+ "WHERE MEM_NO = ? AND S_NO = ?";
+	
+		try {
+			ps = connection.prepareStatement(query);
+			ps.setInt(1, userNo);
+			ps.setInt(2, studyNo);
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
+	
+
+	
 }
