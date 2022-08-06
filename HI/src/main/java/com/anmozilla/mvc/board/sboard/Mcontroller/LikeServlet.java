@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.anmozilla.mvc.board.sboard.model.service.BoardService;
 import com.anmozilla.mvc.board.sboard.model.vo.Like;
 import com.anmozilla.mvc.member.model.vo.Member;
+import com.google.gson.Gson;
 
 
 @WebServlet("/like.do")
@@ -34,5 +35,19 @@ public class LikeServlet extends HttpServlet {
 		like = new BoardService().findLikeByNo(studyNo, loginMember.getNo());
 		
 		System.out.println(like);
+		if(like != null) {
+			// 좋아요 취소 like 데이터 삭제
+			new BoardService().deleteLikeStudy(loginMember.getNo(), studyNo);
+		} else {
+			// 좋아요 like 데이터 삽입
+			new BoardService().insertLikeStudy(loginMember.getNo(), studyNo);
+		}
+		
+		// 지워지면 null, insert 되면 객체
+		like = new BoardService().findLikeByNo(studyNo, loginMember.getNo());
+		
+		response.setContentType("application/json;charset=utf-8");
+		
+		new Gson().toJson(like, response.getWriter());
 	}
 }

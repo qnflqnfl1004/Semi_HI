@@ -77,7 +77,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
   <section class="py-5 text-center container">
     <div class="row py-lg-5" id="myStudyType">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1>Hi(An-Mozilla) <br />스터디</h1>
+        <h1>Hi(An-Mozilla) <br/>스터디</h1>
       </div>
     </div>
   </section>
@@ -102,26 +102,25 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <div class="studyStart">시작 예정일 <br> | ${ board.SDate } | </div>
-                      <div class="studyTitle">${ board.STitle }</div>
-
-                      <div class="studyFilter">
-                        <div class="testNo">
+                      <div id="studyStart">시작 예정일 <br> | ${ board.SDate } | </div>
+                      <div id="studyTitle">${ board.STitle }</div>
+                      <div id="studyFilter">
+                        <div id="testNo">
                           <c:if test="${ board.language.LNo != 4 }">
                             <img
                               src="${ path }/resources/images/Test_logo/${ board.test.testType }.png"
                               alt="${ path }/resources/images/Test_logo/basic.png"
-                              class="testImg"
+                              id="testImg1"
                             />
                           </c:if>
                           <c:if test="${ board.language.LNo == 4 }">
                             <img
                               src="${ path }/resources/images/Test_logo/basic.png"
-                              class="testImg"
+                              id="testImg2"
                             />
                           </c:if>
                         </div>
-                        <div class="sLevel">
+                        <div id="sLevel">
                           <c:choose>
                             <c:when test="${ board.SLevel == '초급' }">
                               <img
@@ -155,7 +154,6 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                             </c:when>
                           </c:choose>
                         </div>
-                        
                       </div>
                     </a>
                       <div class="writerInfo">
@@ -165,9 +163,14 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         />
                         <div class="writerNick">${ board.member.nickName }</div>
                         <c:if test="${ ! empty loginMember }">
-                        <span>${ board.SNo }</span>
-                        <i class="fa-regular fa-heart fa-3x" id="favIcon" bno="${ board.SNo }"></i>
-                      </c:if>
+                          <!-- <span>${ board.SNo }</span> -->
+                          <c:if test="${ ! empty board.like }">
+                            <i class="fa-solid fa-heart fa-3x" id="favIcon" bno="${ board.SNo }"></i>
+                          </c:if>
+                          <c:if test="${ empty board.like }">
+                            <i class="fa-regular fa-heart fa-3x" id="favIcon" bno="${ board.SNo }"></i>
+                          </c:if>
+                        </c:if>
                       </div>
                     </div>
                   </div>
@@ -175,6 +178,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             </c:forEach>
           </c:if>
     </div>
+    <jsp:include page="/views/common/footer.jsp" />
 <!------------- .col 스터디 카드 하나!------------->
       </div>
     </div>
@@ -183,29 +187,6 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://kit.fontawesome.com/f8167db045.js"
 crossorigin="anonymous"></script>
 <script>
-// $(document).on("click", function () {
-//   let jjimNo = $(".jjimNo").val()
-//   $.ajax({
-//     url:"${ path }/member/jjim",
-//     type: "GET",
-//     data: {
-//       jjimNo
-//     },
-//     success:(data) => {
-//       console.log(data);
-//       if(data !== 0) {
-//         console.log()
-//         $("#favIcon").attr("class", "fa-solid fa-heart fa-3x");
-//       } else {
-//         alert("로그인 후 찜 ♥");
-//       }
-//     },
-//     error:(error) => {
-//       console.log(error);
-//     }
-//   });
-// })
-
 $(document).ready(() => {
   $(".fa-heart").on("click", (event) => {
     let studyNo = $(event.target).attr("bno");
@@ -219,11 +200,11 @@ $(document).ready(() => {
       },
       success:(data) => {
         console.log(data);
-        if(data !== 0) {
+        if(data !== null) {
           console.log()
           $(event.target).attr("class", "fa-solid fa-heart fa-3x");
         } else {
-          alert("로그인 후 찜 ♥");
+          $(event.target).attr("class", "fa-regular fa-heart fa-3x");
         }
       },
       error:(error) => {
@@ -231,13 +212,5 @@ $(document).ready(() => {
       }
     });
   });
-
-
-
-
 });
-
-
-
-
 </script>

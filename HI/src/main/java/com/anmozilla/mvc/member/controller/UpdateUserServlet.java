@@ -13,7 +13,7 @@ import com.anmozilla.mvc.member.model.service.MemberService;
 import com.anmozilla.mvc.member.model.vo.Member;
 
 
-@WebServlet("/member/updateUserInfo")
+@WebServlet(name = "updateUserInfo", urlPatterns = "/member/updateUserInfo")
 public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class UpdateUserServlet extends HttpServlet {
     			session.setAttribute("loginMember", new MemberService().findMemberById(loginMember.getId()));
     			
     			request.setAttribute("msg", "회원 정보 수정 완료");
-    			request.setAttribute("location", "/home");
+    			request.setAttribute("location", "/member/myPage");
     		} else {
     			request.setAttribute("msg", "회원 정보 수정 실패");
     			request.setAttribute("location", "/home");
