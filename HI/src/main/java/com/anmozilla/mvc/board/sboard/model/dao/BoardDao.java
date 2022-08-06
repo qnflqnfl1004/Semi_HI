@@ -846,7 +846,7 @@ public class BoardDao {
 						+ "INTO "
 						+ "LIKE_STUDY (LIKE_NO, MEM_NO, S_NO) "
 						+ "VALUES "
-						+ "(SEQ_J_NO.NEXTVAL, ?, ?)";
+						+ "(SEQ_LIKE_NO.NEXTVAL, ?, ?)";
 	
 		try {
 			ps = connection.prepareStatement(query);
