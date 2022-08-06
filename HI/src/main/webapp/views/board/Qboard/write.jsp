@@ -6,7 +6,41 @@
 
 <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
 
+<style>
+
+.bt_wrap button {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #fff;
+    background: #dadbe0;
+    border-radius: 10px;
+    font-size: 1.4rem;
+}
+
+.bt_wrap button {
+	background: #7A86B6;
+    color: #fff;
+    border-radius: 10px;
+    float: right;
+    min-width: 100px;
+}
+
+button {
+ font-size: medium;
+    font-weight: 900;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #7A86B6;
+    color: #fff;
+}
+
+</style>
+
 <jsp:include page="/views/common/header.jsp" />
+
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의하기</strong>
@@ -58,15 +92,12 @@
 					</dd>
 				</dl>
 			</div>
+			<div class="bt_wrap">
 			<button type="submit">등록</button>
+			<button type="button" onclick="location.replace('${pageContext.request.contextPath}/user/list')">취소</button>
+			</div>
 		</form>
-		</div>
-
-		<div class="bt_wrap">
-                <input type="reset" style="cursor:pointer" onclick="location.replace('${pageContext.request.contextPath}/Qboard/list')" value="취소">
-                <input style="cursor:pointer" type="submit" value="등록">
-        </div>
-	</div>
+		
 </div>
 
 
