@@ -83,7 +83,7 @@
 						</div>
 						<div class="answer">${ board.as }</div>
 						<div class="writer">${ board.writerId}</div>
-						<div class="as">${ board.createDate }</div>
+						<div class="date">${ board.createDate }</div>
 					</div>
 				</c:forEach>
 			</c:if>
