@@ -2,6 +2,12 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 
+
+html, body {
+	    height: 100%;
+}
+
+
 /* body css */
 @media only screen and (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -14,6 +20,12 @@
   }
 }
 
+.carousel slide {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 60px;
+	
+}
 .row {
   border-bottom: 4px dotted #e2e2e2;
 }

@@ -4,6 +4,7 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 
+
 /* body css */
 /* @media screen and (max-width: 768px)
 .container {
@@ -19,7 +20,9 @@
   margin-right: auto !important;
   width: 100% !important;
   padding-bottom: 5rem !important;
+
 }
+
 
 #h1myPage {
   display: block !important;

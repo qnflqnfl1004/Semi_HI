@@ -126,6 +126,8 @@
 	</div>
 	</div>
 </div>
+
+
 <script>
 	$(document).ready(() => {
 		// 닉네임 중복 확인

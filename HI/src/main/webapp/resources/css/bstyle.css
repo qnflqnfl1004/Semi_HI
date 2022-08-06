@@ -55,9 +55,10 @@ button {
 .board_wrap {
     width: 1500px;
     margin: 150px auto;
-    min-height: 50%;
-    position: relative;
+    height: auto;
+    min-height: 100%;
     padding-bottom: 60px;
+    box-sizing: border-box;
 }
 
 
