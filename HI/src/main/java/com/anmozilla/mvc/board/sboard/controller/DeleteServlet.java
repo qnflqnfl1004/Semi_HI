@@ -28,7 +28,7 @@ public class DeleteServlet extends HttpServlet {
 			int result = new BoardService().deleteBoard(no);
 			if(result > 0) {
 				request.setAttribute("msg", "게시글 삭제 완료");
-				request.setAttribute("location", "/");
+				request.setAttribute("location", "/home");
 			} else {
 				request.setAttribute("msg", "게시글 삭제 실패");
 				request.setAttribute("location", "/sboard/view?no=" + no);
