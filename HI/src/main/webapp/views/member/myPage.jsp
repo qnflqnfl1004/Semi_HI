@@ -74,7 +74,7 @@
 			비밀번호 변경		  
 		</button>
 		<input type="button" class="btn" id="userDeleteFinish" value="회원 탈퇴"></input>
-		</div>
+		
 		
 <!-- 비밀번호 변경 모달 -->
 <div class="modal fade" id="changePwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

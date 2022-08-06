@@ -38,8 +38,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false">
                       <div class="studyStart">시작 예정일 <br> | ${ myStudy.SDate } | </div>
-                      <div class="studyTitle">${ myStudy.STitle }</div>
-                  <div class="studyFilter">
+                      <div id="studyTitle1">${ myStudy.STitle }</div>
+                  <div id="studyFilter1">
                     <div class="testNo">
                         <c:if test="${ myStudy.language.LNo != 4 }">
                           <img src="${ path }/resources/images/Test_logo/${ myStudy.test.testType }.png" alt="${ path }/resources/images/Test_logo/basic.png" class="testImg"/>
@@ -91,8 +91,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
           </c:if>
 <!-- .col 스터디 카드 하나! -->
         </div>
-        <div class="btnBox">
-            <button type="button" class="btn" id="btnMore1" ><a href="${ path }/member/myStudyBox" style="text-decoration:none; color:white">더보기</a></button>
+        <div id="btnBox1">
+            <button type="button" id="btnMore1" ><a href="${ path }/member/myStudyBox" style="text-decoration:none; color:#7a86b6">더보기</a></button>
         </div>
       </div>
     </div>
@@ -127,8 +127,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false">
                     <div class="studyStart">시작 예정일 <br> | ${ likeStudy.SDate } | </div>
-                    <div class="studyTitle">${ likeStudy.STitle }</div>
-                    <div class="studyFilter">
+                    <div id="studyTitle2">${ likeStudy.STitle }</div>
+                    <div id="studyFilter2">
                       <div class="testNo">
                         <c:if test="${ likeStudy.language.LNo != 4 }">
                           <img src="${ path }/resources/images/Test_logo/${ likeStudy.test.testType }.png" alt="${ path }/resources/images/Test_logo/basic.png" class="testImg"/>
@@ -160,10 +160,10 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         <div id="writerNick2">${ likeStudy.member.nickName }</div>
                         <!-- <span>${ likeStudy.SNo }</span> -->
                         <c:if test="${ ! empty likeStudy.like }">
-                          <i class="fa-solid fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
+                          <i class="fa-solid fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 10px;"></i>
                         </c:if>
                         <c:if test="${ empty likeStudy.like }">
-                          <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
+                          <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 10px;"></i>
                         </c:if>
                       </div>    
                   </div> 
@@ -174,8 +174,8 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
           </c:if>
 <!-- .col 스터디 카드 하나! -->
         </div>
-        <div class="btnBox">
-          <button type="button" class="btn" id="btnMore2" ><a href="${ path }/member/likeStudyBox" style="text-decoration:none; color:white">더보기</a></button>
+        <div id="btnBox2">
+          <button type="button" id="btnMore2" ><a href="${ path }/member/likeStudyBox" style="text-decoration:none; color:#7a86b6">더보기</a></button>
         </div>
         </div>
       </div>

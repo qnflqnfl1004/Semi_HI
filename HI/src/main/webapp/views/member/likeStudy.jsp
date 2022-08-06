@@ -76,10 +76,10 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                               <div id="writerNick1">${ likeStudy.member.nickName }</div>
                               <!-- <span>${ likeStudy.like.likeNo }</span> -->
                               <c:if test="${ ! empty likeStudy.like }">
-                                <i class="fa-solid fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
+                                <i class="fa-solid fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 10px;"></i>
                               </c:if>
                               <c:if test="${ empty likeStudy.like }">
-                                <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
+                                <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 10px;"></i>
                               </c:if>
                         </div>    
                     </div> 

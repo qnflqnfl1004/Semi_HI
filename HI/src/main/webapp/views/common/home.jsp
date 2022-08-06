@@ -202,10 +202,10 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         <c:if test="${ ! empty loginMember }">
                           <!-- <span>${ board.SNo }</span> -->
                           <c:if test="${ ! empty board.like }">
-                            <i class="fa-solid fa-heart fa-4x" style="margin-top: 20px;" id="favIcon" bno="${ board.SNo }"></i>
+                            <i class="fa-solid fa-heart fa-4x" style="margin-top: 10px;" id="favIcon" bno="${ board.SNo }"></i>
                           </c:if>
                           <c:if test="${ empty board.like }">
-                            <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ board.SNo }" style="margin-top: 20px;"></i>
+                            <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ board.SNo }" style="margin-top: 10px;"></i>
                           </c:if>
                         </c:if>
                       </div>
