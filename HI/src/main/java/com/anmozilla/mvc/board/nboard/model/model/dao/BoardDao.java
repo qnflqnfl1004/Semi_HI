@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.anmozilla.mvc.board.nboard.model.vo.Board;
+import com.anmozilla.mvc.board.sboard.model.vo.Like;
 import com.anmozilla.mvc.common.util.PageInfo;
 import com.anmozilla.mvc.member.model.vo.Member;
 
@@ -95,7 +96,6 @@ public class BoardDao {
 		
 		return list;
 	}
-
 
 	public Board findBoardByNo(Connection connection, int no) {
 		Board board = null;
@@ -206,6 +206,5 @@ public class BoardDao {
 		
 		return result;
 	}
-
 
 }

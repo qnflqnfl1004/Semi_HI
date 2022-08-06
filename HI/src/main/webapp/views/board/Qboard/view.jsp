@@ -4,6 +4,7 @@
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
+
 <style>
 .bt_wrap {
     margin-top: 15px;
@@ -99,10 +100,6 @@ button {
 				</dl>
 			</div>
 
-		</div>
-		<div class="bt_wrap">
-		<button type="button" 
-				onclick="location.href='${path}/admin/Qanswer?no=${ board.no }'">답변하기</button>
 		</div>
 		
 	</div>

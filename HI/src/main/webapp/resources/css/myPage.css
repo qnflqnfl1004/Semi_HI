@@ -160,70 +160,70 @@
 
 /* 비밀번호 변경 모달 */
 #updatePwd-container {
-  background: #a8a4ce;
-  text-align: center;
-  width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  background: #a8a4ce !important;
+  text-align: center !important;
+  width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
   /* margin-left: auto;
   margin-right: auto; */
-  margin: 0;
-  border-radius: 10px;
+  margin: 0 !important;
+  border-radius: 10px !important;
 }
 
 .modal-header {
-  align-items: center;
-  font-size: 1.5em;
-  font-weight: 700;
+  align-items: center !important;
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
 }
 
 .modal-title {
-  color: #7a86b6;
+  color: #7a86b6 !important;
 }
 
 #updatePwd-container table {
-  margin: 0 auto;
-  border-spacing: 20px;
+  margin: 0 auto !important;
+  border-spacing: 20px !important;
 }
 
 #updatePwd-container table th {
-  padding-right: 20px;
-  padding-top: 10px;
-  text-align: center;
-  font-size: medium;
-  font-weight: 600;
-  color: white;
+  padding-right: 20px !important;
+  padding-top: 10px !important;
+  text-align: center !important;
+  font-size: medium !important;
+  font-weight: 600 !important;
+  color: white !important;
 }
 
 .updateInfoMsg {
-  margin: 30px;
-  color: #545e85;
-  font-weight: 700;
-  font-size: larger;
+  margin: 30px !important;
+  color: #545e85 !important;
+  font-weight: 700 !important;
+  font-size: larger !important;
 }
 
 #updatePwd-container .inputPwdChange {
-  width: 300px;
-  height: 50px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: none;
-  background-color: #e2e2e2;
-  margin-top: 10px;
-  float: right;
-  padding: 10px;
-  font-size: large;
+  width: 300px !important;
+  height: 50px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #e2e2e2 !important;
+  margin-top: 10px !important;
+  float: right !important;
+  padding: 10px !important;
+  font-size: large !important;
 }
 
 #updatePwd-container .btn {
-  background-color: #7a86b6;
-  color: white;
-  height: 50px;
-  width: 150px;
-  font-weight: 700;
-  font-size: larger;
-  border-radius: 10px;
-  margin-top: 10px;
+  background-color: #7a86b6 !important;
+  color: white !important;
+  height: 50px !important;
+  width: 150px !important;
+  font-weight: 700 !important;
+  font-size: larger !important;
+  border-radius: 10px !important;
+  margin-top: 10px !important;
 }

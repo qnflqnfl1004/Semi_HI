@@ -26,7 +26,7 @@ public class WriteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/sboard/write.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/board/sboard/write.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

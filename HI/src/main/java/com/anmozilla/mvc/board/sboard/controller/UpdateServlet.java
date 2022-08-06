@@ -98,18 +98,32 @@ public class UpdateServlet extends HttpServlet {
 			System.out.println(board);
 			int result = new BoardService().updateStudy(board);
 			if(result > 0) {
-				msg = "게시글 수정 성공";
+				request.setAttribute("msg", "게시글 수정 완료");
+				request.setAttribute("location", "/sboard/view?no=" + no);
 			} else {
-				msg = "게시글 수정 실패";
+				request.setAttribute("msg", "게시글 수정 실패");
+				request.setAttribute("location", "/sboard/view?no=" + no);
+					
 			}
 		} else {
 			msg = "로그인 후 사용할 수 있습니다.";
-			request.setAttribute("msg", msg);
-			request.getRequestDispatcher("/").forward(request, response);
 
 		}
+			System.out.println(msg);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//			if(result > 0) {
+//				msg = "게시글 수정 성공";
+//			} else {
+//				msg = "게시글 수정 실패";
+//			}
+//		} else {
+//			msg = "로그인 후 사용할 수 있습니다.";
+//			request.setAttribute("msg", msg);
+//			request.getRequestDispatcher("/").forward(request, response);
+//
+//		}
 //		request.getSession().setAttribute("msg", msg);
-		System.out.println(msg);
-		response.sendRedirect(request.getContextPath() + "/");
+//		System.out.println(msg);
+//		response.sendRedirect(request.getContextPath() + "/");
 	}
 }

@@ -74,25 +74,18 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <main>
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5" id="myStudyType">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1>Hi(An-Mozilla) <br />스터디</h1>
-        </div>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5" id="myStudyType">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1>Hi(An-Mozilla) <br/>스터디</h1>
       </div>
-    </section>
+    </div>
+  </section>
 
     <div class="album py-5" style="margin-bottom: 0">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <c:if test="${ empty list }">
-            <span
-              >지금 바로 <b>당신의 스터디</b>를 시작해주세요 !!!!!!!!!!</span
-            >
-          </c:if>
-
-          <!-- .col 스터디 카드 하나! -->
+<!------------- .col 스터디 카드 하나!------------->
           <c:if test="${ ! empty list }">
             <c:forEach var="board" items="${ list }">
               <div class="col" id="studyBox">
@@ -109,26 +102,25 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <div class="studyStart">${ board.SDate }</div>
-                      <div class="studyTitle">${ board.STitle }</div>
-
-                      <div class="studyFilter">
-                        <div class="testNo">
+                      <div id="studyStart">시작 예정일 <br> | ${ board.SDate } | </div>
+                      <div id="studyTitle">${ board.STitle }</div>
+                      <div id="studyFilter">
+                        <div id="testNo">
                           <c:if test="${ board.language.LNo != 4 }">
                             <img
                               src="${ path }/resources/images/Test_logo/${ board.test.testType }.png"
                               alt="${ path }/resources/images/Test_logo/basic.png"
-                              class="testImg"
+                              id="testImg1"
                             />
                           </c:if>
                           <c:if test="${ board.language.LNo == 4 }">
                             <img
                               src="${ path }/resources/images/Test_logo/basic.png"
-                              class="testImg"
+                              id="testImg2"
                             />
                           </c:if>
                         </div>
-                        <div class="sLevel">
+                        <div id="sLevel">
                           <c:choose>
                             <c:when test="${ board.SLevel == '초급' }">
                               <img
@@ -163,22 +155,61 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                           </c:choose>
                         </div>
                       </div>
-                      <div class="writerInfo">
+                    </a>
+                      <div id="writerInfo">
                         <img
-                          src="${ path }/resources/images/Hi_Profil.png"
-                          class="writerImg"
+                        src="${ path }/resources/images/Hi_Profil.png"
+                        id="writerImg"
                         />
-                        <div class="writerNick">${ board.member.nickName }</div>
+                        <div id="writerNick">${ board.member.nickName }</div>
+                        <c:if test="${ ! empty loginMember }">
+                          <!-- <span>${ board.SNo }</span> -->
+                          <c:if test="${ ! empty board.like }">
+                            <i class="fa-solid fa-heart fa-4x" style="margin-top: 20px;" id="favIcon" bno="${ board.SNo }"></i>
+                          </c:if>
+                          <c:if test="${ empty board.like }">
+                            <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ board.SNo }" style="margin-top: 20px;"></i>
+                          </c:if>
+                        </c:if>
                       </div>
                     </div>
                   </div>
-                </a>
               </div>
             </c:forEach>
           </c:if>
-        </div>
-        <!-- .col 스터디 카드 하나! -->
+    </div>
+<!------------- .col 스터디 카드 하나!------------->
       </div>
     </div>
   </main>
 </main>
+<script src="https://kit.fontawesome.com/f8167db045.js"
+crossorigin="anonymous"></script>
+<script>
+$(document).ready(() => {
+  $(".fa-heart").on("click", (event) => {
+    let studyNo = $(event.target).attr("bno");
+    
+    $.ajax({
+      url:"${ path }/like.do",
+      type: "POST",
+      dataType: "JSON",
+      data: {
+        studyNo
+      },
+      success:(data) => {
+        console.log(data);
+        if(data !== null) {
+          console.log()
+          $(event.target).attr("class", "fa-solid fa-heart fa-4x");
+        } else {
+          $(event.target).attr("class", "fa-regular fa-heart fa-4x");
+        }
+      },
+      error:(error) => {
+        console.log(error);
+      }
+    });
+  });
+});
+</script>

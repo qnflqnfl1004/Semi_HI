@@ -1,4 +1,4 @@
-package com.anmozilla.mvc.admin.Qboard.controller;
+package com.anmozilla.mvc.board.Qboard.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.anmozilla.mvc.admin.Qboard.model.service.QBoardService;
 import com.anmozilla.mvc.admin.Qboard.model.vo.Board;
 
-@WebServlet("/admin/Qview")
-public class QviewServlet extends HttpServlet {
+/**
+ * Servlet implementation class Qview
+ */
+@WebServlet("/Qview")
+public class Qview extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public QviewServlet() {
+
+    public Qview() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,11 +28,9 @@ public class QviewServlet extends HttpServlet {
 		board = new QBoardService().getBoardByNo(no);
 		
 		
-		
 		request.setAttribute("board", board);
-		request.getRequestDispatcher("/views/admin/Qboard/Qview.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("/views/board/Qboard/view.jsp").forward(request, response);
 	}
+
 
 }

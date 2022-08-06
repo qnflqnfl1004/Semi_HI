@@ -5,46 +5,103 @@
 
 <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
 
-<nav class="navbar navbar-light bg-light">
+<style>
+.bt_wrap {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 0;
+}
 
-	<a class="navbar-brand" href="#"> <img
-		src="C:\Users\kh\Desktop\semi\logo.png" alt="" width="130" height="70">
-	</a>
-	<div class="main1">
-		<button class="main2">회원가입</button>
-		<button class="main3">로그인</button>
-	</div>
-</nav>
+.bt_wrap button {
+	display: inline-block;
+	min-width: 80px;
+	margin-left: 10px;
+	padding: 10px;
+	border: 1px solid #fff;
+	background: #dadbe0;
+	border-radius: 10px;
+	font-size: 1.4rem;
+}
+
+.bt_wrap button {
+	background: #7A86B6;
+	color: #fff;
+	border-radius: 10px;
+	float: right;
+	min-width: 100px;
+}
+</style>
+
+<jsp:include page="/views/common/header.jsp" />
+
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의사항</strong>
 	</div>
-	<div class="board_view_wrap">
-		<div class="board_view">
-			<div class="title">@@@이용자님 답변입니다.</div>
-			<div class="info">
-				<dl>
-					<dt>번호</dt>
-					<dd>1</dd>
-				</dl>
-				<dl>
-					<dt>작성자</dt>
-					<dd>관리자</dd>
-				</dl>
-				<dl>
-					<dt>작성일</dt>
-					<dd>2021.1.16</dd>
-				</dl>
-				<dl>
-					<dt>조회</dt>
-					<dd>33</dd>
-				</dl>
+	<form action="${path}/admin/Qanswer" } method="POST"
+		enctype="multipart/form-data">
+		<div class="board_write_wrap">
+
+
+			<div class="board_write">
+				<input type="hidden" name="no" value=${ board.no }> <input
+					type="hidden" name="originalFileName"
+					value=${ board.originalFileName }> <input type="hidden"
+					name="renamedFileName" value=${ board.renamedFileName }>
+				<div class="writetitle">
+					<dl>
+						<dt>제목</dt>
+						<dd>${ board.title }</dd>
+					</dl>
+				</div>
+
+				<div class="reason">
+					<dl>
+						<dt>사유</dt>
+						<dd>${ board.reason }</dd>
+					</dl>
+				</div>
+
+				<div class="writeperson">
+					<dl>
+						<dt>작성자</dt>
+						<dd>${ board.writerId }</dd>
+					</dl>
+				</div>
+
+				<div class="writedate">
+					<dl>
+						<dt>작성일</dt>
+						<dd>${ board.createDate }</dd>
+					</dl>
+				</div>
+
+				<div class="cont">
+					<textarea name="cont">${ board.content }</textarea>
+				</div>
+
+				<div class="addfile">
+					<dl>
+						<dt>첨부파일</dt>
+						<dd>
+							<c:if test="${ not empty board.originalFileName }">
+								<img src="${ path }/resources/images/file.png" width="20px"
+									height="20px">
+								<a href="javascript:" id="fileDown"> <span> ${ board.originalFileName }
+								</span>
+								</a>
+							</c:if>
+						</dd>
+					</dl>
+				</div>
 			</div>
-			<div class="cont">문의내용</div>
-			<div class="contanswer">답변내용</div>
+			<div class="bt_wrap">
+				<button type="button" onclick="location.href='${path}/admin/Qlist'">목록으로</button>
+				<button type="submit">제출하기</button>
+			</div>
 		</div>
-		<div class="bt_wrap">
-			<a href="list.html" class="on">목록</a> <a href="edit.html">제출하기</a>
-		</div>
-	</div>
+	</form>
 </div>
+
+
+<jsp:include page="/views/common/footer.jsp" />

@@ -23,7 +23,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             <form action="${ path }/member/myStudyBox" method="GET">
               <c:if test="${ empty myStudyList }">
                 <span>지금 바로 <b>당신의 스터디</b>를 시작해주세요 !!!!!!!!!!</span>
-</c:if> 
+              </c:if> 
             
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 <!-- .col 스터디 카드 하나! -->
@@ -40,7 +40,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             aria-label="Placeholder: Thumbnail"
             preserveAspectRatio="xMidYMid slice"
             focusable="false">
-            <div class="studyStart">${ myStudy.SDate }</div>
+            <div class="studyStart">시작 예정일 <br> | ${ myStudy.SDate } | </div>
             <div class="studyTitle">${ myStudy.STitle }</div>
 
           <div class="studyFilter">
@@ -69,9 +69,9 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               </c:choose>   
             </div>
           </div>
-            <div class="writerInfo">
-                  <img src="${ path }/resources/images/Hi_Profil.png" class="writerImg" />
-                  <div class="writerNick">${ myStudy.member.nickName }</div>
+            <div id="writerInfo">
+                  <img src="${ path }/resources/images/Hi_Profil.png" id="writerImg1" />
+                  <div id="writerNick1">${ myStudy.member.nickName }</div>
             </div>    
         </div> 
       </div> 
@@ -118,4 +118,5 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     });
     </script>
   </body>
+  <jsp:include page="/views/common/footer.jsp" />
 </html>

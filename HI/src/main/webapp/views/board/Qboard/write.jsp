@@ -6,16 +6,7 @@
 
 <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
 
-<nav class="navbar navbar-light bg-light">
-
-	<a class="navbar-brand" href="#"> <img
-		src="C:\Users\kh\Desktop\semi\logo.png" alt="" width="130" height="70">
-	</a>
-	<div class="main1">
-		<button class="main2">회원가입</button>
-		<button class="main3">로그인</button>
-	</div>
-</nav>
+<jsp:include page="/views/common/header.jsp" />
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의하기</strong>
@@ -29,9 +20,9 @@
 					<dd>
 						<select name="reason" id="reason">
 							<option selected>사유를 선택해 주세요.</option>
-							<option value="">버그/오류</option>
-							<option value="">불량유저</option>
-							<option value="">기타</option>
+							<option value="버그/오류">버그/오류</option>
+							<option value="불량유저">불량유저</option>
+							<option value="기타">기타</option>
 						</select>
 					</dd>
 				</dl>
@@ -55,8 +46,8 @@
 				</dl>
 			</div>
 
-			<div class="cont" name="content" id="content">
-				<textarea placeholder="내용 입력"></textarea>
+			<div class="cont" id="content">
+				<textarea name="content" placeholder="내용 입력"></textarea>
 			</div>
 
 			<div class="addfile">
@@ -67,6 +58,7 @@
 					</dd>
 				</dl>
 			</div>
+			<button type="submit">등록</button>
 		</form>
 		</div>
 

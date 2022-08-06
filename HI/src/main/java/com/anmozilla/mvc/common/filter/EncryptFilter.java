@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.anmozilla.mvc.common.wrapper.EncryptPasswordWrapper;
 
-// servletNames = {"EnrollServlet", "LoginServlet"} - 서블릿이 실행되기 전에 실행될 것이다. 
-@WebFilter(filterName = "encrypt", servletNames = {"enroll", "login", "updatePwd"})
+@WebFilter(filterName = "encrypt", servletNames = {"enroll", "login", "updatePwd", "myPage", "myPagePwdCheck", "updateUserInfo"})
 public class EncryptFilter extends HttpFilter implements Filter {
        
     public EncryptFilter() {
@@ -26,11 +25,9 @@ public class EncryptFilter extends HttpFilter implements Filter {
 
     @Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-    	// request 객체의 파라미터 값을 직접 변경할 수 없기 때문에 래퍼 클래스를 생성해서 파라미터 값을 수정
     	EncryptPasswordWrapper wrapper = new EncryptPasswordWrapper((HttpServletRequest)request);
     	
-    	
-    	// request를 직접 재정의 할 수 없기 때문에 wrapper 라는 객체로 재정의해서 넘겨준다. 
+    	System.out.println("필터");
 		chain.doFilter(wrapper, response);
 	}
 

@@ -32,7 +32,7 @@ public class MemberService {
 		return this.findMemberById(userId) != null;
 	}
 
-	private Object findMemberById(String userId) {
+	public Object findMemberById(String userId) {
 		Connection connection = getConnection();
 		Member member = new MemberDao().findMemberById(connection, userId);
 		
@@ -201,10 +201,17 @@ public class MemberService {
 		
 		return result;
 	}
-	
 
-	
-
-
-
+	// 비밀번호 재확인
+	public Member pwdDoubleCheckById(String pwdCheck, String userId) {
+		Connection connection = getConnection();
+		Member member = new MemberDao().findMemberById(connection, userId);
+		
+		if(member != null && member.getPassword().equals(pwdCheck)) {
+			return member;
+		} else {
+			return null;
+		}
+		
+	}
 }
