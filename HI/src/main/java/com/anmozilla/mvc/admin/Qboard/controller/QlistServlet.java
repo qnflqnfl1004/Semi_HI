@@ -55,7 +55,7 @@ public class QlistServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/admin/Qboard/Qlist.jsp").forward(request, response);
 		} else {
 			request.setAttribute("msg", "관리자 로그인 후 사용할 수 있습니다.");
-			request.setAttribute("location", "/");
+			request.setAttribute("location", "/home");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		

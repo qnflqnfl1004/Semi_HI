@@ -15,13 +15,13 @@ body {
   font-size: 13px;
   background-color: #7a86b6;
   padding-bottom: 0.5rem 0 0.5rem 0;
-  padding-top: 4rem;
+  padding-top: 3rem; 
   bottom: 0;
 }
 
 #footer {
   width: 100%;
-  height: 30vh;
+  height: 40vh;
   background-color: #7a86b6;
   color: #fff;
   display: flex;
@@ -49,7 +49,7 @@ body {
 #foot2 h2,
 #foot3 h2,
 #foot4 h2 {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   font-size: 15px;
   font-weight: bold;
 }

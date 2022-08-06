@@ -414,6 +414,7 @@ button {
     height: 300px;
     padding: 15px;
     box-sizing: border-box;
+    font-size: 15px;
     border: 0;
     resize: vertical;
 }

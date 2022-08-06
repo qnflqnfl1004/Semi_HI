@@ -34,13 +34,13 @@ button {
     border: none;
     cursor: pointer;
     background-color: #7A86B6;
-    color: #fff;
+    color: #fff; 
 }
 
 </style>
 
 <jsp:include page="/views/common/header.jsp" />
-
+ 
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의하기</strong>
@@ -93,11 +93,13 @@ button {
 				</dl>
 			</div>
 			<div class="bt_wrap">
-			<button type="submit">등록</button>
+			<button type="submit" >등록</button>
 			<button type="button" onclick="location.replace('${pageContext.request.contextPath}/user/list')">취소</button>
 			</div>
 		</form>
-		
+		</div>
+	</div>
 </div>
 
+<jsp:include page="/views/common/footer.jsp" />
 

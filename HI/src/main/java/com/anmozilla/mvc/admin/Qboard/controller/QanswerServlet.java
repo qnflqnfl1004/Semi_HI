@@ -67,7 +67,7 @@ public class QanswerServlet extends HttpServlet {
         } else {
           request.setAttribute("msg", "게시글 답변 실패");
         }
-          request.setAttribute("location", "/");
+          request.setAttribute("location", "/home");
           request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
