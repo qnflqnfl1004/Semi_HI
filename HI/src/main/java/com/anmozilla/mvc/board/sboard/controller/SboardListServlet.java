@@ -60,7 +60,7 @@ public class SboardListServlet extends HttpServlet {
 		} else {
 			msg = "관리자 로그인 후 사용할 수 있습니다.";
 			request.setAttribute("msg", msg);
-			request.getRequestDispatcher("/").forward(request, response);
+			request.getRequestDispatcher("/home").forward(request, response);
 		}
 		
 		request.setAttribute("list", list);

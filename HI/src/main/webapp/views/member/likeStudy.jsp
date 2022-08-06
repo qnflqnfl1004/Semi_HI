@@ -42,9 +42,9 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         preserveAspectRatio="xMidYMid slice"
                         focusable="false">
                         <div class="studyStart">시작 예정일 <br> | ${ likeStudy.SDate } | </div>
-                        <div class="studyTitle">${ likeStudy.STitle }</div>
+                        <div id="studyTitle1">${ likeStudy.STitle }</div>
 
-                      <div class="studyFilter">
+                      <div id="studyFilter1">
                         <div class="testNo">
                             <c:if test="${ likeStudy.language.LNo != 4 }">
                               <img src="${ path }/resources/images/Test_logo/${ likeStudy.test.testType }.png" alt="${ path }/resources/images/Test_logo/basic.png" class="testImg"/>

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+html,
+body {
+  height: 50%;
+}
+
+
+
+.footer-container {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-content;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  background-color: #7a86b6;
+  padding-bottom: 0.5rem 0 0.5rem 0;
+  padding-top: 3rem; 
+  bottom: 0;
+}
+
+#footer {
+  width: 100%;
+  height: 40vh;
+  background-color: #7a86b6;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  position: relative;
+}
+
+#foot1,
+#foot2,
+#foot3,
+#foot4 {
+  display: flex;
+  flex-direction: column;
+  margin-right: 4rem;
+}
+
+#foot4{
+	text-align: center;
+	
+}
+
+#foot1 h2,
+#foot2 h2,
+#foot3 h2,
+#foot4 h2 {
+  margin-bottom: 2.5rem;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#foot1 p,
+#foot2 a,
+#foot3 p {
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+#foot2 a:hover {
+  color: #495c83;
+  transition: 0.3s ease-out;
+}
+
+#foot4 {
+  position: absolute;
+  bottom: 0px;
+}
+
+@media screen and (max-width: 1150px) {
+  #footer {
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  #footer {
+    padding-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  #foot3 {
+    display: none;
+  }
+}
