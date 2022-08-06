@@ -38,7 +38,7 @@
             <div class="bt_wrap" id="viewbutton">
                 <a href="${ path }/nboard/list" class="list">목록</a>
                 <c:if test="${ not empty loginMember && loginMember.role == 'ROLE_ADMIN' }"> 
-	                <a href="#" class="delete" >삭제</a>
+	                <a href="#" class="delete" id="btnDelete" >삭제</a>
 	                <a href="${ path }/nboard/update?no=${ board.no }" class="on" >수정</a>
             	 </c:if>
             </div>
