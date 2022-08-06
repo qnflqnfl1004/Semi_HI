@@ -81,6 +81,43 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       </div>
     </div>
   </section>
+  
+  <div class="mainMenu_wrap">
+    <ul class="mainMenuList">
+      <li class="categoryLanguage" id="categoryEngLanguage">
+        영어
+          <ul class="hideList" id="hideEngList">
+            <li>TOEIC</li>
+            <li>TOFLE</li>
+            <li>OPIC</li>
+            <li>TEPS</li>
+          </ul>
+      </li>
+      <li class="categoryLanguage" id="categoryJpLanguage">
+        일본어
+        <ul class="hideList" id="hideJpList">
+          <li>JLPT</li>
+          <li>JPT</li>
+        </ul>
+      </li>
+      <li class="categoryLanguage" id="categoryChLanguage">
+        중국어
+        <ul class="hideList" id="hideChList">
+          <li>HSK</li>
+          <li>BCT</li>
+          <li>TSC</li>
+        </ul>
+      </li>
+      <li class="categoryLanguage" id="categoryEtcLanguage">
+        기타
+        <ul class="hideList" id="hideEtcList">
+          <li>프랑스어</li>
+          <li>스페인어</li>
+          <li>독일어</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
     <div class="album py-5" style="margin-bottom: 0">
       <div class="container">
@@ -212,4 +249,24 @@ $(document).ready(() => {
     });
   });
 });
+
+
+let langMenus = document.querySelectorAll('.categoryLanguage');
+let hideLists = document.querySelectorAll('.hideList');
+
+for (let i = 0; i < langMenus.length; i++) {  
+  langMenus[i].addEventListener('click', (event) =>{
+
+    console.log('click!' + langMenus[i].className);
+    langMenus[i].classList.toggle('down');
+    console.log(langMenus[i].className.indexOf);
+    event.stopPropagation();
+    if(langMenus[i].className.indexOf('down') > 0){
+      $(hideLists[i]).slideDown(400);
+    }else{
+     
+      $(hideLists[i]).slideUp(400);
+    }
+  });
+}
 </script>

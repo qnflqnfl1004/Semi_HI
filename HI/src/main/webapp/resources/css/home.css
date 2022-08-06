@@ -37,6 +37,59 @@ h1 {
   color: #495c83;
 }
 
+/* 메인 메뉴 */
+.mainMenuList {
+  gap: 50px;
+  padding-bottom: 20px;
+  padding-left: 60px;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categoryLanguage {
+  float: left;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 126.5%;
+  color: #848484;
+  cursor: pointer;
+  margin-right: 100px;
+}
+
+
+.categoryLanguage:focus
+.categoryLanguage:hover {
+  color: #495c83;
+}
+
+.categoryLanguage:hover{
+  color: #495c83;
+}
+.categoryLanguage:hover > ul{
+  color: #848484;
+}
+.categoryLanguage > ul > li:hover{
+  color: #495c83;
+}
+.categoryLanguage > ul{
+  display: none;
+  position: absolute;
+}
+.categoryLanguage > ul > li{
+  list-style-type: none;
+  float: left;
+  margin-right: 50px;
+}
+
+#menu > ul > li > ul > li{
+  float: left;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

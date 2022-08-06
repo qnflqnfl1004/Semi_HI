@@ -6,14 +6,8 @@
 
 <jsp:include page="/views/common/header.jsp" />
 <link rel="stylesheet" href="${ path }/resources/css/view.css">
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="https://kit.fontawesome.com/f8167db045.js" crossorigin="anonymous"></script>
-</head>
+
 <body>
 	<div class="studyView">
             <span>
@@ -29,11 +23,12 @@
 
                     <div class="heartIcon">
                         <i class="fa-regular fa-heart fa-sm"></i>
+                        
                     </div>
                 </div>
                 <div class="sUserAndDate">
                     <div class="sUser">
-                        <img class="sUser_userImg" src="https://upload.wikimedia.org/wikipedia/ko/thumb/d/d4/%ED%8E%AD%EC%88%98.jpg/450px-%ED%8E%AD%EC%88%98.jpg" alt="userImg">
+                        <img class="sUser_userImg" src="${ path }/resources/images/Hi_Profil.png" alt="userImg">
                         <div class="sUser_userName">${board.member.nickName}</div>
                     </div>
                     <div class="sboard_registeredDate">
