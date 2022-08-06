@@ -46,6 +46,16 @@ button {
     padding-right: 25px;
 }
 
+.main1 {
+  display: flex;
+  align-items: center;
+}
+
+.main2 {
+  font-weight: bold;
+  font-size: 17px;
+}
+
 .board_wrap {
     width: 1000px;
     margin: 100px auto;
@@ -264,9 +274,6 @@ button {
     font-size: 1.4rem;
 }
 
-.board_view .info dl dt {
-
-}
 
 .board_view .info dl dd {
     margin-left: 10px;

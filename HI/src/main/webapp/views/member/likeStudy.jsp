@@ -71,15 +71,15 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         </div>
                       </div>
                     </a>
-                        <div class="writerInfo">
-                              <img src="${ path }/resources/images/Hi_Profil.png" class="writerImg" />
-                              <div class="writerNick">${ likeStudy.member.nickName }</div>
+                        <div id="writerInfo">
+                              <img src="${ path }/resources/images/Hi_Profil.png" id="writerImg1" />
+                              <div id="writerNick1">${ likeStudy.member.nickName }</div>
                               <!-- <span>${ likeStudy.like.likeNo }</span> -->
                               <c:if test="${ ! empty likeStudy.like }">
-                                <i class="fa-solid fa-heart fa-3x" id="favIcon" bno="${ likeStudy.SNo }"></i>
+                                <i class="fa-solid fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
                               </c:if>
                               <c:if test="${ empty likeStudy.like }">
-                                <i class="fa-regular fa-heart fa-3x" id="favIcon" bno="${ likeStudy.SNo }"></i>
+                                <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
                               </c:if>
                         </div>    
                     </div> 
@@ -119,9 +119,9 @@ $(document).ready(() => {
         console.log(data);
         if(data !== null) {
           console.log()
-          $(event.target).attr("class", "fa-solid fa-heart fa-3x");
+          $(event.target).attr("class", "fa-solid fa-heart fa-4x");
         } else {
-          $(event.target).attr("class", "fa-regular fa-heart fa-3x");
+          $(event.target).attr("class", "fa-regular fa-heart fa-4x");
         }
       },
       error:(error) => {

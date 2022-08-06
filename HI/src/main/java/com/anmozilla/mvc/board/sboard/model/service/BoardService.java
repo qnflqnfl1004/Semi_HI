@@ -49,9 +49,9 @@ public class BoardService {
 			return result;
 		}
 
-		public List<Board> selectAllBoard() {
+		public List<Board> selectAllBoard(String getQuery) {
 			Connection conn = getConnection();
-			List<Board> list = new BoardDao().selectAllBoard(conn);
+			List<Board> list = new BoardDao().selectAllBoard(conn, getQuery);
 			close(conn);
 			
 			return list;

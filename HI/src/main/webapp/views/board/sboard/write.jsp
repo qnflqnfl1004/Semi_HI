@@ -23,7 +23,7 @@
                     <button type="button" class="selectBtn">
                         함께 공부할 언어 선택
                     </button>
-                    <ul class="dropboxList" name="langNo" style="z-index: 4;">
+                    <ul class="dropboxList" id="langDropbox" name="langNo" style="z-index: 4;">
                         <li>
                             <button type="button" value="1">영어</button>
                         </li>
@@ -36,28 +36,16 @@
                         <li>
                             <button type="button" value="4">기타</button>
                         </li>
-                        <input type="hidden" name="langNo" value="">
+                        <input type="hidden" name="langNo" id="langNo" value="">
                     </ul>
                 </div>
                 <div class="sboardDropbox">
                     <label class="sboardLabel" style="z-index: 99;">모집 분야</label>
-                    <button type="button" class="selectBtn">
+                    <button type="button" class="selectBtn" id="selectTestBtn">
                         스터디로 진행할 시험 선택
                     </button>
-                    <ul class="dropboxList" name="testNo" id="testName">
-                        <li>
-                            <button type="button" value="1">토익</button>
-                        </li>
-                        <li>
-                            <button type="button" value="2">토플</button>
-                        </li>
-                        <li>
-                            <button type="button" value="3">오픽</button>
-                        </li>
-                        <li>
-                            <button type="button" value="4">텝스</button>
-                        </li>
-                        <input type="hidden" name="testNo" value="">
+                    <ul class="dropboxList" name="testNo" id="testName" style="z-index: 4;">
+
                     </ul>
                 </div>
                 <div class="sboardDropbox">
@@ -141,9 +129,9 @@
                         <li>
                             <button type="button" value="email">이메일</button>
                         </li>
-                        <input type="hidden" class="sboardContact" value="">
+                        <input type="hidden" class="sboardContact" name="sContact" value="">
                     </ul>
-                    <input type="text" class="sContactInput" name="sContact" placeholder="링크 주소를 입력해주세요">
+                    <!-- <input type="text" class="sContactInput" name="sContact" placeholder="링크 주소를 입력해주세요"> -->
                 </div>
                 <div class="sboardDropbox">
                     <label class="sboardLabel">모집 레벨</label>
@@ -183,6 +171,135 @@
     </form>
         
     <script>
+        window.onload = function(){
+            //언어 선택이 안 되어 있을 경우 비활성화
+            let selectTestBtn = document.getElementById('selectTestBtn');
+            let langNo = document.getElementById('langNo');
+            if(langNo.value == ''){
+                selectTestBtn.disabled = true;
+
+            }
+            
+            let langDropbox = document.getElementById('langDropbox');
+
+            //클릭해서 언어 선택했을 때
+            langDropbox.addEventListener('click', () =>{
+                selectTestBtn.disabled = false; //비활성화 해제
+                setTestList(event.target.value);
+
+            });
+        };
+
+        //언어에 따른 시험종류 출력
+        function setTestList(langNo){
+        
+            //li태그 배열 선언
+            let liEle = [];
+
+            //input태그 속성 설정
+            let inputEle = document.createElement('input');
+                inputEle.setAttribute('type', 'hidden');
+                inputEle.setAttribute('name', 'testNo');
+            //li태그를 삽입할 ul태그
+            let testNameTag = document.getElementById('testName');
+            switch (langNo) {
+                case '1': 
+                    //박스에 들어있는 기존 글자 삭제
+                    //기존 시험목록 삭제
+                    while ( testNameTag.hasChildNodes() ){
+                        testNameTag.removeChild( testNameTag.firstChild );  
+                    }
+                    //시험 이름 초기화
+                    selectTestBtn.innerText = '스터디로 진행할 시험 선택';
+
+                    liEle = []; //배열 초기화
+                    let engTestArr = ['TOEIC', 'TOEFL',' OPIC', 'TEPS'];//시험목록
+                    //시험목록 반복
+                    for(let i = 0; i < engTestArr.length; i++){
+                        liEle[i] = document.createElement('li'); //li태그 생성/배열삽입
+                        
+                        let tempBtn = document.createElement('button');//버튼태그 생성
+                        tempBtn.setAttribute('type', 'button');//속성설정
+                        tempBtn.setAttribute('value', i + 1);
+                        tempBtn.innerText = engTestArr[i]; //시험이름 버튼태그에 저장(화면출력부)
+                        liEle[i].appendChild(tempBtn); //버튼태그를 li태그 하위에 지정
+                        testNameTag.appendChild(liEle[i]); //li태그를 ul태그 하위에 지정 ul>li>btn 의 구조임
+                    }
+                    
+                    testNameTag.appendChild(inputEle);//ul태그에 생성한 li태그를 자식으로 추가(하위에 지정)
+                    break;
+                case '2':
+                    //기존 시험목록 삭제
+                    while ( testNameTag.hasChildNodes() ){
+                        testNameTag.removeChild( testNameTag.firstChild );  
+                    }
+                    selectTestBtn.innerText = '스터디로 진행할 시험 선택';
+
+                    liEle = [];
+                    let JapTestArr = ['JLPT', 'JPT'];
+                    for(let i = 0; i < JapTestArr.length; i++){
+                        liEle[i] = document.createElement('li');
+                        
+                        let tempBtn = document.createElement('button');
+                        tempBtn.setAttribute('type', 'button');
+                        tempBtn.setAttribute('value', i + 5);
+                        tempBtn.innerText = JapTestArr[i];
+                        liEle[i].appendChild(tempBtn);
+                        testNameTag.appendChild(liEle[i]);
+                    }
+                    
+                    testNameTag.appendChild(inputEle);
+                    break;
+                case '3':
+                    //기존 시험목록 삭제
+                    while ( testNameTag.hasChildNodes() ){
+                        testNameTag.removeChild( testNameTag.firstChild );  
+                    }
+                    selectTestBtn.innerText = '스터디로 진행할 시험 선택';
+
+                    liEle = [];
+                    let ChnTestArr = ['HSK', 'BCT', 'TSC'];
+                    for(let i = 0; i < ChnTestArr.length; i++){
+                        liEle[i] = document.createElement('li');
+                        
+                        let tempBtn = document.createElement('button');
+                        tempBtn.setAttribute('type', 'button');
+                        tempBtn.setAttribute('value', i + 7);
+                        tempBtn.innerText = ChnTestArr[i];
+                        liEle[i].appendChild(tempBtn);
+                        testNameTag.appendChild(liEle[i]);
+                    }
+                    
+                    testNameTag.appendChild(inputEle);
+                    break;
+                case '4':
+                    //기존 시험목록 삭제
+                    while ( testNameTag.hasChildNodes() ){
+                        testNameTag.removeChild( testNameTag.firstChild );  
+                    }
+                    selectTestBtn.innerText = '스터디로 진행할 시험 선택';
+
+                    liEle = [];
+                    let etcTestArr = ['프랑스어', '스페인어', '독일어'];
+                    for(let i = 0; i < etcTestArr.length; i++){
+                        liEle[i] = document.createElement('li');
+                        
+                        let tempBtn = document.createElement('button');
+                        tempBtn.setAttribute('type', 'button');
+                        tempBtn.setAttribute('value', i + 10);
+                        tempBtn.innerText = etcTestArr[i];
+                        liEle[i].appendChild(tempBtn);
+                        testNameTag.appendChild(liEle[i]);
+                    }
+                    
+                    testNameTag.appendChild(inputEle);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // 리스트 열기
         let btns = document.querySelectorAll('.selectBtn');
         let lists = document.querySelectorAll('.dropboxList');
         
@@ -208,9 +325,6 @@
             
         }
 
-
-
-        
         for (let i = 0; i < lists.length; i++) {
             
             lists[i].addEventListener('click', () => {
@@ -222,7 +336,7 @@
                     // console.log(val);
 
                     let arr = Array.from(tag);
-                  	//마지막배열요소(input)값 제어
+                    //마지막배열요소(input)값 제어
                     arr.at(-1).value = val; 
                     // console.log(arr.at(-1).value);
 
@@ -233,6 +347,8 @@
             });
         }
 
+        
+        
 
     </script>
 </body>

@@ -27,17 +27,21 @@ public class DeleteServlet extends HttpServlet {
 		if(loginMember != null) {
 			int result = new BoardService().deleteBoard(no);
 			if(result > 0) {
-				msg = "게시글 삭제 성공";
+				request.setAttribute("msg", "게시글 삭제 완료");
+				request.setAttribute("location", "/");
 			} else {
-				msg = "게시글 삭제 실패";
+				request.setAttribute("msg", "게시글 삭제 실패");
+				request.setAttribute("location", "/sboard/view?no=" + no);
+					
 			}
 		} else {
 			msg = "로그인 후 사용할 수 있습니다.";
 
 		}
 			System.out.println(msg);
-		request.getSession().setAttribute("msg", msg);
-		System.out.println(no);
-			response.sendRedirect(request.getContextPath() + "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		request.getSession().setAttribute("msg", msg);
+//		System.out.println(no);
+//			response.sendRedirect(request.getContextPath() + "/");
 		}
 }

@@ -43,6 +43,7 @@
             margin-right: 16px;
             border-radius: 50%;
             object-fit: cover;
+            background-color: #7a86b6;
         }
         
         .sUser_userName {
@@ -55,11 +56,15 @@
         }
 
         .heartIcon {
-            display: inline-block;
+            display: flex;
             justify-content: flex-end;
             padding-left: 240px;
         }
 
+        .btns {
+            display: flex;
+            justify-content: flex-end;
+        }
 
         .btnUpdate,
         .btnDelete {
@@ -71,8 +76,6 @@
             font-size: 18px;
             background-color: #fff;
             font-weight: 700;
-            display: flex;
-            justify-content: flex-end;
             margin-top: 1rem;
         }
         

@@ -13,19 +13,37 @@
 		color : black;
 		text-decoration: none;
 	}
-	.pagenum,
+	.pagenumcurrent,
+	.pagenumothers,
 	.pagearrow {
-		background-color: #7A86B6;
-    	color: #fff;
+	border-color: #ddd;
+	border: 1px solid #ddd;
 	}
 	
-	.pagenum {
+	.pagenumcurrent,
+	.pagenumothers {
+		width: 32px;
+	    height: 32px;
+    	font-size: 1.4rem;
+    	border-radius: 5px;
+	}
+	.pagenumothers {
+		background-color: #fff;
+    	color: #7A86B6;
+	}
+	.pagenumcurrent {
+		background-color: #7A86B6; 
+    	color: #fff;
 	}
 
 	.pagearrow {
 	width: 32px;
     height: 32px;
     font-size: 1.4rem;
+	background-color: #fff;
+	color: #ddd;
+	border-radius: 5px;
+
 	}
 
 	
@@ -65,7 +83,7 @@
 						</div>
 						<div class="answer">${ board.as }</div>
 						<div class="writer">${ board.writerId}</div>
-						<div class="as">${ board.createDate }</div>
+						<div class="date">${ board.createDate }</div>
 					</div>
 				</c:forEach>
 			</c:if>
@@ -81,10 +99,10 @@
 			<c:forEach begin="${ pageInfo.startPage }"
 				end="${ pageInfo.endPage }" varStatus="status">
 				<c:if test="${ status.current == pageInfo.currentPage }">
-					<button disabled>${ status.current }</button>
+					<button class="pagenumcurrent" disabled >${ status.current }</button>
 				</c:if>
 				<c:if test="${ status.current != pageInfo.currentPage }">
-					<button class="pagenum"
+					<button class="pagenumothers"
 						onclick="location.href='${path}/admin/Qlist?page=${ status.current }'">${ status.current }</button>
 				</c:if>
 			</c:forEach>
@@ -96,3 +114,6 @@
 		
 	</div>
 </div>
+
+<jsp:include page="/views/common/footer.jsp" />
+

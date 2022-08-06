@@ -6,16 +6,7 @@
 
 <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
 
-<nav class="navbar navbar-light bg-light">
-
-	<a class="navbar-brand" href="#"> <img
-		src="C:\Users\kh\Desktop\semi\logo.png" alt="" width="130" height="70">
-	</a>
-	<div class="main1">
-		<button class="main2">회원가입</button>
-		<button class="main3">로그인</button>
-	</div>
-</nav>
+<jsp:include page="/views/common/header.jsp" />
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의하기</strong>

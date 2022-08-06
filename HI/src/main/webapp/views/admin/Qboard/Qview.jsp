@@ -44,12 +44,8 @@ button {
 
 </style>
 
-<nav class="navbar navbar-light bg-light">
+<jsp:include page="/views/common/header.jsp" />
 
-	<a class="navbar-brand" href="#"> <img
-		src="C:\Users\kh\Desktop\semi\logo.png" alt="" width="130" height="70">
-	</a>
-</nav>
 <div class="board_wrap">
 	<div class="board_title">
 		<strong>건의사항</strong>
@@ -74,7 +70,7 @@ button {
 			<div class="writeperson">
 				<dl>
 					<dt>작성자</dt>
-					<dd>${ board.writerId }</dd>
+					<dt>${ board.writerId }</dt>
 				</dl>
 			</div>
 
@@ -111,3 +107,5 @@ button {
 		
 	</div>
 </div>
+
+<jsp:include page="/views/common/footer.jsp" />
