@@ -3,12 +3,56 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
-<%-- <link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css"> --%>
+<link rel="stylesheet" href="${ path }/resources/css/Qcss/Qcss.css">
 <style>
 div#pageBar {
 	margin-top: 10px;
 	text-align: center;
 }
+
+.btns {
+		margin-top: 10px;
+		text-align: center;
+	}
+	
+	.title a {
+		color : black;
+		text-decoration: none;
+	}
+	.pagenumcurrent,
+	.pagenumothers,
+	.pagearrow {
+	border-color: #ddd;
+	border: 1px solid #ddd;
+	}
+	
+	.pagenumcurrent,
+	.pagenumothers {
+		width: 32px;
+	    height: 32px;
+    	font-size: 1.4rem;
+    	border-radius: 5px;
+	}
+	.pagenumothers {
+		background-color: #fff;
+    	color: #7A86B6;
+	}
+	.pagenumcurrent {
+		background-color: #7A86B6; 
+    	color: #fff;
+	}
+
+	.pagearrow {
+	width: 32px;
+    height: 32px;
+    font-size: 1.4rem;
+	background-color: #fff;
+	color: #ddd;
+	border-radius: 5px;
+
+	}
+	
+
 </style>
 <jsp:include page="/views/common/header.jsp" />
 <div class="board_wrap">
@@ -36,46 +80,48 @@ div#pageBar {
 					<div>
 						<div class="num" >${ board.rowNum }</div>
 						<div class="title">
-							<a href="${path}/user/Qview?no=${ board.no }"> ${ board.title } </a>
+							<a href="${path}/Qview?no=${ board.no }"> ${ board.title } </a>
 						</div>
 						<div class="answer">${ board.as }</div>
 						<div class="writer">${ board.writerId}</div>
 						<div class="date">${ board.createDate }</div>
-						<div calss="as">${ board.as }</div>
 					</div>
 				</c:forEach>
 			</c:if>
 			
-			<div id="pageBar">
+			
+
+			</div>
+			
+			<div class="btns">
 	<!-- 맨 처음으로 -->
-	<button onclick="location.href='${ path }/user/list?page=1'">&lt;&lt;</button>
+	<button class="pagearrow" onclick="location.href='${ path }/user/list?page=1'">&lt;&lt;</button>
 
 	<!-- 이전 페이지로 -->
-	<button
+	<button class="pagearrow"
 		onclick="location.href='${ path }/user/list?page=${ pageInfo.prevPage }'">&lt;</button>
 
 	<!--  10개 페이지 목록 -->
 	<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }"
 		varStatus="status">
 		<c:if test="${ status.current == pageInfo.currentPage }">
-			<button disabled>${ status.current }</button>
+			<button class="pagenumcurrent" disabled>${ status.current }</button>
 		</c:if>
 		<c:if test="${ status.current != pageInfo.currentPage }">
-			<button
+			<button class="pagenumothers"
 				onclick="location.href='${path}/user/list?page=${ status.current }'">${ status.current }</button>
 		</c:if>
 	</c:forEach>
 
 
 	<!-- 다음 페이지로 -->
-	<button
+	<button class="pagearrow"
 		onclick="location.href='${path}/user/list?page=${ pageInfo.nextPage }'">&gt;</button>
 
 	<!-- 맨 끝으로 -->
-	<button
+	<button class="pagearrow"
 		onclick="location.href='${path}/user/list?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
-</div>
-			</div>
+		</div>
 		</div>
 	</div>
-</div>
+
