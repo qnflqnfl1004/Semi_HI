@@ -17,7 +17,7 @@
 </head>
 <body>
 	<nav class="navbar">
-        <a class="navbar-brand" href="${ path }/">
+        <a class="navbar-brand" href="${ path }/home">
             <img src="${ path }/resources/images/Hi_Logo.png" alt="" width="130" height="70">
         </a>
         <c:if test="${ empty loginMember }">

@@ -156,19 +156,19 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         </div>
                       </div>
                     </a>
-                      <div class="writerInfo">
+                      <div id="writerInfo">
                         <img
                         src="${ path }/resources/images/Hi_Profil.png"
-                        class="writerImg"
+                        id="writerImg"
                         />
-                        <div class="writerNick">${ board.member.nickName }</div>
+                        <div id="writerNick">${ board.member.nickName }</div>
                         <c:if test="${ ! empty loginMember }">
                           <!-- <span>${ board.SNo }</span> -->
                           <c:if test="${ ! empty board.like }">
-                            <i class="fa-solid fa-heart fa-3x" id="favIcon" bno="${ board.SNo }"></i>
+                            <i class="fa-solid fa-heart fa-4x" style="margin-top: 20px;" id="favIcon" bno="${ board.SNo }"></i>
                           </c:if>
                           <c:if test="${ empty board.like }">
-                            <i class="fa-regular fa-heart fa-3x" id="favIcon" bno="${ board.SNo }"></i>
+                            <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ board.SNo }" style="margin-top: 20px;"></i>
                           </c:if>
                         </c:if>
                       </div>
@@ -178,7 +178,6 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             </c:forEach>
           </c:if>
     </div>
-    <jsp:include page="/views/common/footer.jsp" />
 <!------------- .col 스터디 카드 하나!------------->
       </div>
     </div>
@@ -202,9 +201,9 @@ $(document).ready(() => {
         console.log(data);
         if(data !== null) {
           console.log()
-          $(event.target).attr("class", "fa-solid fa-heart fa-3x");
+          $(event.target).attr("class", "fa-solid fa-heart fa-4x");
         } else {
-          $(event.target).attr("class", "fa-regular fa-heart fa-3x");
+          $(event.target).attr("class", "fa-regular fa-heart fa-4x");
         }
       },
       error:(error) => {
