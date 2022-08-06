@@ -42,6 +42,7 @@
                         MY PAGE
                       </button>
                     </li>
+                    <li><a class="dropdown-item" href="${ path }/nboard/list">공지사항</a></li>
                     <li><a class="dropdown-item" href="${ path }/Qboard/write">건의하기</a></li>
                     <li><a class="dropdown-item" href="${ path }/user/list">내 문의함</a></li>
                     <li><hr class="dropdown-divider"></li>
