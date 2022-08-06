@@ -27,7 +27,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		result = new MemberService().memberdelete(no);
 		
 		if(result > 0) {
-    		request.setAttribute("msg", "회원 강제 탈퇴 시켜버림");
+    		request.setAttribute("msg", "회원 강제 탈퇴");
     		request.setAttribute("location", "/admin/memberList");
     	} else {
     		request.setAttribute("msg", "회원 강제 탈퇴 못시킴");
