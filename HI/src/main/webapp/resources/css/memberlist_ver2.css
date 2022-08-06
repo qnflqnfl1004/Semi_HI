@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+.memListForm {
+	height: auto;
+    min-height: 240%;
+    padding-bottom: 60px;
+} 
+
+
 .memListPage {
     left: 20px;
     top: 40px;

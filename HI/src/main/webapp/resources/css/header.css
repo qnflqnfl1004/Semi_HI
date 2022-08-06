@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+html, body {
+	    height: 50%;
+}
+
+
 .navbar{
     margin:auto;
     display: flex;

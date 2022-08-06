@@ -35,7 +35,7 @@
                 <p>Tel : 010-1234-5678(평일 09:00 ~ 18:00)</p>
                 <p>Mail : HI@gmail.com</p>
             </div>
-            <div id="foot4" class="w-100 footer-heading footer-4">
+            <div id="foot4" class="footer-heading footer-4">
                 <h2>Copyright 2022. &lt;KH-SEMI-PROJECT&gt;. All rights reserved.</h2>
             </div>
         </div>
