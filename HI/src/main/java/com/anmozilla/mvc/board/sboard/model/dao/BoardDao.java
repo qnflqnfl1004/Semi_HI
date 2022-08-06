@@ -196,7 +196,7 @@ public class BoardDao {
 		return result;
 	}
 
-	public List<Board> selectAllBoard(Connection conn) {
+	public List<Board> selectAllBoard(Connection conn, String getQuery) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Board> list = new ArrayList<Board>();
@@ -373,8 +373,7 @@ public class BoardDao {
 	
 	
 	
-	
-	
+
 	
 	
 	

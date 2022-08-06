@@ -126,7 +126,6 @@
 	</div>
 	</div>
 </div>
-<jsp:include page="/views/common/footer.jsp" />
 <script>
 	$(document).ready(() => {
 		// 닉네임 중복 확인
@@ -282,6 +281,6 @@
 
 });
 </script>
-
 </body>
+<jsp:include page="/views/common/footer.jsp" />
 </html>

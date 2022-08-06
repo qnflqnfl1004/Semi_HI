@@ -69,9 +69,9 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               </c:choose>   
             </div>
           </div>
-            <div class="writerInfo">
-                  <img src="${ path }/resources/images/Hi_Profil.png" class="writerImg" />
-                  <div class="writerNick">${ myStudy.member.nickName }</div>
+            <div id="writerInfo">
+                  <img src="${ path }/resources/images/Hi_Profil.png" id="writerImg1" />
+                  <div id="writerNick1">${ myStudy.member.nickName }</div>
             </div>    
         </div> 
       </div> 

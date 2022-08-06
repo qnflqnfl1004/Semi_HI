@@ -65,9 +65,9 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     </c:choose>   
                     </div>
                   </div>
-                    <div class="writerInfo">
-                          <img src="${ path }/resources/images/Hi_Profil.png" class="writerImg" />
-                          <div class="writerNick">${ myStudy.member.nickName }</div>
+                    <div id="writerInfo1">
+                          <img src="${ path }/resources/images/Hi_Profil.png" id="writerImg2" />
+                          <div id="writerNick1">${ myStudy.member.nickName }</div>
                     </div>    
                   </div> 
                 </div> 
@@ -92,7 +92,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-- .col 스터디 카드 하나! -->
         </div>
         <div class="btnBox">
-            <button type="button" class="btn" id="btnMore" ><a href="${ path }/member/myStudyBox" style="text-decoration:none; color:white">더보기</a></button>
+            <button type="button" class="btn" id="btnMore1" ><a href="${ path }/member/myStudyBox" style="text-decoration:none; color:white">더보기</a></button>
         </div>
       </div>
     </div>
@@ -155,15 +155,15 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                       </div>
                     </div>
                   </a>
-                      <div class="writerInfo">
-                        <img src="${ path }/resources/images/Hi_Profil.png" class="writerImg" />
-                        <div class="writerNick">${ likeStudy.member.nickName }</div>
+                      <div id="writerInfo2">
+                        <img src="${ path }/resources/images/Hi_Profil.png" id="writerImg1" />
+                        <div id="writerNick2">${ likeStudy.member.nickName }</div>
                         <!-- <span>${ likeStudy.SNo }</span> -->
                         <c:if test="${ ! empty likeStudy.like }">
-                          <i class="fa-solid fa-heart fa-3x" id="favIcon" bno="${ likeStudy.SNo }"></i>
+                          <i class="fa-solid fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
                         </c:if>
                         <c:if test="${ empty likeStudy.like }">
-                          <i class="fa-regular fa-heart fa-3x" id="favIcon" bno="${ likeStudy.SNo }"></i>
+                          <i class="fa-regular fa-heart fa-4x" id="favIcon" bno="${ likeStudy.SNo }" style="margin-top: 20px;"></i>
                         </c:if>
                       </div>    
                   </div> 
@@ -175,7 +175,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-- .col 스터디 카드 하나! -->
         </div>
         <div class="btnBox">
-          <button type="button" class="btn" id="btnMore" ><a href="${ path }/member/likeStudyBox" style="text-decoration:none; color:white">더보기</a></button>
+          <button type="button" class="btn" id="btnMore2" ><a href="${ path }/member/likeStudyBox" style="text-decoration:none; color:white">더보기</a></button>
         </div>
         </div>
       </div>
@@ -202,9 +202,9 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         console.log(data);
         if(data !== null) {
           console.log()
-          $(event.target).attr("class", "fa-solid fa-heart fa-3x");
+          $(event.target).attr("class", "fa-solid fa-heart fa-4x");
         } else {
-          $(event.target).attr("class", "fa-regular fa-heart fa-3x");
+          $(event.target).attr("class", "fa-regular fa-heart fa-4x");
         }
       },
       error:(error) => {
