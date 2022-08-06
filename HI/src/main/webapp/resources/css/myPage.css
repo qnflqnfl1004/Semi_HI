@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-* {
+/* * {
   font-family: "Noto Sans KR", sans-serif;
-}
+} */
 
 
 /* body css */
@@ -18,8 +18,11 @@
   margin-top: 3rem !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  width: 100% !important;
-  padding-bottom: 5rem !important;
+ padding-bottom: 5rem !important;
+    height: auto !important;
+    min-height: 300% !important;
+    padding-bottom: 60px !important;
+  
 
 }
 
