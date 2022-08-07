@@ -181,6 +181,13 @@ public class MemberService {
 		
 		result = new MemberDao().updateMemberStatus(connection, no, "N");
 		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		close(connection);
+		
 		return result;
 	}
 
