@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Board {
 
-	private int sNo;
+	private int sNo; 
 	
-	private Member member;	
+	private Member member;
 	
 	private Date sWriteDate;
 	

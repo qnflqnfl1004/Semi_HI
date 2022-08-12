@@ -40,8 +40,6 @@ public class DeleteServlet extends HttpServlet {
 		}
 			System.out.println(msg);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//		request.getSession().setAttribute("msg", msg);
-//		System.out.println(no);
-//			response.sendRedirect(request.getContextPath() + "/");
+
 		}
 }
