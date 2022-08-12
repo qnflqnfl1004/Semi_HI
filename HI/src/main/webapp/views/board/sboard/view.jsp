@@ -76,7 +76,7 @@
                         <span class="sboard-2">연락 방법&nbsp;</span>
                         <span class="sboard-3">
                             <a class="scontactLink" value="${board.SContact}">
-                            링크
+                            	링크
                                 <i class="fa-solid fa-link iconLink"></i>
                             </a>
                         </span>

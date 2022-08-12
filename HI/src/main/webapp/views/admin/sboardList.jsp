@@ -166,23 +166,22 @@
     let url = new URL(window.location.href);
     let urlParamLang = url.searchParams.get('searchLang');
     let urlParamTest = url.searchParams.get('searchTest');
-    //현재 검색 상태를 select함
+    //현재 검색 상태를 select
     searchLang.options[Number(urlParamLang)+1].selected = true;
     searchTest.options[Number(urlParamTest)+1].selected = true;
 
-//언어검색
+//언어 검색
 function changeLangSelect(){
     
-    //언어와 시험은 서로 유기관계가 있지만 동시에 검색할 필요가 없음
-    //토익의 경우 무조건 영어일 수밖에 없으므로 전체-토익과 영어-전체의 결과는 동일
-    //그러므로 검색은 단일로도 가능
+    //언어와 시험은 서로 유기적인 관계이지만 동시에 검색할 필요가 없음
+    //검색은 단일로도 가능 제발........
     langValue = searchLang.options[searchLang.selectedIndex].value;
     // testValue = searchTest.options[searchTest.selectedIndex].value;
     console.log(langValue);
     location.href = '${ path }/admin/sboardList?searchLang='+langValue+'&searchTest='+0;
 }
 
-//시험검색
+//시험 검색
 function changeTestSelect(){
     
     // langValue = searchLang.options[searchLang.selectedIndex].value;

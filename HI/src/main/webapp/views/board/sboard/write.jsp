@@ -172,7 +172,7 @@
         
     <script>
         window.onload = function(){
-            //언어 선택이 안 되어 있을 경우 비활성화
+            //언어 선택이 안 되어 있을 경우 disabled
             let selectTestBtn = document.getElementById('selectTestBtn');
             let langNo = document.getElementById('langNo');
             if(langNo.value == ''){
@@ -184,7 +184,7 @@
 
             //클릭해서 언어 선택했을 때
             langDropbox.addEventListener('click', () =>{
-                selectTestBtn.disabled = false; //비활성화 해제
+                selectTestBtn.disabled = false; // disabled 해제
                 setTestList(event.target.value);
 
             });
@@ -213,20 +213,20 @@
                     selectTestBtn.innerText = '스터디로 진행할 시험 선택';
 
                     liEle = []; //배열 초기화
-                    let engTestArr = ['TOEIC', 'TOEFL',' OPIC', 'TEPS'];//시험목록
+                    let engTestArr = ['TOEIC', 'TOEFL',' OPIC', 'TEPS']; //시험목록
                     //시험목록 반복
                     for(let i = 0; i < engTestArr.length; i++){
                         liEle[i] = document.createElement('li'); //li태그 생성/배열삽입
                         
-                        let tempBtn = document.createElement('button');//버튼태그 생성
-                        tempBtn.setAttribute('type', 'button');//속성설정
+                        let tempBtn = document.createElement('button'); //버튼태그 생성
+                        tempBtn.setAttribute('type', 'button'); //속성설정
                         tempBtn.setAttribute('value', i + 1);
                         tempBtn.innerText = engTestArr[i]; //시험이름 버튼태그에 저장(화면출력부)
                         liEle[i].appendChild(tempBtn); //버튼태그를 li태그 하위에 지정
                         testNameTag.appendChild(liEle[i]); //li태그를 ul태그 하위에 지정 ul>li>btn 의 구조임
                     }
                     
-                    testNameTag.appendChild(inputEle);//ul태그에 생성한 li태그를 자식으로 추가(하위에 지정)
+                    testNameTag.appendChild(inputEle); //ul태그에 생성한 li태그를 자식으로 추가(하위에 지정)
                     break;
                 case '2':
                     //기존 시험목록 삭제
@@ -346,10 +346,6 @@
                 }
             });
         }
-
-        
-        
-
     </script>
 </body>
 <jsp:include page="/views/common/footer.jsp" /> 

@@ -161,13 +161,14 @@
                 </div>
                 <label class="sboardLabel">내용</label>
                 <div>
-                    <textarea class="sboardContent" style="padding-left: 10px;" cols="124" rows="10" placeholder="내용을 입력해 주세요" name="sContent">${board.SContent}
+                    <textarea class="sboardContent" style="padding-left: 10px;" cols="124" rows="10" placeholder="내용을 입력해 주세요" name="sContent">
+                    	${board.SContent}
                     </textarea>
                 </div>
             </article>
             <div class="btns">
                  <button type="button" class="cancelBtn" onclick="location.href='${ path }/sboard/view?no=${ board.SNo }'">
-				취소
+					취소
 				</button>
                 <input type="submit" value="수정" class="submitBtn"></input>
             </div>
@@ -184,7 +185,7 @@
                 btns[i].classList.toggle('on'); 
                 
                 event.stopPropagation();
-                console.log('button click Event');
+                console.log('button click event');
             });
         }
         
@@ -199,19 +200,19 @@
                     console.log(tag);
 
                     let arr = Array.from(tag);
-                  	//마지막배열요소(input)값 제어
+                  	//마지막 배열 input값 제어
                     arr.at(-1).value = val; 
                     // console.log(arr.at(-1).value);
 
                     //선택된 옵션의 value저장
                     btns[i].innerText = event.target.innerText;
                     btns[i].classList.remove('on');
-                    console.log('list click Event');
+                    console.log('list click event');
                 }
             });
         }
 
-        //수정페이지 게시판 해당값에 따라 버튼입력되게 해주는 기능
+        //해당 값에 따라 버튼에 입력되게 해 주기
         window.onload = function(){
             //언어
             //input값
@@ -228,32 +229,14 @@
                 }
             }
 
-            
-
-
-            //시험과목
+            //시험 과목
             //input값
             let testNo = document.getElementById('testNo');
-            //select 하위 버튼
-            // let testNoBtn = document.getElementsByName('testNoBtn');
-
-            // for(let i = 0; i < testNoBtn.length; i++){
-            //     //입력값 일치
-            //     if(testNoBtn[i].value == testNo.value){
-            //         let testNoSelect = document.getElementById('testNoSelect');
-            //         testNoSelect.innerText = testNoBtn[i].innerText;
-            //         testNo.value = testNoBtn[i].value;
-                    
-            //     }
-            // }
-            // 수정!!!!!!!!!!!!!!제발 
             let testNoSelect = document.getElementById('testNoSelect');
             testNoSelect.innerText = testNo.value; 
             setTestListInit(langNo.value, testNo.value);
 
-
-
-            //input value값에 따른 텍스트 출력
+            //input value값에 따라 리스트에 출력
             switch (testNo.value) {
                 case '1':
                     testNoSelect.innerText = 'TOEIC'; 
@@ -295,7 +278,7 @@
                     break;
             }
 
-            //모집인원
+            //모집 인원
             //input값
             let sMember = document.getElementById('sMember');
             //select 하위 버튼
@@ -370,7 +353,7 @@
                 }
             }
 
-            //연락방법
+            //연락 방법
             //input값
             let sContact = document.getElementById('sContact');
             //select 하위 버튼
@@ -450,9 +433,9 @@
                             let tempBtn = document.createElement('button');//버튼태그 생성
                             tempBtn.setAttribute('type', 'button');//속성설정
                             tempBtn.setAttribute('value', i + 1);
-                            tempBtn.innerText = engTestArr[i]; //시험이름 버튼태그에 저장(화면출력부)
+                            tempBtn.innerText = engTestArr[i]; //시험이름 버튼태그에 저장
                             liEle[i].appendChild(tempBtn); //버튼태그를 li태그 하위에 지정
-                            testNameTag.appendChild(liEle[i]); //li태그를 ul태그 하위에 지정 ul>li>btn 의 구조임
+                            testNameTag.appendChild(liEle[i]); //li태그를 ul태그 하위에 지정
                         }
                         
                         testNameTag.appendChild(inputEle);//ul태그에 생성한 li태그를 자식으로 추가(하위에 지정)
@@ -543,19 +526,20 @@
                 let testNameTag = document.getElementById('testName');
                 switch (langNo) {
                     case '1': 
-
-                        liEle = [];//배열 초기화
-                        let engTestArr = ['TOEIC', 'TOEFL',' OPIC', 'TEPS'];//시험목록
+                    	
+                    	//배열 초기화
+                        liEle = [];
+                        let engTestArr = ['TOEIC', 'TOEFL',' OPIC', 'TEPS']; //시험목록
                         //시험목록 갯수별 반복 작업
                         for(let i = 0; i < engTestArr.length; i++){
                             liEle[i] = document.createElement('li'); //li태그 생성/배열삽입
                             
-                            let tempBtn = document.createElement('button');//버튼태그 생성
-                            tempBtn.setAttribute('type', 'button');//속성설정
+                            let tempBtn = document.createElement('button'); //버튼태그 생성
+                            tempBtn.setAttribute('type', 'button'); //속성설정
                             tempBtn.setAttribute('value', i + 1);
-                            tempBtn.innerText = engTestArr[i]; //시험이름 버튼태그에 저장(화면출력부)
+                            tempBtn.innerText = engTestArr[i]; //시험이름을 버튼태그에 저장
                             liEle[i].appendChild(tempBtn); //버튼태그를 li태그 하위에 지정
-                            testNameTag.appendChild(liEle[i]); //li태그를 ul태그 하위에 지정 ul>li>btn 의 구조임
+                            testNameTag.appendChild(liEle[i]); //li태그를 ul태그 하위에 지정
                         }
                         
                         testNameTag.appendChild(inputEle);//ul태그에 생성한 li태그를 자식으로 추가(하위에 지정)
